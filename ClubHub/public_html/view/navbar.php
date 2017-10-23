@@ -53,17 +53,17 @@
                 <div class="form-group">
                     <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
                 </div>
-                <button type="submit" class="btn btn-block btn-primary">Logar</button>
+                <button type="submit" class="btn btn-block btn-primary">Log in</button>
                 <a href="">
-                    <p class="text-muted">Esqueceu sua senha?</p>
+                    <p class="text-muted pt-2">Esqueceu sua senha?</p>
                 </a>
             </form>
 
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<!--             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
