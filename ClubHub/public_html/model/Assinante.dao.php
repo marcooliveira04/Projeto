@@ -9,6 +9,7 @@
 		private $conn;
 		private $pdo;
 		private $gf;
+		private $where;
 
 		function __construct(){
 			require_once 'connectionFactory.db.php';
@@ -51,14 +52,11 @@
 				$stmt->bindParam(':email', $assinante->getEmail());
 				$stmt->bindParam(':senha', $assinante->getSenha());
 
-
 				$stmt->execute();
 				$stmt->closeCursor();
 				return true;
 			} catch (PDOException $e) {
-	            print "Ocorreu um erro ao tentar executar esta ação.";
-            GeraLog::getInstance()->inserirLog("Erro: Código: " . $e->
-getCode() . " Mensagem: " . $e->getMessage());
+	            print "Ocorreu um erro ao tentar executar esta ação. Entre em contato conosco e informe o código de erro: $e->getCode()";
 				echo $e->getMessage();
 				return false;
 			}
@@ -82,6 +80,56 @@ getCode() . " Mensagem: " . $e->getMessage());
 				$stmt->execute();
 				$resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				if ($stmt->rowCount() <= 0) {
+					return false;
+				} else {
+					$resultado = array();
+					foreach ($resultSet as $row => $col) {
+						$assinante = new Assinante;
+						$assinante->setId($col['id']);
+						$assinante->setNome($col['nome']);
+						$assinante->setCpf($col['cpf']);
+						$assinante->setRg($col['rg']);
+						$assinante->setNascimento($col['nascimento']);
+						$assinante->setSexo($col['sexo']);
+						$assinante->setCep($col['cep']);
+						$assinante->setRua($col['rua']);
+						$assinante->setNumero($col['numero']);
+						$assinante->setCidade($col['cidade']);
+						$assinante->setTelefone($col['telefone']);
+						$assinante->setCelular($col['celular']);
+						$assinante->setEmail($col['email']);
+						$assinante->setSenha($col['senha']);
+						array_push($resultado, $assinante);
+					}
+				}
+			} catch(PDOException $e){
+				$e->getMessage();
+			}
+		    return $resultado;
+		}
+
+		/**
+		* Método para retornar dados do banco de dados.
+		*
+		* @param array $where - Deve conter condições para adicionar-se à query SELECT
+		* @param array $orderby - Deve conter parâmetros para ordenar dados retornados do banco de dados
+		*
+		* @return array $resultado - array de objetos do tipo Curso
+		*/
+		public function readLogin(Assinante $assinante){
+			try{
+				require_once 'Assinante.class.php';
+				$sql = "SELECT * FROM assinante where email = :email and senha = :senha";
+				// $sql .= $this->gf->buildQuery($where, $orderby); //Faltando o arquivo - Pegar no trabalho
+				$stmt = $this->pdo->prepare($sql);
+
+				$stmt->bindParam(':email', $assinante->getEmail());
+				$stmt->bindParam(':senha', $assinante->getSenha());
+
+				$stmt->execute();
+				$resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+				if ($stmt->rowCount() <= 0) {
+					print "Usuário ou senha Inválidos";
 					return false;
 				} else {
 					$resultado = array();
