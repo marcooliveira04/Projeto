@@ -26,47 +26,44 @@
 		* @return array bool - Retorna verdadeiro se a execução não foi interrompida por erros, senão, retorna falso.
 		*/
 
-		public function printPreComNome($var, $nome){
-			print($nome.": <br/>");
-			print("<pre>");
-			print_r($var);
-			print("</pre><br/>");
-			return;
-		}
-
 		public function create($assinante){
 			try {
-				$teste = $assinante->testeBinding();
 
-				$cols = implode(',', $teste['names']);
-				
-				foreach ($teste['names'] as &$value) {
-					$value = ':'.$value;
-				}
+				$sql = "
+					INSERT INTO assinante(nome, cpf, rg, nascimento, sexo, cep, rua, numero, complemento, cidade, telefone, celular, email, senha) 
+					VALUES(:nome, :cpf, :rg, :nascimento, :sexo, :cep, :rua, :numero, :complemento, :cidade, :telefone, :celular, :email, :senha)
+				";
 
-				$vals = implode(',', $teste['names']);
+				$stmt = $this->pdo->prepare();
 
-				$sql = "INSERT INTO assinante(".$cols.") VALUES (".$vals.")";
+				$stmt->bindParam(':nome', $assinante->getNome());
+				$stmt->bindParam(':cpf', $assinante->getCpf());
+				$stmt->bindParam(':rg', $assinante->getRg());
+				$stmt->bindParam(':nascimento', $assinante->getNascimento());
+				$stmt->bindParam(':sexo', $assinante->getSexo());
+				$stmt->bindParam(':cep', $assinante->getCep());
+				$stmt->bindParam(':rua', $assinante->getRua());
+				$stmt->bindParam(':numero', $assinante->getNumero());
+				$stmt->bindParam(':complemento', $assinante->getComplemento());
+				$stmt->bindParam(':cidade', $assinante->getCidade());
+				$stmt->bindParam(':telefone', $assinante->getTelefone());
+				$stmt->bindParam(':celular', $assinante->getCelular());
+				$stmt->bindParam(':email', $assinante->getEmail());
+				$stmt->bindParam(':senha', $assinante->getSenha());
 
-				$stmt = $this->pdo->prepare($sql);
 
-				for ($i=0; $i < count($teste['names']); $i++) { 
-					$stmt->bindParam($teste['names'][$i], $teste['values'][$i]);
-				}
-
-				if ($stmt->execute() === false) {
-					print_r('Erro: '.$stmt->errorCode());
-					return false;
-				} else {
-					print_r('Sucesso!');
-					return true;
-				}
+				$stmt->execute();
 				$stmt->closeCursor();
+				return true;
 			} catch (PDOException $e) {
+	            print "Ocorreu um erro ao tentar executar esta ação.";
+            GeraLog::getInstance()->inserirLog("Erro: Código: " . $e->
+getCode() . " Mensagem: " . $e->getMessage());
 				echo $e->getMessage();
 				return false;
 			}
 		}
+
 
 		/**
 		* Método para retornar dados do banco de dados.

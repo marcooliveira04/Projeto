@@ -1,26 +1,16 @@
 <?php
-
+	require_once 'Assinante.dao.php';
 	/**
 	* 
 	*/
 	class Assinante
 	{
 		
-		private $id;
-		private $nome;
-		private $cpf;
-		private $rg;
-		private $nascimento;
-		private $sexo;
-		private $cep;
-		private $rua;
-		private $numero;
-		private $complemento;
-		private $cidade;
-		private $telefone;
-		private $celular;
-		private $email;
-		private $senha;
+		private $id, $nome, $cpf, $rg, $nascimento, $sexo, $cep, $rua, $numero, $complemento, $cidade, $telefone, $celular, $email, $senha, $dao;
+
+		function __construct(){
+			$this->dao = new AssainanteDao;
+		}
 
 		public function getId(){
 			return $this->id;
@@ -236,6 +226,7 @@
 								$this->email,
 								$this->senha
 							);
+			
 			$arrayAll = array('names' => $arrayOfFields, 'values' => $arrayOfValues);
 
 			return $arrayAll;
