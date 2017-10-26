@@ -10,11 +10,9 @@ class AssinanteController
 {
 	private $dao;
 	private $assinante;
-	private $action;
 
 	function __construct()
 	{
-		$this->action = $this->getAction();
 		$this->dao = new AssinanteDao;
 		$this->assinante = new Assinante;
 	}
@@ -23,10 +21,6 @@ class AssinanteController
 		if (isset($_POST['action'])) {
 			return $_POST['action'];
 		}
-	}
-
-	public function executaMetodo(){
-		
 	}
 
 	public function login($email, $senha){

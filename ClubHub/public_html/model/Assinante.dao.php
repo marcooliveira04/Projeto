@@ -56,7 +56,10 @@
 				$stmt->closeCursor();
 				return true;
 			} catch (PDOException $e) {
-	            print "Ocorreu um erro ao tentar executar esta ação. Entre em contato conosco e informe o código de erro: $e->getCode()";
+	            print "Ocorreu um erro ao tentar executar esta ação.";
+	            if ($e->getCode()) {
+	            	print "Entre em contato conosco e informe o código de erro: $e->getCode()";
+	            }
 				echo $e->getMessage();
 				return false;
 			}
@@ -123,13 +126,12 @@
 				// $sql .= $this->gf->buildQuery($where, $orderby); //Faltando o arquivo - Pegar no trabalho
 				$stmt = $this->pdo->prepare($sql);
 
-				$stmt->bindParam(':email', $assinante->getEmail());
-				$stmt->bindParam(':senha', $assinante->getSenha());
+				$stmt->bindValue(':email', $assinante->getEmail());
+				$stmt->bindValue(':senha', $assinante->getSenha());
 
 				$stmt->execute();
 				$resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
 				if ($stmt->rowCount() <= 0) {
-					print "Usuário ou senha Inválidos";
 					return false;
 				} else {
 					$resultado = array();

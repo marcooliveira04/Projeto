@@ -34,7 +34,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog  modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLoginLabel">Login</h5>
@@ -43,27 +43,27 @@
                 </button>
             </div>
             <div class="modal-body">
-            <h5>Seja bem vindo!</h5>
-            <p>Se você já tem um cadastro conosco, preencha os campos abaixo para logar. Caso não, <a href="?page=cadastro">clique aqui</a></p>
-            <hr>
-            <form>
+            <form action="" method="POST" name="login" id="login">
                 <div class="form-group">
                     <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="E-mail">
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
+                    <a href="">
+                        <p class="text-muted text-right"><small>Esqueceu sua senha?</small></p>
+                    </a>
                 </div>
-                <button type="submit" class="btn btn-block btn-primary">Log in</button>
-                <a href="">
-                    <p class="text-muted pt-2">Esqueceu sua senha?</p>
-                </a>
+                <button type="submit" name="action" value="login" class="btn btn-block btn-primary">Entrar</button>
             </form>
-
+            <div class='alert alert-danger fade show mt-3 d-none' id="errorLogin">
+                <i class='fa fa-times-circle mr-2' aria-hidden='true'></i> Usuário ou senha inválidos
             </div>
-<!--             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div> -->
+            <hr/>
+            <a href="?page=cadastro">
+                <p class="text-muted text-center">Registro</p>
+            </a>
+            </div>
         </div>
     </div>
 </div>
+
