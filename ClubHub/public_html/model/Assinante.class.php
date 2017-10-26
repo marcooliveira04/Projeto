@@ -7,7 +7,30 @@
 class Assinante
 {
 	
-	private $id, $nome, $cpf, $rg, $nascimento, $sexo, $cep, $rua, $numero, $complemento, $cidade, $telefone, $celular, $email, $senha;
+	private $id;
+	private $nome;
+	private $cpf;
+	private $rg;
+	private $nascimento;
+	private $sexo;
+	private $cepResidencial;
+	private $ruaResidencial;
+	private $numeroResidencial;
+	private $complementoResidencial;
+	private $bairroResidencial;
+	private $cidadeResidencial;
+	private $ufResidencial;
+	private $cepEntrega;
+	private $ruaEntrega;
+	private $numeroEntrega;
+	private $complementoEntrega;
+	private $bairroEntrega;
+	private $cidadeEntrega;
+	private $ufEntrega;
+	private $telefone;
+	private $celular;
+	private $email;
+	private $senha;
 
 
 
@@ -59,44 +82,116 @@ class Assinante
 		$this->sexo = $sexo;
 	}
 
-	public function getCep(){
-		return $this->cep;
+	public function getCepResidencial(){
+		return $this->cepResidencial;
 	}
 
-	public function setCep($cep){
-		$this->cep = $cep;
+	public function setCepResidencial($cepResidencial){
+		$this->cepResidencial = $cepResidencial;
 	}
 
-	public function getRua(){
-		return $this->rua;
+	public function getRuaResidencial(){
+		return $this->ruaResidencial;
 	}
 
-	public function setRua($rua){
-		$this->rua = $rua;
+	public function setRuaResidencial($ruaResidencial){
+		$this->ruaResidencial = $ruaResidencial;
 	}
 
-	public function getNumero(){
-		return $this->numero;
+	public function getNumeroResidencial(){
+		return $this->numeroResidencial;
 	}
 
-	public function setNumero($numero){
-		$this->numero = $numero;
+	public function setNumeroResidencial($numeroResidencial){
+		$this->numeroResidencial = $numeroResidencial;
 	}
 
-	public function getComplemento(){
-		return $this->complemento;
+	public function getComplementoResidencial(){
+		return $this->complementoResidencial;
 	}
 
-	public function setComplemento($complemento){
-		$this->complemento = $complemento;
+	public function setComplementoResidencial($complementoResidencial){
+		$this->complementoResidencial = $complementoResidencial;
 	}
 
-	public function getCidade(){
-		return $this->cidade;
+	public function getBairroResidencial(){
+		return $this->bairroResidencial;
 	}
 
-	public function setCidade($cidade){
-		$this->cidade = $cidade;
+	public function setBairroResidencial($bairroResidencial){
+		$this->bairroResidencial = $bairroResidencial;
+	}
+
+	public function getCidadeResidencial(){
+		return $this->cidadeResidencial;
+	}
+
+	public function setCidadeResidencial($cidadeResidencial){
+		$this->cidadeResidencial = $cidadeResidencial;
+	}
+
+	public function getUfResidencial(){
+		return $this->ufResidencial;
+	}
+
+	public function setUfResidencial($ufResidencial){
+		$this->ufResidencial = $ufResidencial;
+	}
+
+	public function getCepEntrega(){
+		return $this->cepEntrega;
+	}
+
+	public function setCepEntrega($cepEntrega){
+		$this->cepEntrega = $cepEntrega;
+	}
+
+	public function getRuaEntrega(){
+		return $this->ruaEntrega;
+	}
+
+	public function setRuaEntrega($ruaEntrega){
+		$this->ruaEntrega = $ruaEntrega;
+	}
+
+	public function getNumeroEntrega(){
+		return $this->numeroEntrega;
+	}
+
+	public function setNumeroEntrega($numeroEntrega){
+		$this->numeroEntrega = $numeroEntrega;
+	}
+
+	public function getComplementoEntrega(){
+		return $this->complementoEntrega;
+	}
+
+	public function setComplementoEntrega($complementoEntrega){
+		$this->complementoEntrega = $complementoEntrega;
+	}
+
+	public function getBairroEntrega(){
+		return $this->bairroEntrega;
+	}
+
+	public function setBairroEntrega($bairroEntrega){
+		$this->bairroEntrega = $bairroEntrega;
+	}
+
+	public function getCidadeEntrega(){
+		return $this->cidadeEntrega;
+	}
+
+	public function setCidadeEntrega($cidadeEntrega){
+		$this->cidadeEntrega = $cidadeEntrega;
+	}
+
+	public function getUfEntrega(){
+		return $this->ufEntrega;
+	}
+
+	public function setUfEntrega($ufEntrega){
+		$this->ufEntrega = $ufEntrega;
 	}
 
 	public function getTelefone(){
@@ -191,6 +286,18 @@ class Assinante
 	}
 
 
+
+    /**
+     * @param mixed $senha
+     *
+     * @return self
+     */
+    public function setSenha($senha)
+    {
+        $this->senha = $senha;
+
+        return $this;
+    }
 }
 
 ?>

@@ -1,9 +1,13 @@
 <?php
+    // Define que erros podem ser exibidos.
     ini_set('display_errors', 'On');
     ini_set('error_reporting', E_ALL);
+    // Define o fuso horário para uso na aplicação web.
     ini_set('date.timezone', 'America/Sao_Paulo');
+    // Inicia a sessão.
 
-
+    session_start();
+    session_destroy();
 ?>
 <html lang="en">
     <?php require_once 'view/head.php'; ?>
@@ -70,8 +74,6 @@
             "senha" : senha
         };
 
-        console.log(data);
-
         var settings = {
             "async": true,
             "url": "controller/Rotas.ajax.php",
@@ -87,12 +89,15 @@
           if (response == 0) {
             $('#errorLogin').removeClass('d-none').addClass('d-block');
             $('#modalLogin').effect( "shake" );
+          } else if (response == 1){
+            $('#modalLogin').toggle();
+            window.location.reload();
           }
         });      
     }
 
     //Quando o campo cep perde o foco.
-    $("#cep").blur(function() {
+    $("#cepResidencial").blur(function() {
 
         //Nova variável "cep" somente com dígitos.
         var cep = $(this).val().replace(/\D/g, '');
@@ -107,7 +112,7 @@
             if(validacep.test(cep)) {
 
                 //Preenche os campos com "..." enquanto consulta webservice.
-                $("#logradouro, #cidade, #uf, #bairro").val("...");
+                $("#logradouroResidencial, #cidadeResidencial, #ufResidencial, #bairroResidencial").val("...");
 
 
                 //Consulta o webservice viacep.com.br/
@@ -116,20 +121,20 @@
                     if (!("erro" in dados)) {
                         //Atualiza os campos com os valores da consulta.
                         var labelCepSuccess = "<label class='pull-right text-success' id='ceperro' for='cep'><span class='glyphicon glyphicon-ok-circle'></span></label>";
-                        $("#ceperro").remove();
-                        $("#logradouro").val(dados.logradouro);
-                        $("#cidade").val(dados.localidade);
-                        $('#bairro').val(dados.bairro)
-                        $("#uf").val(dados.uf);
-                        $("#cep").parent('div').prepend(labelCepSuccess);
+                        $("#cepResidencialerro").remove();
+                        $("#logradouroResidencial").val(dados.logradouro);
+                        $("#cidadeResidencial").val(dados.localidade);
+                        $('#bairroResidencial').val(dados.bairro)
+                        $("#ufResidencial").val(dados.uf);
+                        $("#cepResidencial").parent('div').prepend(labelCepSuccess);
 
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.
                         limpa_formulário_cep();
                         var labelNotFound = "<label class='pull-right text-danger' id='ceperro'>CEP não encontrado <span class='glyphicon glyphicon-remove-circle'></span></label>";
-                        $("#ceperro").remove();
-                        $("#cep").parent('div').prepend(labelNotFound);
+                        $("#cepResidencialerro").remove();
+                        $("#cepResidencial").parent('div').prepend(labelNotFound);
                     }
                 });
             } //end if.
@@ -137,8 +142,8 @@
                 //cep é inválido.
                 limpa_formulário_cep();
                 var labelCepInvalido = "<label class='pull-right text-danger' id='ceperro'>Formato de CEP inválido <span class='glyphicon glyphicon-remove-circle'></span></label>";
-                $("#ceperro").remove();
-                $("#cep").parent('div').parent('div').prepend(labelCepInvalido);
+                $("#cepResidencialerro").remove();
+                $("#cepResidencial").parent('div').parent('div').prepend(labelCepInvalido);
             }
         } //end if.
         else {
@@ -148,7 +153,7 @@
     });
 
     function limpa_formulário_cep() {
-        $("#ceperro").remove();
+        $("#cepResidencialerro").remove();
         // Limpa valores do formulário de cep.
         $("#endereco").val("");
 
