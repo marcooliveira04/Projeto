@@ -81,21 +81,27 @@
 
 	// $assinante->testeBinding();
 
-	require_once 'Cliente.php';
-	require_once 'ClienteDao.php';
+	// require_once 'Cliente.php';
+	// require_once 'ClienteDao.php';
 
-	$cliente = new Cliente;
+	// $cliente = new Cliente;
 
 	// $cliente->setNomeFantasia('Clube de Assinatura de Testes');
 	// $cliente->setCnpj('50391122000124');
 	// $cliente->setRazaoSocial('Testes Marco LTDA');
 	// $cliente->setCategoria(1);
 
-	$dao = new ClienteDao;
+	// $dao = new ClienteDao;
 
 	// $dao->create($cliente);
 
-	print("<pre>");print_r($dao->read());print("</pre>");
+	require_once 'Clube.php';
+
+	$clube = new Clube;
+
+	$clube->setId(1);
+
+	print("<pre>");print_r($clube);print("</pre>");
 
 	/*
 

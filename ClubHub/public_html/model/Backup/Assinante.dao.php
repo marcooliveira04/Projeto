@@ -118,6 +118,7 @@
 						$assinante->setTelefone($col['telefone']);
 						$assinante->setCelular($col['celular']);
 						$assinante->setEmail($col['email']);
+						$assinante->setSenha($col['senha']);
 						array_push($resultado, $assinante);
 					}
 				}
