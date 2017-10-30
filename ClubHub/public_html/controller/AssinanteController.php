@@ -1,7 +1,7 @@
 <?php
 
-require_once '../model/Assinante.class.php';
-require_once '../model/Assinante.dao.php';
+require_once './model/Assinante.class.php';
+require_once './model/Assinante.dao.php';
 
 /**
 * 
@@ -15,6 +15,10 @@ class AssinanteController
 	{
 		$this->dao = new AssinanteDao;
 		$this->assinante = new Assinante;
+	}
+
+	public function getAssinante(){
+		return $this->assinante;
 	}
 
 	public function getAction(){
@@ -35,6 +39,11 @@ class AssinanteController
 		return $this->dao->readLogin($this->assinante);
 	}
 
+	public function teste(){
+		print_r("Eu?");
+		return;
+	}
+
 	public function cadastro($post){
 		$this->assinante->setNome($post['nome']);
 		$this->assinante->setCpf($post['cpf']);
@@ -42,24 +51,27 @@ class AssinanteController
 		$this->assinante->setNascimento($post['nascimento']);
 		$this->assinante->setSexo($post['sexo']);
 		$this->assinante->setCepResidencial($post['cepResidencial']);
-		$this->assinante->setRuaResidencial($post['logradouroResidencial']);
+		$this->assinante->setRuaResidencial($post['ruaResidencial']);
 		$this->assinante->setNumeroResidencial($post['numeroResidencial']);
 		$this->assinante->setComplementoResidencial($post['complementoResidencial']);
 		$this->assinante->setBairroResidencial($post['bairroResidencial']);
 		$this->assinante->setCidadeResidencial($post['cidadeResidencial']);
 		$this->assinante->setUfResidencial($post['ufResidencial']);
-		$this->assinante->setCepEntrega($post['cepEntrega']);
-		$this->assinante->setRuaEntrega($post['logradouroEntrega']);
-		$this->assinante->setNumeroEntrega($post['numeroEntrega']);
-		$this->assinante->setComplementoEntrega($post['complementoEntrega']);
-		$this->assinante->setBairroEntrega($post['bairroEntrega']);
-		$this->assinante->setCidadeEntrega($post['cidadeEntrega']);
-		$this->assinante->setUfEntrega($post['ufEntrega']);
+		if ($post['mesmoEndereco'] != 1) {
+			$this->assinante->setCepEntrega($post['cepEntrega']);
+			$this->assinante->setRuaEntrega($post['ruaEntrega']);
+			$this->assinante->setNumeroEntrega($post['numeroEntrega']);
+			$this->assinante->setComplementoEntrega($post['complementoEntrega']);
+			$this->assinante->setBairroEntrega($post['bairroEntrega']);
+			$this->assinante->setCidadeEntrega($post['cidadeEntrega']);
+			$this->assinante->setUfEntrega($post['ufEntrega']);
+		}
 		$this->assinante->setTelefone($post['telefone']);
 		$this->assinante->setCelular($post['celular']);
 		$this->assinante->setEmail($post['email']);
+		$this->assinante->setSenha($post['senha']);
 
-		return $this->assinante;
+		return $this->dao->create($this->assinante);
 
 	}
 

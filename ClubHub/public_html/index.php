@@ -7,7 +7,23 @@
     // Inicia a sessão.
 
     session_start();
-    session_destroy();
+
+    // $url = '/Projeto/ClubHub/public_html/?';
+
+    // switch($_SERVER['REQUEST_URI']) {
+    //     case $url.'controller/cadastrar':
+            
+    //             $controller = new \controller\AssinanteController();
+    //             $method = 'teste';
+    //             echo $controller->$method();
+    //         break;
+
+    //     case $url.'cadastrar':
+    //         require_once 'view/cadastro.php';
+    //         break;
+    // }
+
+
 ?>
 <html lang="en">
     <?php require_once 'view/head.php'; ?>
@@ -86,6 +102,7 @@
         }
 
         $.ajax(settings).done(function (response) {
+            console.log(response);
           if (response == 0) {
             $('#errorLogin').removeClass('d-none').addClass('d-block');
             $('#modalLogin').effect( "shake" );
@@ -112,7 +129,7 @@
             if(validacep.test(cep)) {
 
                 //Preenche os campos com "..." enquanto consulta webservice.
-                $("#logradouroResidencial, #cidadeResidencial, #ufResidencial, #bairroResidencial").val("...");
+                $("#ruaResidencial, #cidadeResidencial, #ufResidencial, #bairroResidencial").val("...");
 
 
                 //Consulta o webservice viacep.com.br/
@@ -122,7 +139,7 @@
                         //Atualiza os campos com os valores da consulta.
                         var labelCepSuccess = "<label class='pull-right text-success' id='ceperro' for='cep'><span class='glyphicon glyphicon-ok-circle'></span></label>";
                         $("#cepResidencialerro").remove();
-                        $("#logradouroResidencial").val(dados.logradouro);
+                        $("#ruaResidencial").val(dados.logradouro);
                         $("#cidadeResidencial").val(dados.localidade);
                         $('#bairroResidencial').val(dados.bairro)
                         $("#ufResidencial").val(dados.uf);
@@ -166,7 +183,7 @@
         if ($(this).val() == 0) {
             console.log($(this));
             console.log("É igual a 0");
-            $('#enderecoEntrega').toggle( "fold" );
+            $('#enderecoEntrega').toggle("fold", true);
         } else if ($(this).val() == 1){
             console.log($(this));
             console.log("É igual a 1");

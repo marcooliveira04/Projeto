@@ -31,26 +31,33 @@
 			try {
 
 				$sql = "
-					INSERT INTO assinante(nome, cpf, rg, nascimento, sexo, cep, rua, numero, complemento, cidade, telefone, celular, email, senha) 
-					VALUES(:nome, :cpf, :rg, :nascimento, :sexo, :cep, :rua, :numero, :complemento, :cidade, :telefone, :celular, :email, :senha)
+					INSERT INTO assinante(nome, cpf, rg, nascimento, sexo, cepResidencial, ruaResidencial, numeroResidencial, complementoResidencial, cidadeResidencial, ufResidencial, cepEntrega, ruaEntrega, numeroEntrega, complementoEntrega, cidadeEntrega, ufEntrega, telefone, celular, email, senha) 
+					VALUES(:nome, :cpf, :rg, :nascimento, :sexo, :cepResidencial, :ruaResidencial, :numeroResidencial, :complementoResidencial, :cidadeResidencial, :ufResidencial, :cepEntrega, :ruaEntrega, :numeroEntrega, :complementoEntrega, :cidadeEntrega, :ufEntrega, :telefone, :celular, :email, :senha)
 				";
 
-				$stmt = $this->pdo->prepare();
+				$stmt = $this->pdo->prepare($sql);
 
-				$stmt->bindParam(':nome', $assinante->getNome());
-				$stmt->bindParam(':cpf', $assinante->getCpf());
-				$stmt->bindParam(':rg', $assinante->getRg());
-				$stmt->bindParam(':nascimento', $assinante->getNascimento());
-				$stmt->bindParam(':sexo', $assinante->getSexo());
-				$stmt->bindParam(':cep', $assinante->getCep());
-				$stmt->bindParam(':rua', $assinante->getRua());
-				$stmt->bindParam(':numero', $assinante->getNumero());
-				$stmt->bindParam(':complemento', $assinante->getComplemento());
-				$stmt->bindParam(':cidade', $assinante->getCidade());
-				$stmt->bindParam(':telefone', $assinante->getTelefone());
-				$stmt->bindParam(':celular', $assinante->getCelular());
-				$stmt->bindParam(':email', $assinante->getEmail());
-				$stmt->bindParam(':senha', $assinante->getSenha());
+				$stmt->bindValue(':nome', $assinante->getNome());
+				$stmt->bindValue(':cpf', $assinante->getCpf());
+				$stmt->bindValue(':rg', $assinante->getRg());
+				$stmt->bindValue(':nascimento', $assinante->getNascimento());
+				$stmt->bindValue(':sexo', $assinante->getSexo());
+				$stmt->bindValue(':cepResidencial', $assinante->getCepResidencial());
+				$stmt->bindValue(':ruaResidencial', $assinante->getRuaResidencial());
+				$stmt->bindValue(':numeroResidencial', $assinante->getNumeroResidencial());
+				$stmt->bindValue(':complementoResidencial', $assinante->getComplementoResidencial());
+				$stmt->bindValue(':cidadeResidencial', $assinante->getCidadeResidencial());
+				$stmt->bindValue(':ufResidencial', $assinante->getUfResidencial());
+				$stmt->bindValue(':cepEntrega', $assinante->getCepEntrega());
+				$stmt->bindValue(':ruaEntrega', $assinante->getRuaEntrega());
+				$stmt->bindValue(':numeroEntrega', $assinante->getNumeroEntrega());
+				$stmt->bindValue(':complementoEntrega', $assinante->getComplementoEntrega());
+				$stmt->bindValue(':cidadeEntrega', $assinante->getCidadeEntrega()); 
+				$stmt->bindValue(':ufEntrega', $assinante->getUfEntrega());
+				$stmt->bindValue(':telefone', $assinante->getTelefone());
+				$stmt->bindValue(':celular', $assinante->getCelular());
+				$stmt->bindValue(':email', $assinante->getEmail());
+				$stmt->bindValue(':senha',$assinante->getSenha());
 
 				$stmt->execute();
 				$stmt->closeCursor();
@@ -94,14 +101,23 @@
 						$assinante->setRg($col['rg']);
 						$assinante->setNascimento($col['nascimento']);
 						$assinante->setSexo($col['sexo']);
-						$assinante->setCep($col['cep']);
-						$assinante->setRua($col['rua']);
-						$assinante->setNumero($col['numero']);
-						$assinante->setCidade($col['cidade']);
+						$assinante->setCepResidencial($col['cepResidencial']);
+						$assinante->setRuaResidencial($col['ruaResidencial']);
+						$assinante->setNumeroResidencial($col['numeroResidencial']);
+						$assinante->setComplementoResidencial($col['complementoResidencial']);
+						$assinante->setBairroResidencial($col['bairroResidencial']);
+						$assinante->setCidadeResidencial($col['cidadeResidencial']);
+						$assinante->setUfResidencial($col['ufResidencial']);
+						$assinante->setCepEntrega($col['cepEntrega']);
+						$assinante->setRuaEntrega($col['ruaEntrega']);
+						$assinante->setNumeroEntrega($col['numeroEntrega']);
+						$assinante->setComplementoEntrega($col['complementoEntrega']);
+						$assinante->setBairroEntrega($col['bairroEntrega']);
+						$assinante->setCidadeEntrega($col['cidadeEntrega']);
+						$assinante->setUfEntrega($col['ufEntrega']);
 						$assinante->setTelefone($col['telefone']);
 						$assinante->setCelular($col['celular']);
 						$assinante->setEmail($col['email']);
-						$assinante->setSenha($col['senha']);
 						array_push($resultado, $assinante);
 					}
 				}

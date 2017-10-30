@@ -284,20 +284,6 @@ class Assinante
 			print_r("Ok");
 		}
 	}
-
-
-
-    /**
-     * @param mixed $senha
-     *
-     * @return self
-     */
-    public function setSenha($senha)
-    {
-        $this->senha = $senha;
-
-        return $this;
-    }
 }
 
 ?>

@@ -10,9 +10,20 @@
 		<p class="text-muted">Preencha o formulário abaixo para cadastrar-se e ficar por dentro das novidades de seus clubes de assinatura favoritos.</p>
 	</div>
 	<hr/>
-	<form action="" method="POST">
+	<form method="POST">
+		<input type="hidden" name="action" value="cadastro">
 		<h5>Dados Pessoais</h5>
 		<hr/>
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="email">E-mail *</label>
+				<input class="form-control" type="email" name="email" id="email" placeholder="E-mail" required="">
+			</div>
+			<div class="form-group col-md-6">
+				<label for="Senha">Senha *</label>
+				<input class="form-control" type="password" name="senha" id="senha" placeholder="Senha" required="">
+			</div>
+		</div>
 		<div class="row">
 			<div class="form-group col-md-6">
 				<label for="nome">Nome Completo *</label>
@@ -57,8 +68,8 @@
 				<input class="form-control" type="text" name="cepResidencial" id="cepResidencial" placeholder="CEP">
 			</div>
 			<div class="form-group col-md-6">
-				<label for="logradouro">Logradouro *</label>
-				<input class="form-control" type="text" name="logradouroResidencial" id="logradouroResidencial" placeholder="Logradouro">
+				<label for="rua">Logradouro *</label>
+				<input class="form-control" type="text" name="ruaResidencial" id="ruaResidencial" placeholder="Logradouro">
 			</div>
 			<div class="form-group col-md-2">
 				<label for="numero">Número *</label>
@@ -131,35 +142,36 @@
 				</div>
 			</div>
 		</div>
-		<div class="" id="enderecoEntrega">
+		<!-- Adicionado estilo display:none para começar fechada e só aparecer se o usuário clicar em "não" -->
+		<div id="enderecoEntrega" style="display: none;">
 			<h5>Endereço de Entrega</h5>
 			<hr/>
 			<div class="row">
 				<div class="form-group col-md-2">
-					<label for="cep">CEP *</label>
+					<label for="cepEntrega">CEP *</label>
 					<input class="form-control" type="text" name="cepEntrega" id="cepEntrega" placeholder="CEP">
 				</div>
 				<div class="form-group col-md-6">
-					<label for="logradouro">Logradouro *</label>
-					<input class="form-control" type="text" name="logradouroEntrega" id="logradouroEntrega" placeholder="Logradouro">
+					<label for="ruaEntrega">Logradouro *</label>
+					<input class="form-control" type="text" name="ruaEntrega" id="ruaEntrega" placeholder="Logradouro">
 				</div>
 				<div class="form-group col-md-2">
-					<label for="numero">Número *</label>
+					<label for="numeroEntrega">Número *</label>
 					<input class="form-control" type="text" name="numeroEntrega" id="numeroEntrega" placeholder="Número">
 				</div>
 				<div class="form-group col-md-2">
-					<label for="complemento">Complemento</label>
+					<label for="complementoEntrega">Complemento</label>
 					<input class="form-control" type="text" name="complementoEntrega" id="complementoEntrega" placeholder="Complemento">
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-3">
-					<label for="bairro">Bairro *</label>
+					<label for="bairroEntrega">Bairro *</label>
 					<input class="form-control" type="text" name="bairroEntrega" id="bairroEntrega" placeholder="Bairro">
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">
-						<label for="uf">UF *</label>
+						<label for="ufEntrega">UF *</label>
 		                <select class="form-control" name="ufEntrega" id="ufEntrega">
 		                  <option disabled="" selected="" value="0">Estado</option>
 		                  <option value="AC">Acre</option>
@@ -194,7 +206,7 @@
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">
-						<label for="cidade">Cidade *</label>
+						<label for="cidadeEntrega">Cidade *</label>
 						<input class="form-control" type="text" name="cidadeEntrega" id="cidadeEntrega" placeholder="Cidade">
 					</div>
 				</div>
@@ -212,7 +224,7 @@
 			</div>
 		</div>
 		<div class="row">
-				<button type="submit" class="btn btn-success mx-auto">Cadastrar-se</button>
+			<button type="submit" class="btn btn-success mx-auto">Cadastrar-se</button>
 		</div>
 	</form>
 </div>

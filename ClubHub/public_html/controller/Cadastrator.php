@@ -11,12 +11,15 @@
 
                 if (!$cadastro) {
                 	print_r("ERROR! ERROR! ERROR! ERROR!");
+                    exit();
                 } else {
-                	print_r($cadastro);
+                    $_SESSION['logado'] = 'S';
+                    $_SESSION['nome'] = $controller->getAssinante()->getNome();
+                    header('Location: ../?page=home');
+                    exit();
                 }
             }
         }
-
     }
 
 ?>

@@ -12,21 +12,28 @@ CREATE TABLE cidade(
 );
 
 CREATE TABLE assinante (
-	id			int				not null	primary key,
-	nome		varchar(255)	not null,
-	cpf			varchar(11)		not null,
-	rg			varchar(9)		not null,
-	nascimento	date			not null,
-	sexo		char(1)			not null,
-	cep			varchar(8)		not null,
-	rua			varchar(255)	not null,
-	numero		varchar(10)		not null,
-	complemento	varchar(50)		null,
-	cidade		int				not null,
-	telefone	varchar(11)		not null,
-	celular		varchar(11)		not null,
-	email		varchar(255)	not null,
-	senha		varchar(255)	not null
+	id						int				not null primary key auto_increment,
+	nome					varchar(255)	not null,
+	cpf						varchar(11)		not null unique,
+	rg						varchar(9)		not null unique,
+	nascimento				date			not null,
+	sexo					char(1)			not null,
+	cepResidencial			varchar(8)		not null,
+	ruaResidencial			varchar(255)	not null,
+	numeroResidencial		varchar(10)		not null,
+	complementoResidencial	varchar(50)		null,
+	cidadeResidencial		int				not null,
+	ufResidencial			int 			not null,
+	cepEntrega				varchar(8)		null,
+	ruaEntrega				varchar(255)	null,
+	numeroEntrega			varchar(10)		null,
+	complementoEntrega		varchar(50)		null,
+	cidadeEntrega			int				null,
+	ufEntrega 				int 			null,
+	telefone				varchar(11)		not null,
+	celular					varchar(11)		not null,
+	email					varchar(255)	not null unique,
+	senha					varchar(255)	not null
 );
 
 CREATE TABLE categoria(
