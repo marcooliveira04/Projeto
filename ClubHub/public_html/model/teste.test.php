@@ -40,30 +40,30 @@
 
 	// print("<pre>");print_r($cidadeDao->read());print("</pre>");
 
-	require_once 'Assinante.class.php';
+	// require_once 'Assinante.class.php';
 	// require_once 'Assinante.dao.php';
 
-	$assinante = new Assinante;
+	// $assinante = new Assinante;
 	// $assinanteDao = new AssinanteDao;
 
-	$assinante->setId("null");
-	$assinante->setNome('Marco Oliveira');
-	$assinante->setCpf('39299476845');
-	$assinante->setRg('417407518');
-	$assinante->setNascimento('1994-04-23');
-	$assinante->setSexo('M');
-	$assinante->setCep('17052330');
-	$assinante->setRua('Fortunato');
-	$assinante->setNumero('6');
-	$assinante->setCidade('1');
-	$assinante->setTelefone('14981047450');
-	$assinante->setCelular('14981047450');
-	$assinante->setEmail('teste@teste.com.br');
-	$assinante->setSenha(md5('a'));
+	// $assinante->setId("null");
+	// $assinante->setNome('Marco Oliveira');
+	// $assinante->setCpf('39299476845');
+	// $assinante->setRg('417407518');
+	// $assinante->setNascimento('1994-04-23');
+	// $assinante->setSexo('M');
+	// $assinante->setCep('17052330');
+	// $assinante->setRua('Fortunato');
+	// $assinante->setNumero('6');
+	// $assinante->setCidade('1');
+	// $assinante->setTelefone('14981047450');
+	// $assinante->setCelular('14981047450');
+	// $assinante->setEmail('teste@teste.com.br');
+	// $assinante->setSenha(md5('a'));
 
-	print("<pre>");print_r($assinante);print("</pre>");
+	// print("<pre>");print_r($assinante);print("</pre>");
 
-	print("<pre>");print_r($assinante->insere());print("</pre>");
+	// print("<pre>");print_r($assinante->insere());print("</pre>");
 
 	// print_r($assinante->busca());
 
@@ -80,6 +80,22 @@
 	// $assinante->validaCpf();
 
 	// $assinante->testeBinding();
+
+	require_once 'Cliente.php';
+	require_once 'ClienteDao.php';
+
+	$cliente = new Cliente;
+
+	// $cliente->setNomeFantasia('Clube de Assinatura de Testes');
+	// $cliente->setCnpj('50391122000124');
+	// $cliente->setRazaoSocial('Testes Marco LTDA');
+	// $cliente->setCategoria(1);
+
+	$dao = new ClienteDao;
+
+	// $dao->create($cliente);
+
+	print("<pre>");print_r($dao->read());print("</pre>");
 
 	/*
 
