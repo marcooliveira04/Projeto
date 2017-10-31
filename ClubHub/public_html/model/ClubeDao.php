@@ -32,7 +32,7 @@ class ClubeDao
 			$stmt->bindValue(':cnpj', $clube->getCnpj());
 			$stmt->bindValue(':telefone', $clube->getTelefone());
 			$stmt->bindValue(':celular', $clube->getCelular());
-			$stmt->bindValue(':email', $clube->getEmail())
+			$stmt->bindValue(':email', $clube->getEmail());
 			$stmt->bindValue(':categoria', $clube->getCategoria());
 
 			$stmt->execute();
@@ -51,7 +51,7 @@ class ClubeDao
 			$stmt = $this->pdo->prepare($query);
 
 			$stmt->excute();
-			if ($stmt->rowCount() 0) {
+			if ($stmt->rowCount() == 0) {
 				return false;
 			} else {
 				$resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
