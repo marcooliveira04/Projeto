@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<dao>
+  <database host="localhost" name="ClubHub" user="root"/>
+  <table name="assinante" singular="Assinante" plural="Assinantes" active="yes">
+    <column name="id" method="Id" getter="yes" setter="yes" finder="yes"/>
+    <column name="nome" method="Nome" getter="yes" setter="yes" finder="no"/>
+    <column name="cpf" method="Cpf" getter="yes" setter="yes" finder="no"/>
+    <column name="rg" method="Rg" getter="yes" setter="yes" finder="no"/>
+    <column name="nascimento" method="Nascimento" getter="yes" setter="yes" finder="no"/>
+    <column name="sexo" method="Sexo" getter="yes" setter="yes" finder="no"/>
+    <column name="cep" method="Cep" getter="yes" setter="yes" finder="no"/>
+    <column name="rua" method="Rua" getter="yes" setter="yes" finder="no"/>
+    <column name="numero" method="Numero" getter="yes" setter="yes" finder="no"/>
+    <column name="complemento" method="Complemento" getter="yes" setter="yes" finder="no"/>
+    <column name="cidade" method="Cidade" getter="yes" setter="yes" finder="no"/>
+    <column name="telefone" method="Telefone" getter="yes" setter="yes" finder="no"/>
+    <column name="celular" method="Celular" getter="yes" setter="yes" finder="no"/>
+    <column name="email" method="Email" getter="yes" setter="yes" finder="no"/>
+    <column name="senha" method="Senha" getter="yes" setter="yes" finder="no"/>
+  </table>
+  <table name="assinatura" singular="Assinatura" plural="Assinaturas" active="yes">
+    <column name="id" method="Id" getter="yes" setter="yes" finder="yes"/>
+    <column name="id_assinante" method="IdAssinante" getter="yes" setter="yes" finder="no"/>
+    <column name="id_pacote" method="IdPacote" getter="yes" setter="yes" finder="no"/>
+  </table>
+  <table name="categoria" singular="Categoria" plural="Categorias" active="yes">
+    <column name="id" method="Id" getter="yes" setter="yes" finder="yes"/>
+    <column name="nome" method="Nome" getter="yes" setter="yes" finder="no"/>
+  </table>
+  <table name="cidade" singular="Cidade" plural="Cidades" active="yes">
+    <column name="id" method="Id" getter="yes" setter="yes" finder="yes"/>
+    <column name="nome" method="Nome" getter="yes" setter="yes" finder="no"/>
+    <column name="estado" method="Estado" getter="yes" setter="yes" finder="no"/>
+  </table>
+  <table name="cliente" singular="Cliente" plural="Clientes" active="yes">
+    <column name="id" method="Id" getter="yes" setter="yes" finder="yes"/>
+    <column name="nomeFantasia" method="NomeFantasia" getter="yes" setter="yes" finder="no"/>
+    <column name="cnpj" method="Cnpj" getter="yes" setter="yes" finder="no"/>
+    <column name="razaoSocial" method="RazaoSocial" getter="yes" setter="yes" finder="no"/>
+    <column name="categoria" method="Categoria" getter="yes" setter="yes" finder="no"/>
+  </table>
+  <table name="clubes" singular="Clube" plural="Clubes" active="yes">
+    <column name="id" method="Id" getter="yes" setter="yes" finder="yes"/>
+    <column name="nome" method="Nome" getter="yes" setter="yes" finder="no"/>
+    <column name="razaoSocial" method="RazaoSocial" getter="yes" setter="yes" finder="no"/>
+    <column name="cnpj" method="Cnpj" getter="yes" setter="yes" finder="yes"/>
+    <column name="cep" method="Cep" getter="yes" setter="yes" finder="no"/>
+    <column name="rua" method="Rua" getter="yes" setter="yes" finder="no"/>
+    <column name="numero" method="Numero" getter="yes" setter="yes" finder="no"/>
+    <column name="complemento" method="Complemento" getter="yes" setter="yes" finder="no"/>
+    <column name="cidade" method="Cidade" getter="yes" setter="yes" finder="no"/>
+    <column name="uf" method="Uf" getter="yes" setter="yes" finder="no"/>
+    <column name="telefone" method="Telefone" getter="yes" setter="yes" finder="no"/>
+    <column name="celular" method="Celular" getter="yes" setter="yes" finder="no"/>
+    <column name="email" method="Email" getter="yes" setter="yes" finder="yes"/>
+    <column name="senha" method="Senha" getter="yes" setter="yes" finder="no"/>
+    <column name="categoria" method="Categoria" getter="yes" setter="yes" finder="no"/>
+  </table>
+  <table name="estados" singular="Estado" plural="Estados" active="yes">
+    <column name="id" method="Id" getter="yes" setter="yes" finder="yes"/>
+    <column name="nome" method="Nome" getter="yes" setter="yes" finder="no"/>
+  </table>
+  <table name="pacote" singular="Pacote" plural="Pacotes" active="yes">
+    <column name="id" method="Id" getter="yes" setter="yes" finder="yes"/>
+    <column name="nome" method="Nome" getter="yes" setter="yes" finder="no"/>
+    <column name="valor" method="Valor" getter="yes" setter="yes" finder="no"/>
+    <column name="id_cliente" method="IdCliente" getter="yes" setter="yes" finder="no"/>
+  </table>
+  <table name="periodicidade" singular="Periodicidade" plural="Periodicidades" active="yes">
+    <column name="id" method="Id" getter="yes" setter="yes" finder="yes"/>
+    <column name="data_inicio" method="DataInicio" getter="yes" setter="yes" finder="no"/>
+    <column name="data_fim" method="DataFim" getter="yes" setter="yes" finder="no"/>
+    <column name="id_pacote" method="IdPacote" getter="yes" setter="yes" finder="no"/>
+  </table>
+  <table name="produto" singular="Produto" plural="Produtos" active="yes">
+    <column name="id" method="Id" getter="yes" setter="yes" finder="yes"/>
+    <column name="nome" method="Nome" getter="yes" setter="yes" finder="no"/>
+    <column name="valor" method="Valor" getter="yes" setter="yes" finder="no"/>
+    <column name="id_cliente" method="IdCliente" getter="yes" setter="yes" finder="no"/>
+  </table>
+  <table name="vendas" singular="Venda" plural="Vendas" active="yes">
+    <column name="id" method="Id" getter="yes" setter="yes" finder="yes"/>
+    <column name="valor_total" method="ValorTotal" getter="yes" setter="yes" finder="no"/>
+    <column name="id_cliente" method="IdCliente" getter="yes" setter="yes" finder="no"/>
+    <column name="id_assinante" method="IdAssinante" getter="yes" setter="yes" finder="no"/>
+  </table>
+</dao>

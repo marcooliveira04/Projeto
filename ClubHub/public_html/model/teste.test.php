@@ -96,12 +96,46 @@
 	// $dao->create($cliente);
 
 	require_once 'Clube.php';
+	require_once 'ClubeDao.php';
 
 	$clube = new Clube;
+	$dao = new ClubeDao;
 
-	$clube->setId(1);
+	// $clube->setId();
+	$clube->setNome('Marco Oliveira');
+	$clube->setRazaoSocial('Marco Oliveira');
+	$clube->setCnpj('12345678910134');
+	$clube->setCep('17052330');
+	$clube->setRua('Teste');
+	$clube->setNumero('1');
+	// $clube->setComplemento()
+	$clube->setCidade('Bauru');
+	$clube->setUf(2);
+	$clube->setTelefone('1132430816');
+	$clube->setCelular('14981047450');
+	$clube->setEmail('teste@marco.com');
+	$clube->setSenha('teste');
+	$clube->setCategoria(2);
 
-	print("<pre>");print_r($clube);print("</pre>");
+	$dao->create($clube);
+
+	print("<pre>");print_r($dao->read());print("</pre>");
+
+	// $campos = ['cep', 'rua', 'numero', 'complemento', 'cidade', 'uf', 'nomeFantasia', 'razaoSocial', 'cnpj', 'telefone', 'celular', 'email', 'senha', 'categoria'];
+	// $assoc = array();
+	// foreach ($campos as $key => $value) {
+	// 	$assoc[] = ':'.$value;
+	// }
+
+	// $update = array();
+
+	// foreach ($campos as $key => $value) {
+	// 	$update[] = $value." = ".$assoc[$key];
+	// }
+
+	// print("<pre>");print_r($campos);print("</pre>");
+	// print("<pre>");print_r($assoc);print("</pre>");
+	// print("<pre>");print_r(implode($update, ', '));print("</pre>");
 
 	/*
 

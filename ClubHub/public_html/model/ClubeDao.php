@@ -8,35 +8,50 @@ class ClubeDao
 {
 	private $conn;
 	private $pdo;
-	private $gf;
+	private $campos;
+	private $stmt;
 	
 	function __construct() {
 		$this->conn = new criaConn;
 		$this->pdo = $this->conn->getConn();
+		$this->campos = ['nome', 'cep', 'rua', 'numero', 'complemento', 'cidade', 'uf', 'razaoSocial', 'cnpj', 'telefone', 'celular', 'email', 'senha', 'categoria'];
+	}
+
+	public function getImplodedFieldsAssociative(Clube $clube){
+
 	}
 
 	public function create(Clube $clube){
 		try {
-			$query = "INSERT INTO clubes (cep, rua, numero, complemento, cidade, uf, nomeFantasia, razaoSocial, cnpj, telefone, celular, email, senha, categoria) VALUES (:cep, :rua, :numero, :complemento, :cidade, :uf, :nomeFantasia, :razaoSocial, :cnpj, :telefone, :celular, :email, :senha, :categoria);";
+			(string) $campos = implode($this->campos, ', ');
+			$query = "INSERT INTO clubes ({$campos}) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-			$stmt = $this->pdo->prepare($query);
+			$this->stmt = $this->pdo->prepare($query);
 
-			$stmt->bindValue(':nome', $clube->getNome());
-			$stmt->bindValue(':cep', $clube->getCep());
-			$stmt->bindValue(':rua', $clube->getRua());
-			$stmt->bindValue(':numero', $clube->getNumero());
-			$stmt->bindValue(':complemento', $clube->getComplemento());
-			$stmt->bindValue(':cidade', $clube->getCidade());
-			$stmt->bindValue(':uf', $clube->getUf());
-			$stmt->bindValue(':razaoSocial', $clube->getRazaoSocial());
-			$stmt->bindValue(':cnpj', $clube->getCnpj());
-			$stmt->bindValue(':telefone', $clube->getTelefone());
-			$stmt->bindValue(':celular', $clube->getCelular());
-			$stmt->bindValue(':email', $clube->getEmail());
-			$stmt->bindValue(':categoria', $clube->getCategoria());
+			foreach ($this->campos as $index => $campo) {
+				$getter = 'get'.ucfirst($campo);
+				$token = $index + 1;
+				$this->stmt->bindValue($token, $clube->$getter());
+			}
 
-			$stmt->execute();
-			$stmt->closeCursor();
+			// $stmt->bindValue(':nome', $clube->getNome());
+			// $stmt->bindValue(':cep', $clube->getCep());
+			// $stmt->bindValue(':rua', $clube->getRua());
+			// $stmt->bindValue(':numero', $clube->getNumero());
+			// $stmt->bindValue(':complemento', $clube->getComplemento());
+			// $stmt->bindValue(':cidade', $clube->getCidade());
+			// $stmt->bindValue(':uf', $clube->getUf());
+			// $stmt->bindValue(':razaoSocial', $clube->getRazaoSocial());
+			// $stmt->bindValue(':cnpj', $clube->getCnpj());
+			// $stmt->bindValue(':telefone', $clube->getTelefone());
+			// $stmt->bindValue(':celular', $clube->getCelular());
+			// $stmt->bindValue(':email', $clube->getEmail());
+			// $stmt->bindValue(':senha', $clube->getSenha());
+			// $stmt->bindValue(':categoria', $clube->getCategoria());
+
+			$this->stmt->execute();
+			$this->stmt->closeCursor();
+			unset($this->stmt);
 			return true;
 		} catch (PDOException $e) {
 			echo $e->getMessage();
@@ -50,7 +65,7 @@ class ClubeDao
 
 			$stmt = $this->pdo->prepare($query);
 
-			$stmt->excute();
+			$stmt->execute();
 			if ($stmt->rowCount() == 0) {
 				return false;
 			} else {
@@ -58,29 +73,26 @@ class ClubeDao
 				$resultado = array();
 				foreach ($resultSet as $row => $col) {
 					$clube = new Clube;
-					$clube->setId($col['id']);
-					$clube->setNome($col['nome']);
-					$clube->setCep($col['cep']);
-					$clube->setRua($col['rua']);
-					$clube->setNumero($col['numero']);
-					$clube->setComplemento($col['complemento']);
-					$clube->setBairro($col['bairro']);
-					$clube->setCidade($col['cidade']);
-					$clube->setUf($col['uf']);
-					$clube->setTelefone($col['telefone']);
-					$clube->setCelular($col['celular']);
-					$clube->setEmail($col['email']);
-					$clube->setSenha($col['senha']);
-					$clube->setCnpj($col['cnpj']);
-					$clube->setRazaoSocial($col['razaoSocial']);
-					$clube->setCategoria($col['categoria']);
+					foreach ($col as $coluna => $valor) {
+						$setter = 'set'.ucfirst($coluna);
+
+						$clube->$setter($valor);
+					}
 					$resultado[] = $clube;
 				}
-				return $resultado;
+				return print_r($resultado);
 			}
 		} catch (PDOException $e) {
 			echo $e->getMessage();
 			return false;			
+		}
+	}
+
+	public function update(Clube $clube){
+		try {
+			$query = "UPDATE clubes SET cep = :cep, rua = :rua, numero = :numero, complemento = :complemento, cidade = :cidade, uf = :uf, nomeFantasia = :nomeFantasia, razaoSocial = :razaoSocial, cnpj = :cnpj, telefone = :telefone, celular = :celular, email = :email, senha = :senha, categoria = :categoria WHERE id = :id";
+		} catch (PDOException $e) {
+			
 		}
 	}
 }

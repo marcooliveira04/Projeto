@@ -54,29 +54,21 @@ class Clube extends Pessoa
     /**
      * @return mixed
      */
-    public function getInscricaoEstadual()
-    {
-        return $this->inscricaoEstadual;
-    }
-
-    /**
-     * @param mixed $inscricaoEstadual
-     *
-     * @return self
-     */
-    public function setInscricaoEstadual($inscricaoEstadual)
-    {
-        $this->inscricaoEstadual = $inscricaoEstadual;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getCategoria()
     {
         return $this->categoria;
+    }
+
+    /**
+     * @param mixed $categoria
+     *
+     * @return self
+     */
+    public function setCategoria($categoria)
+    {
+        $this->categoria = $categoria;
+
+        return $this;
     }
 }
 

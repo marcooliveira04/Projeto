@@ -8,7 +8,7 @@ class Pessoa
 	private $id;
 	private $nome;
 	private $cep;
-	private $endereco;
+	private $rua;
 	private $numero;
 	private $complemento;
 	private $bairro;
@@ -82,19 +82,19 @@ class Pessoa
     /**
      * @return mixed
      */
-    public function getEndereco()
+    public function getRua()
     {
-        return $this->endereco;
+        return $this->rua;
     }
 
     /**
-     * @param mixed $endereco
+     * @param mixed $rua
      *
      * @return self
      */
-    public function setEndereco($endereco)
+    public function setRua($rua)
     {
-        $this->endereco = $endereco;
+        $this->rua = $rua;
 
         return $this;
     }
