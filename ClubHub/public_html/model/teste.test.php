@@ -102,24 +102,24 @@
 	$dao = new ClubeDao;
 
 	// $clube->setId();
-	$clube->setNome('Marco Oliveira');
-	$clube->setRazaoSocial('Marco Oliveira');
-	$clube->setCnpj('57484177000128');
-	$clube->setCep('17052330');
-	$clube->setRua('Teste');
-	$clube->setNumero('1');
-	// $clube->setComplemento()
-	$clube->setCidade('Bauru');
-	$clube->setUf(2);
-	$clube->setTelefone('1132430816');
-	$clube->setCelular('14981047450');
-	$clube->setEmail('teste@teste.com');
-	$clube->setSenha('teste');
-	$clube->setCategoria(2);
+	// $clube->setNome('Marco Oliveira');
+	// $clube->setRazaoSocial('Marco Oliveira');
+	// $clube->setCnpj('57484177000128');
+	// $clube->setCep('17052330');
+	// $clube->setRua('Teste');
+	// $clube->setNumero('1');
+	// // $clube->setComplemento()
+	// $clube->setCidade('Bauru');
+	// $clube->setUf(2);
+	// $clube->setTelefone('1132430816');
+	// $clube->setCelular('14981047450');
+	// $clube->setEmail('teste@teste.com');
+	// $clube->setSenha('teste');
+	// $clube->setCategoria(2);
 
-	$dao->insere($clube);
+	// $dao->insere($clube);
 
-	print("<pre>");print_r($dao->read());print("</pre>");
+	print("<pre>");print_r($dao->atualizar());print("</pre>");
 
 	// $campos = ['cep', 'rua', 'numero', 'complemento', 'cidade', 'uf', 'nomeFantasia', 'razaoSocial', 'cnpj', 'telefone', 'celular', 'email', 'senha', 'categoria'];
 	// $assoc = array();

@@ -1,9 +1,9 @@
 <?php
-
+require_once 'ConnectionFactory.db.php';
 /**
 * 
 */
-class Dao
+class Dao 
 {
 
     public function binder($stmt, $campos, $object){
@@ -26,7 +26,11 @@ class Dao
         return $object;
     }
 
-    public function create($pdo, $tabela, $colunas, $object){
+    public function stringfyForUpdate($colunas){
+        return $string = implode(' = ?, ', $colunas)." = ?";
+    }
+
+    public function create($tabela, $colunas, $object){
         try {
             
             $tokens = '';
@@ -41,7 +45,7 @@ class Dao
 
             $query = "INSERT INTO {$tabela} ({$colunas_}) VALUES ({$tokens});";
 
-            $stmt = $pdo->prepare($query);
+            $stmt = $this->pdo->prepare($query);
 
             $stmt = $this->binder($stmt, $colunas, $object);
 
@@ -55,7 +59,9 @@ class Dao
         }
     }
 
-    public function read(){
+    public function read(string $tabela, string $classe){
+        ucfirst($classe);
+        require_once $classe.'.php';
         try {
             $query = "SELECT * FROM {$tabela}";
 
@@ -68,15 +74,37 @@ class Dao
                 $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $resultado = array();
                 foreach ($resultSet as $indice => $row) {
-                    $clube = new Clube;
+                    $object = new $classe;
 
-                    $resultado[] = $this->setter($row, $clube);
+                    $resultado[] = $this->setter($row, $object);
                 }
-                return print_r($resultado);
+                return $resultado;
             }
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;           
+        }
+    }
+
+    public function update($tabela, $colunas, $object){
+        try {
+            $colunas_ = $this->stringfyForUpdate($colunas);
+
+
+
+            $query = "UPDATE {$tabela} SET ({$colunas_}) WHERE id = ({$tokens});";
+
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt = $this->binder($stmt, $colunas, $object);
+
+            $stmt->execute();
+            $stmt->closeCursor();
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
         }
     }
 }

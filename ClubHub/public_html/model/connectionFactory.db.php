@@ -1,32 +1,35 @@
 <?php
+require_once 'database/ConnectionFactory.class.php';
+
 /**
  * The test file is in Core folder
  * Place the class on Core/lib/db
  * directory to use autoloading
  */
-class criaConn{
 
-	public function getConn(){
-		require_once 'database/ConnectionFactory.class.php';
+class Conn{
 
-		$arguments = array(
-		    'driver'   => 'mysql',
-		    // 'host'     => '187.45.250.72',
+	private $pdo;
+	private $arguments;
+	private $connectionFactory;
+
+	function __construct(){
+		print_r("Eu fui instânciado: ".get_class($this));
+		$this->arguments = [
+			'driver'   => 'mysql',
 		    'host'	   => '127.0.0.1',
 		    'user'     => 'root',
 		    'password' => '',
 		    'database' => 'clubhub'
-		);
+		];
+		$this->connectionFactory = new ConnectionFactory($this->arguments);
+		$this->pdo = $this->connectionFactory->getLink();
+	}
 
-		/*PHP 5.3- style - just connect*/
-		$connectionFactory = new ConnectionFactory($arguments);
-
-		$pdo = $connectionFactory->getLink();
-
-		return $pdo;
+	public function getPDO(){
+		return $this->pdo;
 	}
 
 }
-
 
 ?>
