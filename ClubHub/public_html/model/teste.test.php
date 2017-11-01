@@ -104,7 +104,7 @@
 	// $clube->setId();
 	$clube->setNome('Marco Oliveira');
 	$clube->setRazaoSocial('Marco Oliveira');
-	$clube->setCnpj('12345678910134');
+	$clube->setCnpj('57484177000128');
 	$clube->setCep('17052330');
 	$clube->setRua('Teste');
 	$clube->setNumero('1');
@@ -113,11 +113,11 @@
 	$clube->setUf(2);
 	$clube->setTelefone('1132430816');
 	$clube->setCelular('14981047450');
-	$clube->setEmail('teste@marco.com');
+	$clube->setEmail('teste@teste.com');
 	$clube->setSenha('teste');
 	$clube->setCategoria(2);
 
-	$dao->create($clube);
+	$dao->insere($clube);
 
 	print("<pre>");print_r($dao->read());print("</pre>");
 
@@ -169,6 +169,8 @@
 
 	 		Ver como vai ser o tipo de dados do periodo. Se vai ser usado n para representar a quantidade de meses ou se preciso usar uma data de início de outra de fim. 
 	 			Data de início e fim vão - potencialmente - ter que ser registradas em bancos de dados na classe/tabela de assinatura.
+
+	 		Where dinamico. Verificar na classe quando campo é diferente de "null"
 	*/
 
 	 /*

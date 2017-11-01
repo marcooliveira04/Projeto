@@ -12,10 +12,11 @@
 		private $where;
 
 		function __construct(){
-			require_once 'connectionFactory.db.php';
+			require_once './connectionFactory.db.php';
 			// require_once 'GeneralFunctions.class.php';
 			// $this->gf = new GeneralFunctions;
 			$this->conn = new criaConn;
+			print("<pre>");print_r($this->conn);print("</pre>");
 			$this->pdo = $this->conn->getConn();
 		}
 

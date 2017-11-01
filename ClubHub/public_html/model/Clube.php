@@ -70,6 +70,8 @@ class Clube extends Pessoa
 
         return $this;
     }
+
+    
 }
 
 ?>
