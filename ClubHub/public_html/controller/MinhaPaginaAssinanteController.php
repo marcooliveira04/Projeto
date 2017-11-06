@@ -19,12 +19,12 @@ class MinhaPaginaAssinanteController
 		$where = [
 			[
 				'coluna' => 'id',
-				'valor' => "$_SESSION[id]",
+				'valor' => $_SESSION['id'],
 				'operador' => ''
 			]
 		];
 		$this->pessoa = $this->dao->read(get_class($this->pessoa), $where, null)[0];
-		
+
 		return;
 	}
 

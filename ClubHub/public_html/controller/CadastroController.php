@@ -17,16 +17,26 @@ class CadastroController
 		$this->dao = new $objDao;
 	}
 
-	public function getAssinante(){
-		return $this->assinante;
-	}
+
 
 	public function cadastro($post){
 		$this->pessoa = $this->dao->setter($post, $this->pessoa);
-	
-		return $this->dao->create($this->pessoa);
-
+		$create = $this->dao->create($this->pessoa);
+		if (!$create) {
+			return false;
+		} else {
+			$this->pessoa->setId($create);
+			return true;
+		}
 	}
+
+    /**
+     * @return mixed
+     */
+    public function getPessoa(){
+        return $this->pessoa;
+    }
+
 }
 
 ?>

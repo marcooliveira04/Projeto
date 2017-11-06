@@ -45,11 +45,32 @@ class SessionController
 			]
 		];
 
-		return $this->dao->read(get_class($this->pessoa), $where, null);
+		$pessoa = $this->dao->read(get_class($this->pessoa), $where, null)[0];
+
+		if (!$pessoa or count($pessoa) > 1) {
+			return 0;
+		} else {
+			return $this->createSession($pessoa);
+		}
 	}
 
-	public function logout(){
+	static function logout(){
 		session_destroy();
+
+		return;
+	}
+
+	public function createSession($pessoa){
+		if (!isset($_SESSION)) {
+			session_start();
+		} else {
+			$_SESSION['logado'] = 'S';
+			$_SESSION['id'] = $pessoa->getId();
+			$_SESSION['nome'] = $pessoa->getNome();
+			$_SESSION['tipo'] = get_class($this->pessoa);
+		}
+
+		return 1;
 	}
 }
 

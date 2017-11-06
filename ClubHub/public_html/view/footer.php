@@ -49,10 +49,23 @@
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="view/layout/js/bootstrap.min.js"></script>
+<script src="view/layout/js/jquery.cpfcnpj.js"></script>
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        $('#cnpj, #cpf').cpfcnpj({
+            mask: false,
+            validate: 'cpfcnpj',
+            event: 'focusout',
+            handler: this,
+            ifValid: function (input) { input.removeClass("is-invalid"); },
+            ifInvalid: function (input) { input.addClass("is-invalid"); }
+        });
+    });
+
 	$('.card').hover(function(){
 		$(this).find(".card-img-overlay").fadeIn( "fast", function(){
 			$(this).removeClass("d-none");
@@ -62,20 +75,15 @@
 			$(this).addClass("d-none");
 		})
 	});
-</script>
 
-        <script type="text/javascript">
-            (function($) {
-            "use strict";
+    (function($) {
+        "use strict";
 
-            // manual carousel controls
-            $('.next').click(function(){ $('.carousel').carousel('next');return false; });
-            $('.prev').click(function(){ $('.carousel').carousel('prev');return false; });
-            
-        })(jQuery);
-        </script>
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript">
+        // manual carousel controls
+        $('.next').click(function(){ $('.carousel').carousel('next');return false; });
+        $('.prev').click(function(){ $('.carousel').carousel('prev');return false; });
+
+    })(jQuery);
 
     $('#login').submit(function(){
         login(this);
@@ -132,9 +140,10 @@
             $('.loading').fadeOut("slow");
             console.log(response);
             if (response != 1) {
-                alert("Ocorreu um erro");
+                alert("Ocorreu um erro ao realizar seu cadastro. Por favor, tente novamente mais tarde.");
             } else if (response == 1){
-                alert("Ok");
+                alert("Seu cadastro foi realizado com sucesso.");
+                window.location.href='?page=home';
             }
         });      
     }
@@ -195,10 +204,8 @@
     });
 
     function limpa_formulário_cep() {
-        $("#ceperro").remove();
-        // Limpa valores do formulário de cep.
+        // Limpa valores do formulário que são relacionados ao endereço.
         $("#endereco").val("");
-
         $("#cidade").val("");
         $("#uf").val("");
     }
@@ -216,4 +223,6 @@
         }
         e.preventDefault();
     })
+
+
 </script>

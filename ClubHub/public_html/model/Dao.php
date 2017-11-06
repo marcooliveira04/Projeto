@@ -93,7 +93,7 @@ class Dao
             $stmt->execute();
             $stmt->closeCursor();
             array_push($this->colunas, $pop);
-            return true;
+            return $this->pdo->lastInsertId();
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
@@ -145,6 +145,7 @@ class Dao
         try {
             $query = "SELECT * FROM {$this->tabela}";
             $query .= $this->buildQuery($where, $orderby);
+
             $stmt = $this->pdo->prepare($query);
 
             $stmt->execute();
@@ -203,8 +204,6 @@ class Dao
             return false;
         }
     }
-
-
 }
 
 ?>

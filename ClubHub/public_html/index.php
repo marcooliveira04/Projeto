@@ -6,6 +6,7 @@
     ini_set('date.timezone', 'America/Sao_Paulo');
     // Inicia a sessão.
     session_start();
+
     // $url = '/Projeto/ClubHub/public_html/?';
 
     // switch($_SERVER['REQUEST_URI']) {
@@ -38,7 +39,8 @@
             $pages = array(
                 'home',
                 'cadastro',
-                'minhaPagina'
+                'minhaPagina',
+                'logout'
             );
 
             if (!empty($page)) {

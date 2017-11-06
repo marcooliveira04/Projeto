@@ -1,3 +1,8 @@
+<?php
+if (isset($_SESSION['logado']) and $_SESSION['logado'] == 'S') {
+	?><script type="text/javascript">window.location.href='?page=minhaPagina';</script><?php
+}
+?>
 <div class="container">
 <?php
 	if (isset($_GET['tipo'])) {
@@ -131,7 +136,7 @@
 						<div class="form-group">
 							<div class="form-check form-check-inline">
 								<label class="form-check-label">
-									<input class="form-check-input" type="radio" name="mesmoEndereco" id="mesmoEndereco" value="1"> Sim
+									<input class="form-check-input" type="radio" checked="" name="mesmoEndereco" id="mesmoEndereco" value="1"> Sim
 								</label>
 							</div>
 							<div class="form-check form-check-inline">

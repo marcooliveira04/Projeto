@@ -1,27 +1,19 @@
 <?php
-
-    // Não pode retirar esse iniciador de sessão senão o login não funciona. Talvez por causa de ser requisitado pelo Ajax e não incluso no código - abaixo da primeira session_start.
     session_start();
+    // Não pode retirar esse iniciador de sessão senão o login não funciona. Talvez por causa de ser requisitado pelo Ajax e não incluso no código - abaixo da primeira session_start.
+    require_once 'SessionController.php';
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($_POST['action'] == 'login') {
-            require_once 'SessionController.php';
+
 
             $controller = new SessionController($_POST['tipo']);
             if (isset($_POST['email']) and isset($_POST['senha'])) {
 
                 $login = $controller->login($_POST['email'], $_POST['senha']);
 
-                if (!$login) {
-                    echo 0;
-                } else {
-                    $_SESSION['logado'] = 'S';
-                    $_SESSION['tipoPessoa'] = $_POST['tipo'];
-                    $_SESSION['nome'] = $login[0]->getNome();
-                    $_SESSION['id'] = $login[0]->getId();
-                    echo 1;
-                }
+                echo $login;
             }  
         }
 
@@ -31,7 +23,7 @@
             require_once 'CadastroController.php';
 
             $controller = new CadastroController($_POST['tipo']);
-            $_SESSION['tipoPessoa'] = $_POST['tipo'];
+            $_SESSION['tipo'] = $_POST['tipo'];
             unset($_POST['tipo']);
 
             if (isset($_POST['mesmoEndereco'])){
@@ -45,8 +37,9 @@
                 session_destroy();
                 echo 0;
             } else {
-                $_SESSION['logado'] = 'S';
-                echo 1;
+                $sessionController = new SessionController($_SESSION['tipo']);
+                $session = $sessionController->createSession($controller->getPessoa());
+                echo $session;
             }
         }
  

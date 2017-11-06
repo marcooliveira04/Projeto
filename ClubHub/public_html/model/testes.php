@@ -41,12 +41,18 @@
 
 // print("<pre>");print_r($login);print("</pre>");
 
-require_once '../controller/MinhaPaginaAssinanteController.php';
-$_SESSION['id'] = 9;
+// require_once '../controller/MinhaPaginaAssinanteController.php';
+// $_SESSION['id'] = 9;
 
-$controller = new MinhaPaginaAssinanteController;
+// $controller = new MinhaPaginaAssinanteController;
 
-echo $controller->constroiFormCadastro();
+// echo $controller->constroiFormCadastro();
+
+require_once 'PacoteDao.php';
+
+$dao = new PacoteDao;
+
+print_r($dao->read('Pacote', null, null));
 
 // print("<pre>");print_r($controller);print("</pre>");
 

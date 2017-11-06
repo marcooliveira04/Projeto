@@ -24,11 +24,14 @@
                     Login
                 </button>            
             <?php else: ?>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="?page=minhaPagina">Minha página</a>                
-                </li>
-            </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=minhaPagina">Minha página</a>                
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>                
+                    </li>
+                </ul>
             <?php endif ?>
         </div>
     </div>

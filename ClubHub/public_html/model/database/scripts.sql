@@ -11,7 +11,7 @@ CREATE TABLE cidade(
 	estado 	int				not null
 );
 
-CREATE TABLE assinante (
+CREATE TABLE assinantes (
 	id						int				not null primary key auto_increment,
 	nome					varchar(255)	not null,
 	cpf						varchar(11)		not null unique,
@@ -70,7 +70,7 @@ CREATE TABLE cliente(
 	categoria		int				not null
 );
 
-CREATE TABLE pacote(
+CREATE TABLE pacotes(
     id 			int 			not null primary key,
    	idClube 	int 			not null,
     nome 		varchar(255)	not null,
