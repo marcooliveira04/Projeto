@@ -1,31 +1,30 @@
 <?php
 
-	/**
-	* 
-	*/
-	class Assinatura
-	{
-		
-		private $pacote;
-		private $assinante;
-		private $periodo;
+/**
+* 
+*/
+class Assinatura
+{
 	
+    private $idPacote;
+    private $idAssinante;
+
     /**
      * @return mixed
      */
-    public function getPacote()
+    public function getIdPacote()
     {
-        return $this->pacote;
+        return $this->idPacote;
     }
 
     /**
-     * @param mixed $pacote
+     * @param mixed $idPacote
      *
      * @return self
      */
-    public function setPacote(Pacote $pacote)
+    public function setIdPacote($idPacote)
     {
-        $this->pacote = $pacote;
+        $this->idPacote = $idPacote;
 
         return $this;
     }
@@ -33,39 +32,19 @@
     /**
      * @return mixed
      */
-    public function getAssinante()
+    public function getIdAssinante()
     {
-        return $this->assinante;
+        return $this->idAssinante;
     }
 
     /**
-     * @param mixed $assinante
+     * @param mixed $idAssinante
      *
      * @return self
      */
-    public function setAssinante(Assinante $assinante)
+    public function setIdAssinante($idAssinante)
     {
-        $this->assinante = $assinante;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPeriodo()
-    {
-        return $this->periodo;
-    }
-
-    /**
-     * @param mixed $periodo
-     *
-     * @return self
-     */
-    public function setPeriodo($periodo)
-    {
-        $this->periodo = $periodo;
+        $this->idAssinante = $idAssinante;
 
         return $this;
     }

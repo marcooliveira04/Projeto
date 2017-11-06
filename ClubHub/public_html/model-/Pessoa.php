@@ -3,8 +3,7 @@
 /**
 * 
 */
-class Pessoa
-{
+class Pessoa {
 	private $id;
 	private $nome;
 	private $cep;
@@ -234,7 +233,8 @@ class Pessoa
      */
     public function setSenha($senha)
     {
-        $this->senha = $senha;
+        $this->senha = md5($senha);
+
         return $this;
     }
 

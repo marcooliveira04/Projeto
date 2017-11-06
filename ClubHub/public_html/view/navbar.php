@@ -1,32 +1,36 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Ícone</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHome" aria-controls="navbarHome" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarHome">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Missão <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <!-- 
-            Carrinho de Compras
-            toDo: pegar link que salvei nos favoritos e fazer o dropdown. Como? Não faço ideia.
-        -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a href="" class="nav-link p-2">
-                    <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
-                </a>                
-            </li>
-        </ul>
-
-
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-light ml-md-3" data-toggle="modal" data-target="#modalLogin">
-            Login
+    <div class="container">
+        <a class="navbar-brand" href="?page=home"><img src="http://www.theimplanthub.com/wp-content/themes/implanthub/images/icons/icon-hub.png" width="30" height="30"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHome" aria-controls="navbarHome" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
+
+        <div class="collapse navbar-collapse" id="navbarHome">
+            <!-- 
+                Carrinho de Compras
+                toDo: pegar link que salvei nos favoritos e fazer o dropdown. Como? Não faço ideia.
+            -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="" class="nav-link p-2">
+                        <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
+                    </a>                
+                </li>
+            </ul>
+
+            <?php if (!isset($_SESSION['logado']) or $_SESSION['logado'] == 'N'): ?>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-light ml-md-3" data-toggle="modal" data-target="#modalLogin">
+                    Login
+                </button>            
+            <?php else: ?>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="?page=minhaPagina">Minha página</a>                
+                </li>
+            </ul>
+            <?php endif ?>
+        </div>
     </div>
 </nav>
 
@@ -44,6 +48,7 @@
             </div>
             <div class="modal-body">
             <form action="" method="POST" name="login" id="login">
+                <input type="hidden" name="action" value="login">
                 <div class="form-group">
                     <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="E-mail">
                 </div>
@@ -52,6 +57,12 @@
                     <a href="">
                         <p class="text-muted text-right"><small>Esqueceu sua senha?</small></p>
                     </a>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="tipo" id="tipo">
+                        <option selected="" value="Assinante">Assinante</option>
+                        <option value="Clube">Clube</option>
+                    </select>
                 </div>
                 <button type="submit" name="action" value="login" class="btn btn-block btn-primary">Entrar</button>
             </form>

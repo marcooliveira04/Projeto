@@ -14,7 +14,6 @@ class Conn{
 	private $connectionFactory;
 
 	function __construct(){
-		print_r("Eu fui instânciado: ".get_class($this));
 		$this->arguments = [
 			'driver'   => 'mysql',
 		    'host'	   => '127.0.0.1',

@@ -3,9 +3,7 @@ require_once 'Pessoa.php';
 /**
 * 
 */
-class Clube extends Pessoa
-{
-
+class Clube extends Pessoa {
     # ao invés de Nome Fantasia, será utilizado o atributo "nome" da classe Pessoa
 	// private $nomeFantasia;
     private $razaoSocial;
@@ -73,21 +71,6 @@ class Clube extends Pessoa
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getTabela()
-    {
-        return self::TABELA;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getColunas()
-    {
-        return self::COLUNAS;
-    }
 }
 
 ?>

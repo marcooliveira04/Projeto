@@ -18,16 +18,18 @@ CREATE TABLE assinante (
 	rg						varchar(9)		not null unique,
 	nascimento				date			not null,
 	sexo					char(1)			not null,
-	cepResidencial			varchar(8)		not null,
-	ruaResidencial			varchar(255)	not null,
-	numeroResidencial		varchar(10)		not null,
-	complementoResidencial	varchar(50)		null,
-	cidadeResidencial		int				not null,
-	ufResidencial			int 			not null,
+	cep						varchar(8)		not null,
+	rua						varchar(255)	not null,
+	numero					varchar(10)		not null,
+	complemento				varchar(50)		null,
+	bairro					varchar(60) 	not null,
+	cidade					int				not null,
+	uf						int 			not null,
 	cepEntrega				varchar(8)		null,
 	ruaEntrega				varchar(255)	null,
 	numeroEntrega			varchar(10)		null,
 	complementoEntrega		varchar(50)		null,
+	bairroEntrega			varchar(60) 	not null,
 	cidadeEntrega			int				null,
 	ufEntrega 				int 			null,
 	telefone				varchar(11)		not null,
@@ -45,6 +47,7 @@ CREATE TABLE clubes(
 	rua						varchar(255)	not null,
 	numero					varchar(10)		not null,
 	complemento				varchar(50)		null,
+	bairro					varchar(60) 	not null,
 	cidade					int				not null,
 	uf						int 			not null,
 	telefone				varchar(11)		not null,
@@ -68,10 +71,11 @@ CREATE TABLE cliente(
 );
 
 CREATE TABLE pacote(
-	id			int				not null	primary key,
-	nome 		varchar(255)	not null,
-	valor 		decimal(6,2)	not null,
-	id_cliente	int 			not null
+    id 			int 			not null primary key,
+   	idClube 	int 			not null,
+    nome 		varchar(255)	not null,
+    categoria 	int 			not null,
+    valor 		decimal(3,2)	not null
 );
 
 CREATE TABLE periodicidade(

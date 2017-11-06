@@ -95,31 +95,70 @@
 
 	// $dao->create($cliente);
 
-	require_once 'Clube.php';
-	require_once 'ClubeDao.php';
+	// require_once 'Clube.php';
+	// // require_once 'ClubeDao.php';
+	// require_once 'Dao.php';
+	// $clube = new Clube;
 
-	$clube = new Clube;
-	$dao = new ClubeDao;
+	
+	// $dao = new Dao($clube->getTabela(), $clube->getColunas());
 
-	// $clube->setId();
-	// $clube->setNome('Marco Oliveira');
-	// $clube->setRazaoSocial('Marco Oliveira');
-	// $clube->setCnpj('57484177000128');
-	// $clube->setCep('17052330');
-	// $clube->setRua('Teste');
-	// $clube->setNumero('1');
+	// // // $clube->setId();
+	// // $clube->setNome('Marco Oliveira');
+	// // $clube->setRazaoSocial('Marco Oliveira');
+	// // $clube->setCnpj('57484177000128');
+	// // $clube->setCep('17052330');
+	// // $clube->setRua('Teste');
+	// // $clube->setNumero('1');
+	// // $clube->setBairro('Teste');
+	// // // $clube->setComplemento()
+	// // $clube->setCidade('Bauru');
+	// // $clube->setUf(2);
+	// // $clube->setTelefone('1132430816');
+	// // $clube->setCelular('14981047450');
+	// // $clube->setEmail('teste@teste.com');
+	// // $clube->setSenha('teste');
+	// // $clube->setCategoria(2);
+
+	// // $dao->insere($clube);
+	// print("<pre>");print_r($dao->busca());print("</pre>");
+	// $clube = $dao->busca()[0];
+
+	// $clube->setEmail('teste@jogos.com');
+
+	// $dao->atualiza($clube);
+	// // $dao->exclui($clube);
+
+	require_once 'Assinante.php';
+	require_once 'Dao.php';
+require_once '../controller/AssinanteController.php';
+	$assinante = new Assinante;
+
+	// $assinante->setNome('Marco Antonio de Oliveira Junior');
+	// $assinante->setCpf('39299476845');
+	// $assinante->setRg('417407518');
+	// $assinante->setNascimento('1994-04-23');
+	// $assinante->setSexo('M');
+	// $assinante->setCep('17052330');
+	// $assinante->setRua('Rua Fortunato Resta');
+	// $assinante->setNumero('640');
+	// $assinante->setBairro('Vila Giunta');
 	// // $clube->setComplemento()
-	// $clube->setCidade('Bauru');
-	// $clube->setUf(2);
-	// $clube->setTelefone('1132430816');
-	// $clube->setCelular('14981047450');
-	// $clube->setEmail('teste@teste.com');
-	// $clube->setSenha('teste');
-	// $clube->setCategoria(2);
+	// $assinante->setCidade('Bauru');
+	// $assinante->setUf('SP');
+	// $assinante->setTelefone('1432430816');
+	// $assinante->setCelular('14981047450');
+	// $assinante->setEmail('marco_oliveira94@live.com');
+	// $assinante->setSenha('m4rco@0103');
 
-	// $dao->insere($clube);
-
-	print("<pre>");print_r($dao->atualizar());print("</pre>");
+	$dao = new Dao($assinante->getTabela(), $assinante->getColunas());
+	// $assinante = $dao->read(get_class($assinante))[0];
+	// $dao->update($assinante);
+	// $dao->delete($assinante);
+	// $dao->create($assinante);
+	$controller = new AssinanteController;
+	$login = $controller->login('marco_oliveira94@live.com', 'm4rco@0103');
+	print("<pre>");print_r($dao->read(get_class($assinante)));print("</pre>");
 
 	// $campos = ['cep', 'rua', 'numero', 'complemento', 'cidade', 'uf', 'nomeFantasia', 'razaoSocial', 'cnpj', 'telefone', 'celular', 'email', 'senha', 'categoria'];
 	// $assoc = array();

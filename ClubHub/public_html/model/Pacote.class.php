@@ -5,10 +5,11 @@
 */
 class Pacote
 {
-	private $id;
-	private $nome;
-	private $valor;
-	private $idCliente;
+    private $id;
+    private $idClube;
+    private $nome;
+    private $categoria;
+    private $valor;
 
     /**
      * @return mixed
@@ -26,6 +27,26 @@ class Pacote
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClube()
+    {
+        return $this->clube;
+    }
+
+    /**
+     * @param mixed $clube
+     *
+     * @return self
+     */
+    public function setClube($clube)
+    {
+        $this->clube = $clube;
 
         return $this;
     }
@@ -53,6 +74,26 @@ class Pacote
     /**
      * @return mixed
      */
+    public function getCategoria()
+    {
+        return $this->categoria;
+    }
+
+    /**
+     * @param mixed $categoria
+     *
+     * @return self
+     */
+    public function setCategoria($categoria)
+    {
+        $this->categoria = $categoria;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getValor()
     {
         return $this->valor;
@@ -66,26 +107,6 @@ class Pacote
     public function setValor($valor)
     {
         $this->valor = $valor;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdCliente()
-    {
-        return $this->idCliente;
-    }
-
-    /**
-     * @param mixed $idCliente
-     *
-     * @return self
-     */
-    public function setIdCliente($idCliente)
-    {
-        $this->idCliente = $idCliente;
 
         return $this;
     }
