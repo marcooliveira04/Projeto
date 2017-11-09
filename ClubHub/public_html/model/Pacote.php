@@ -10,6 +10,7 @@ class Pacote
     private $nome;
     private $categoria;
     private $valor;
+    private $imagem;
 
     /**
      * @return mixed
@@ -107,6 +108,26 @@ class Pacote
     public function setValor($valor)
     {
         $this->valor = $valor;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImagem()
+    {
+        return $this->imagem;
+    }
+
+    /**
+     * @param mixed $imagem
+     *
+     * @return self
+     */
+    public function setImagem($imagem)
+    {
+        $this->imagem = $imagem;
 
         return $this;
     }

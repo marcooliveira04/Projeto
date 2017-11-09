@@ -54,7 +54,8 @@ CREATE TABLE clubes(
 	celular					varchar(11)		not null,
 	email					varchar(255)	not null unique,
 	senha					varchar(255)	not null,
-	categoria 				int 			not null
+	categoria 				int 			not null,
+	banner 					varchar(255) 	not null
 );
 
 CREATE TABLE categoria(
@@ -75,7 +76,8 @@ CREATE TABLE pacotes(
    	idClube 	int 			not null,
     nome 		varchar(255)	not null,
     categoria 	int 			not null,
-    valor 		decimal(3,2)	not null
+    valor 		decimal(3,2)	not null,
+    imagem		varchar(255)	not null
 );
 
 CREATE TABLE periodicidade(

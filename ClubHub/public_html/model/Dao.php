@@ -16,58 +16,6 @@ class Dao
         $this->pdo = $this->conn->getPDO();
     }
 
-    /**
-     * @return mixed
-     */
-    public function getTabela() { return $this->tabela; }
-
-    /**
-     * @param mixed $tabela
-     *
-     * @return self
-     */
-    public function setTabela($tabela) { $this->tabela = $tabela; return $this; }
-
-    /**
-     * @return mixed
-     */
-    public function getColunas() { return $this->colunas; }
-
-    /**
-     * @param mixed $colunas
-     *
-     * @return self
-     */
-    public function setColunas($colunas) { $this->colunas = $colunas; return $this; }
-
-    public function binder($stmt, $object){
-        $campos = $this->colunas;
-        foreach ($campos as $index => $campo) {
-            $getter = 'get'.ucfirst($campo);
-            $token = $index + 1;
-            $stmt->bindValue($token, $object->$getter());
-        }
-
-        return $stmt;
-    }
-
-    public function setter($row, $object){
-        foreach ($row as $coluna => $valor) {
-            $setter = 'set'.ucfirst($coluna);
-
-            $object->$setter($valor);
-        }
-
-        return $object;
-    }
-
-    public function stringfyForUpdate($colunas){
-        //Remove a coluna ID
-        array_pop($colunas);
-
-        return $string = implode(' = ?, ', $colunas)." = ?";
-    }
-
     public function create($object){
         try {
             
@@ -98,45 +46,6 @@ class Dao
             echo $e->getMessage();
             return false;
         }
-    }
-
-    /**
-    * Método para configurar condições e ordenação do select.
-    *
-    * @param array $where - Deve conter condições para adicionar-se à 
-    * query SELECT.
-    * @param array $orderby - Deve conter parâmetros para ordenar dados 
-    * retornados do banco de dados.
-    *
-    * @return array $concatenado - Deve conter as condições e ordenação 
-    * concatenadas
-    */
-    public function buildQuery($where, $orderby){
-        $concatenado = '';
-        if(is_array($where) && !is_null($where) && !empty($where)){
-            $concatenado .= " WHERE ";
-            $contagem = count($where);
-            foreach ($where as $chave => $grupo) {
-                /**
-                * Precisa ter um espaço no fim da string para que não ocorra erro na query!
-                */
-                $concatenado .= "$grupo[coluna] = $grupo[valor] $grupo[operador] ";
-                $contagem --;
-            }
-        }
-
-        if(is_array($orderby) && !is_null($orderby) && !empty($orderby)){
-
-            $concatenado .= " ORDER BY ";
-            $contagem = count($orderby);
-            foreach ($orderby as $chave => $grupo) {
-                // print_r($grupo);
-                $coluna = implode(",", $grupo['colunas']);
-                $concatenado .= "$coluna $grupo[ordem]";
-                $contagem --;
-            }
-        }
-        return $concatenado;
     }
 
     public function read(string $classe, array $where = null, array $orderby = null){
@@ -203,6 +112,97 @@ class Dao
             echo $e->getMessage();
             return false;
         }
+    }
+
+    /**
+    * Método para configurar condições e ordenação do select.
+    *
+    * @param array $where - Deve conter condições para adicionar-se à 
+    * query SELECT.
+    * @param array $orderby - Deve conter parâmetros para ordenar dados 
+    * retornados do banco de dados.
+    *
+    * @return array $concatenado - Deve conter as condições e ordenação 
+    * concatenadas
+    */
+    public function buildQuery($where, $orderby){
+        $concatenado = '';
+        if(is_array($where) && !is_null($where) && !empty($where)){
+            $concatenado .= " WHERE ";
+            $contagem = count($where);
+            foreach ($where as $chave => $grupo) {
+                /**
+                * Precisa ter um espaço no fim da string para que não ocorra erro na query!
+                */
+                $concatenado .= "$grupo[coluna] = $grupo[valor] $grupo[operador] ";
+                $contagem --;
+            }
+        }
+
+        if(is_array($orderby) && !is_null($orderby) && !empty($orderby)){
+
+            $concatenado .= " ORDER BY ";
+            $contagem = count($orderby);
+            foreach ($orderby as $chave => $grupo) {
+                // print_r($grupo);
+                $coluna = implode(",", $grupo['colunas']);
+                $concatenado .= "$coluna $grupo[ordem]";
+                $contagem --;
+            }
+        }
+        return $concatenado;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTabela() { return $this->tabela; }
+
+    /**
+     * @param mixed $tabela
+     *
+     * @return self
+     */
+    public function setTabela($tabela) { $this->tabela = $tabela; return $this; }
+
+    /**
+     * @return mixed
+     */
+    public function getColunas() { return $this->colunas; }
+
+    /**
+     * @param mixed $colunas
+     *
+     * @return self
+     */
+    public function setColunas($colunas) { $this->colunas = $colunas; return $this; }
+
+    public function binder($stmt, $object){
+        $campos = $this->colunas;
+        foreach ($campos as $index => $campo) {
+            $getter = 'get'.ucfirst($campo);
+            $token = $index + 1;
+            $stmt->bindValue($token, $object->$getter());
+        }
+
+        return $stmt;
+    }
+
+    public function setter($row, $object){
+        foreach ($row as $coluna => $valor) {
+            $setter = 'set'.ucfirst($coluna);
+
+            $object->$setter($valor);
+        }
+
+        return $object;
+    }
+
+    public function stringfyForUpdate($colunas){
+        //Remove a coluna ID
+        array_pop($colunas);
+
+        return $string = implode(' = ?, ', $colunas)." = ?";
     }
 }
 
