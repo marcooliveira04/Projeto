@@ -253,10 +253,10 @@ class MinhaPaginaAssinanteController
 					<a class='nav-link active' id='perfil-pill' data-toggle='pill' href='#perfil'>Perfil</a>
 				</li>
 				<li class='nav-item'>
-					<a class='nav-link' id='pedido-pill' data-toggle='pill' href='#pedidos' href='#'>Pedidos</a>
+					<a class='nav-link' id='pedido-pill' data-toggle='pill' href='#pedidos' href='#'>Pedidos (Produtos Avulsos)</a>
 				</li>
 				<li class='nav-item'>
-					<a class='nav-link' href='#'>Assinaturas</a>
+					<a class='nav-link' href='#'>Assinaturas Agendadas</a>
 				</li>
 				<li class='nav-item'>
 					<a class='nav-link' href='#'>Pontos</a>

@@ -52,20 +52,9 @@
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="view/layout/js/bootstrap.min.js"></script>
-<script src="view/layout/js/jquery.cpfcnpj.js"></script>
+
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#cnpj, #cpf').cpfcnpj({
-            mask: false,
-            validate: 'cpfcnpj',
-            event: 'focusout',
-            handler: this,
-            ifValid: function (input) { input.removeClass("is-invalid"); },
-            ifInvalid: function (input) { input.addClass("is-invalid"); }
-        });
-    });
-
 	$('.card').hover(function(){
 		$(this).find(".card-img-overlay").fadeIn( "fast", function(){
 			$(this).removeClass("d-none");

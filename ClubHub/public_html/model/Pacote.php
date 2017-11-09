@@ -34,9 +34,9 @@ class Pacote
     /**
      * @return mixed
      */
-    public function getClube()
+    public function getIdClube()
     {
-        return $this->clube;
+        return $this->idClube;
     }
 
     /**
@@ -44,9 +44,9 @@ class Pacote
      *
      * @return self
      */
-    public function setClube($clube)
+    public function setIdClube($idClube)
     {
-        $this->clube = $clube;
+        $this->idClube = $idClube;
 
         return $this;
     }

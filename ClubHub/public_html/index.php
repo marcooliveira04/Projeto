@@ -7,6 +7,11 @@
     // Inicia a sessão.
     session_start();
 
+    #excluir no release
+    function printPre($whatever){
+        print("<pre>");print_r($whatever);print("<pre>");
+    }
+
     // $url = '/Projeto/ClubHub/public_html/?';
 
     // switch($_SERVER['REQUEST_URI']) {
@@ -40,7 +45,8 @@
                 'home',
                 'cadastro',
                 'minhaPagina',
-                'logout'
+                'logout',
+                'clube'
             );
 
             if (!empty($page)) {

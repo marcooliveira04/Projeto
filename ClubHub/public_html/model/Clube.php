@@ -11,7 +11,7 @@ class Clube extends Pessoa
     private $razaoSocial;
 	private $cnpj;
     private $categoria;
-
+    private $pacotes;
 
     /**
      * @return mixed
@@ -73,20 +73,26 @@ class Clube extends Pessoa
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getTabela()
-    {
-        return self::TABELA;
-    }
+
 
     /**
      * @return mixed
      */
-    public function getColunas()
+    public function getPacotes()
     {
-        return self::COLUNAS;
+        return $this->pacotes;
+    }
+
+    /**
+     * @param mixed $pacote
+     *
+     * @return self
+     */
+    public function setPacotes(Array $pacotes)
+    {
+        $this->pacotes = $pacotes;
+
+        return $this;
     }
 }
 

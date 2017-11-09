@@ -184,7 +184,7 @@ require_once '../controller/AssinanteController.php';
 			
 			Assinatura é composta de um Pacote, um Assinante. *REMOVER PERÍODO*
 			
-			Pacote é composto por um campo identificador (ID), nome, valor, clube e período - este, sendo por quanto tempo ele deve se repetir/uma quantidade de meses base para repetição da cobrança da assinatura.
+			Pacotes são assinaturas que os clubes disponibilizam. Por exemplo, um pacote nerd custa R$60,00/mês. Eles devem possuir uma id, identificação de clube, nome, categoria, valor, e só.
 			
 			Periodo é composto de quantidade de repetição e, identificação do pacote ligado à este.
 			
