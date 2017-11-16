@@ -213,5 +213,25 @@
         e.preventDefault();
     })
 
+    $('#assinar_continuar').click(function(){
+        var form = new FormData();
+        form.append("action", "carrinho");
+        form.append("metodo", "adiciona");
+        form.append("idPacote", $(this).value());
 
+        var settings = {
+            "async": true,
+            "url": "controller/Rotas.ajax.php",
+            "method": "POST",
+            "headers": {
+            "cache-control": "no-cache"
+            },
+            "mimeType": "multipart/form-data",
+            "data": form
+        }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+    })
 </script>

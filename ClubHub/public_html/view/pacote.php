@@ -2,7 +2,7 @@
 
 require_once './controller/PacoteController.php';
 
-$controller = new PacoteController;
+$controller = new PacoteController($_GET['id']);
 $pacote = $controller->getPacote();
 
 ?>
@@ -20,9 +20,15 @@ $pacote = $controller->getPacote();
 			</p>
 			<h1 class="display-4 text-center">R$<?=$pacote->getValor();?><small>/mês</small></h1>
 			<div class="btn-group special">
-				<button class="btn btn-primary">Assinar e continuar comprando</button>
-				<button class="btn btn-info">Assinar e finalizar</button>
+				<button class="btn btn-primary" id="assinar_continuar" value="<?=$pacote->getId();?>" type="button">Assinar e continuar comprando</button>
+				<button class="btn btn-info"  type="button">Assinar e finalizar</button>
 			</div>
+		</div>
+	</div>
+	<hr/>
+	<div class="row">
+		<div class="col">
+			<h1 class="text-center">Detalhes do Pacote</h1>
 		</div>
 	</div>
 </div>
@@ -35,4 +41,10 @@ $pacote = $controller->getPacote();
 .special .btn {
   flex: 1
 }
+
+hr{
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
 </style>
+

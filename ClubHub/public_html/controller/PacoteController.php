@@ -8,10 +8,10 @@ class PacoteController
 	private $pacote;
 	private $daoPacote;
 
-	function __construct()
+	function __construct($idPacote)
 	{
 		$this->daoPacote = new PacoteDao;
-		$this->pacote = $this->buscaPacote($_GET['id']);
+		$this->pacote = $this->buscaPacote($idPacote);
 	}
 
 	public function buscaPacote($idPacote){

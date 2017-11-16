@@ -1,5 +1,10 @@
 <?php
     session_start();
+// unset($_SESSION);
+    $_SESSION['carrinho']['total'] = '';
+
+    $_SESSION['carrinho']['itens'] = [];
+    // print_r($_SESSION);
     // Não pode retirar esse iniciador de sessão senão o login não funciona. Talvez por causa de ser requisitado pelo Ajax e não incluso no código - abaixo da primeira session_start.
     require_once 'SessionController.php';
 
@@ -41,6 +46,19 @@
                 $session = $sessionController->createSession($controller->getPessoa());
                 echo $session;
             }
+        }
+
+        if ($_POST['action'] == 'carrinho') {
+            unset($_POST['action']);
+            require_once 'CarrinhoController.php';
+
+            $controller = new CarrinhoController($_POST['idPacote']);
+
+            $metodo = $_POST['metodo'];
+
+            $controller->$metodo();
+
+            echo $controller->fazListaNavbar();
         }
  
     }

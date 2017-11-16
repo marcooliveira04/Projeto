@@ -11,28 +11,36 @@
                 toDo: pegar link que salvei nos favoritos e fazer o dropdown. Como? Não faço ideia.
             -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="" class="nav-link p-2">
-                        <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
-                    </a>                
-                </li>
-            </ul>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Carrinho <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-            <?php if (!isset($_SESSION['logado']) or $_SESSION['logado'] == 'N'): ?>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-outline-light ml-md-3" data-toggle="modal" data-target="#modalLogin">
-                    Login
-                </button>            
-            <?php else: ?>
-                <ul class="navbar-nav">
+                        <div class="px-4 py-2">
+                            <button class="btn btn-primary btn-block">Finalizar</button>    
+                        </div>
+                    </div>
+                </li>
+                <?php if (!isset($_SESSION['logado']) or $_SESSION['logado'] == 'N'): ?>
+                    <li class="nav-item">
+                        <!-- Button trigger modal -->
+                        <a class="nav-link ml-md-3 py-2" data-toggle="modal" data-target="#modalLogin" href="">
+                            Login
+                        </a>  
+                    </li>
+          
+                <?php else: ?>
                     <li class="nav-item">
                         <a class="nav-link" href="?page=minhaPagina">Minha página</a>                
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?page=logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>                
                     </li>
-                </ul>
-            <?php endif ?>
+                <?php endif ?>
+            </ul>
+
+
         </div>
     </div>
 </nav>
@@ -81,3 +89,12 @@
     </div>
 </div>
 
+<style type="text/css">
+    .dropdown-menu{
+        width: 300;
+    }
+
+    .img-item-carrinho, .btn-excluir{
+        max-height: 50px; max-width: 50px;
+    }
+</style>
