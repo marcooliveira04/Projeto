@@ -1,8 +1,12 @@
 <?php
+$ponto = "..";
 require_once 'PacoteController.php';
 /**
 * 
 */
+
+# to-do
+# O carrinho só está adicionando 1 item, badge não soma ainda (jQuery) e preciso mudar a necessidade de parametro no construct da classe pacote para poder ser passado um array ao invés de um único número. A navbar terá de ser reconstruída toda vez em que a página for atualizada. Ou seja, como eu já salvei os itens do carrinho na sessão, preciso usar ela para construir os itens do carrinho que estiverem presentes. E também, inclusive, mostrar "Não há nada aqui [smileyFace]" quando o carrinho estiver vazio.
 class CarrinhoController
 {
 	private $pacoteController;

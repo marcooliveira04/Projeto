@@ -217,21 +217,27 @@
         var form = new FormData();
         form.append("action", "carrinho");
         form.append("metodo", "adiciona");
-        form.append("idPacote", $(this).value());
+        form.append("idPacote", ""+$(this).val()+"");
 
         var settings = {
-            "async": true,
-            "url": "controller/Rotas.ajax.php",
-            "method": "POST",
-            "headers": {
-            "cache-control": "no-cache"
-            },
-            "mimeType": "multipart/form-data",
-            "data": form
+          "async": true,
+          "crossDomain": true,
+          "url": "http://localhost/Projeto/ClubHub/public_html/controller/Rotas.ajax.php",
+          "method": "POST",
+          "headers": {
+            "cache-control": "no-cache",
+            "postman-token": "ffa97060-bc10-5e6d-632d-7cb4183e8e27"
+          },
+          "processData": false,
+          "contentType": false,
+          "mimeType": "multipart/form-data",
+          "data": form
         }
 
         $.ajax(settings).done(function (response) {
-            console.log(response);
+            $('#navbarDropdown').find($('.dropdown-menu .itens')).empty();
+            $('#navbarDropdown').find($('#badge-carrinho')).text(1);
+            $('#navbarDropdown').find($('.dropdown-menu .itens').append(response));
         });
     })
 </script>

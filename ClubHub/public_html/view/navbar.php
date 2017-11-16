@@ -11,12 +11,18 @@
                 toDo: pegar link que salvei nos favoritos e fazer o dropdown. Como? Não faço ideia.
             -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown" id="navbarDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Carrinho <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <span class="badge badge-light" id="badge-carrinho"></span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="itens">
+                            <?php
 
+
+                            ?>
+                        </div>
                         <div class="px-4 py-2">
                             <button class="btn btn-primary btn-block">Finalizar</button>    
                         </div>

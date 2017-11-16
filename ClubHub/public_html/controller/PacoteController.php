@@ -1,5 +1,5 @@
 <?php
-require_once './model/PacoteDao.php';
+require_once $ponto.'/model/PacoteDao.php';
 /**
 * 
 */

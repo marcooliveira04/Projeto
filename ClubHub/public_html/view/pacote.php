@@ -1,5 +1,5 @@
 <?php
-
+$ponto = ".";
 require_once './controller/PacoteController.php';
 
 $controller = new PacoteController($_GET['id']);
@@ -29,6 +29,7 @@ $pacote = $controller->getPacote();
 	<div class="row">
 		<div class="col">
 			<h1 class="text-center">Detalhes do Pacote</h1>
+			<p class="lead"><?=$pacote->getDetalhes();?></p>
 		</div>
 	</div>
 </div>
