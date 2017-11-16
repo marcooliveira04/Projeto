@@ -46,7 +46,8 @@
                 'cadastro',
                 'minhaPagina',
                 'logout',
-                'clube'
+                'clube',
+                'pacote'
             );
 
             if (!empty($page)) {

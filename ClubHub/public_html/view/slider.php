@@ -20,11 +20,14 @@
 			</div> -->
 		</div>
 		<div class="carousel-item">
-			<img class="d-block w-100" src="https://compass-ssl.xbox.com/assets/23/24/2324ec96-3670-4d9f-b06f-756d8247687a.jpg?n=ACH_GLP-Page-Hero-1084_1920x600_02.jpg" alt="Third slide">
-<!-- 			<div class="carousel-caption d-none d-md-block">
-				<h3>...</h3>
-				<p>...</p>
-			</div> -->
+			<a href="?page=clube&id=1">
+				<img class="d-block w-100" src="view/layout/images/sliderThor.jpg" alt="Third slide"><!-- 
+				<img class="d-block w-100" src="https://compass-ssl.xbox.com/assets/23/24/2324ec96-3670-4d9f-b06f-756d8247687a.jpg?n=ACH_GLP-Page-Hero-1084_1920x600_02.jpg" alt="Third slide"> -->
+	<!-- 			<div class="carousel-caption d-none d-md-block">
+					<h3>...</h3>
+					<p>...</p>
+				</div> -->
+			</a>
 		</div>
 	</div>
 	<a class="carousel-control-prev" href="#indicadores" role="button" data-slide="prev">
@@ -41,4 +44,6 @@
 	.bg-gray{
 		background-color: rgba(52,58,64, .1);
 	}
+
+
 </style>

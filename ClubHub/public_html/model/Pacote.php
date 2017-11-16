@@ -11,6 +11,7 @@ class Pacote
     private $categoria;
     private $valor;
     private $imagem;
+    private $descricao;
 
     /**
      * @return mixed
@@ -128,6 +129,26 @@ class Pacote
     public function setImagem($imagem)
     {
         $this->imagem = $imagem;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescricao()
+    {
+        return $this->descricao;
+    }
+
+    /**
+     * @param mixed $descricao
+     *
+     * @return self
+     */
+    public function setDescricao($descricao)
+    {
+        $this->descricao = $descricao;
 
         return $this;
     }
