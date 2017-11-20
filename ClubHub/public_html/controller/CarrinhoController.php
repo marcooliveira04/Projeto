@@ -15,7 +15,8 @@ class CarrinhoController
 	private $total;
 
 	function __construct($idPacote){
-		$this->pacoteController = new PacoteController($idPacote);
+		$this->pacoteController = new PacoteController();
+		$this->pacoteController->setPacote($this->pacoteController->buscaPacote($idPacote));
 		$this->pacote = $this->pacoteController->getPacote();
 		$this->lista = $_SESSION['carrinho']['itens'];
 		$this->total = $_SESSION['carrinho']['total'];

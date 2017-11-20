@@ -8,10 +8,8 @@ class PacoteController
 	private $pacote;
 	private $daoPacote;
 
-	function __construct($idPacote)
-	{
+	function __construct(){
 		$this->daoPacote = new PacoteDao;
-		$this->pacote = $this->buscaPacote($idPacote);
 	}
 
 	public function buscaPacote($idPacote){
@@ -29,8 +27,7 @@ class PacoteController
     /**
      * @return mixed
      */
-    public function getPacote()
-    {
+    public function getPacote(){
         return $this->pacote;
     }
 
@@ -39,8 +36,7 @@ class PacoteController
      *
      * @return self
      */
-    public function setPacote($pacote)
-    {
+    public function setPacote($pacote){
         $this->pacote = $pacote;
 
         return $this;

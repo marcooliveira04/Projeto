@@ -222,7 +222,7 @@
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": "http://localhost/Projeto/ClubHub/public_html/controller/Rotas.ajax.php",
+          "url": "controller/Rotas.ajax.php",
           "method": "POST",
           "headers": {
             "cache-control": "no-cache",
