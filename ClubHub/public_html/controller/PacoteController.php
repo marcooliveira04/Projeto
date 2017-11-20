@@ -41,6 +41,18 @@ class PacoteController
 
         return $this;
     }
+
+    public function constroiCards(){
+    	$this->pacote = $this->daoPacote->read('Pacote', null, null);
+
+    	foreach ($this->pacote as $chave => $pacote) {
+    		$html = "
+				<div class='col row mb-3'>
+					<div class='card-deck'>";
+
+					
+    	}
+    }
 }
 
 ?>
