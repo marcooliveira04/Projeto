@@ -1,9 +1,14 @@
 <?php
     session_start();
 // unset($_SESSION);
-    $_SESSION['carrinho']['total'] = '';
+    if(!isset($_SESSION['carrinho']['total']) or empty($_SESSION['carrinho']['total'])){
+        $_SESSION['carrinho']['total'] = '';
+    } 
 
-    $_SESSION['carrinho']['itens'] = [];
+    if(!isset($_SESSION['carrinho']['itens']) or empty($_SESSION['carrinho']['itens'])){
+        $_SESSION['carrinho']['itens'] = [];
+    } 
+
     // print_r($_SESSION);
     // Não pode retirar esse iniciador de sessão senão o login não funciona. Talvez por causa de ser requisitado pelo Ajax e não incluso no código - abaixo da primeira session_start.
     require_once 'SessionController.php';
@@ -50,9 +55,12 @@
 
         if ($_POST['action'] == 'carrinho') {
             unset($_POST['action']);
+            $ponto = "..";
             require_once 'CarrinhoController.php';
 
-            $controller = new CarrinhoController($_POST['idPacote']);
+            $controller = new CarrinhoController();
+
+            $controller->defineControlador($_POST['idPacote']);
 
             $metodo = $_POST['metodo'];
 

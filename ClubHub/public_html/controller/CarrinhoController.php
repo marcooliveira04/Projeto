@@ -1,5 +1,5 @@
 <?php
-$ponto = "..";
+
 require_once 'PacoteController.php';
 /**
 * 
@@ -14,31 +14,42 @@ class CarrinhoController
 	private $lista;
 	private $total;
 
-	function __construct($idPacote){
+	function __construct(){
+
+	}
+
+	public function defineControlador($idPacote){
 		$this->pacoteController = new PacoteController();
 		$this->pacoteController->setPacote($this->pacoteController->buscaPacote($idPacote));
 		$this->pacote = $this->pacoteController->getPacote();
-		$this->lista = $_SESSION['carrinho']['itens'];
-		$this->total = $_SESSION['carrinho']['total'];
 	}
 
 	public function adiciona(){
-		$this->lista[$this->pacote->getIdClube()][$this->pacote->getId()] = $this->pacote;
-		$this->total = (int)$this->total + (int)$this->pacote->getValor();
+		$_SESSION['carrinho']['itens'][$this->pacote->getIdClube()][$this->pacote->getId()]['id'] = $this->pacote->getId();
+		$_SESSION['carrinho']['itens'][$this->pacote->getIdClube()][$this->pacote->getId()]['idClube'] = $this->pacote->getIdClube();
+		$_SESSION['carrinho']['itens'][$this->pacote->getIdClube()][$this->pacote->getId()]['nome'] = $this->pacote->getNome();
+		$_SESSION['carrinho']['itens'][$this->pacote->getIdClube()][$this->pacote->getId()]['categoria'] = $this->pacote->getCategoria();
+		$_SESSION['carrinho']['itens'][$this->pacote->getIdClube()][$this->pacote->getId()]['valor'] = $this->pacote->getValor();
+		$_SESSION['carrinho']['itens'][$this->pacote->getIdClube()][$this->pacote->getId()]['imagem'] = $this->pacote->getImagem();
+		$_SESSION['carrinho']['itens'][$this->pacote->getIdClube()][$this->pacote->getId()]['descricao'] = $this->pacote->getDescricao();
+		$_SESSION['carrinho']['itens'][$this->pacote->getIdClube()][$this->pacote->getId()]['detalhes'] = $this->pacote->getDetalhes();
+
+		$_SESSION['carrinho']['total'] = (int)$this->total + (int)$this->pacote->getValor();
 
 		return;
 	}
 
 	public function fazListaNavbar(){
-		$dividerCount = count($this->lista);
+		$dividerCount = count($_SESSION['carrinho']['itens']);
+		$_SESSION['carrinho']['contagemItens'] = $dividerCount;
 
-		foreach ($this->lista as $clube => $pack) {
+		foreach ($_SESSION['carrinho']['itens'] as $clube => $pack) {
 			foreach ($pack as $chave => $objeto) {
 				$listaNavbar = "
 			        <div class='item_carrinho px-4 py-2'>
 			            <div class='d-flex flex-row'>
 			                <img class='float-left img-thumbnail mr-4 img-item-carrinho' src='view/layout/images/miniatura.jpg'>
-			                <p class='mr-4'>".$objeto->getNome()."<br/>R$".$objeto->getValor()."</p>
+			                <p class='mr-4'>".$objeto['nome']."<br/>R$".$objeto['valor']."</p>
 			                <button class='btn btn-danger btn-excluir float-right'><i class='fa fa-trash fa-lg' aria-hidden='true'></i></button>
 			            </div>
 			        </div>

@@ -236,7 +236,7 @@
 
         $.ajax(settings).done(function (response) {
             $('#navbarDropdown').find($('.dropdown-menu .itens')).empty();
-            $('#navbarDropdown').find($('#badge-carrinho')).text(1);
+            $('#navbarDropdown').find($('#badge-carrinho')).text(<?=count($_SESSION['carrinho']['contagemItens']);?>);
             $('#navbarDropdown').find($('.dropdown-menu .itens').append(response));
         });
     })

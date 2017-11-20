@@ -10,5 +10,12 @@ Perguntar sobre as classes de controladores se esses devem entrar no diagrama de
 
 #noteToSelf: 
 
+	No processo de compras somente liberar a assinatura se logado
+	Terminar o processo de compras
 	Finalizar o footer
 	Relatórios e Minha Página (que pausei pra terminar o processo de compras; estava fazendo dos avessos).
+
+
+#toAskSandra:
+
+	Não possibilitei a assinatura mais de uma vez do mesmo pacote
