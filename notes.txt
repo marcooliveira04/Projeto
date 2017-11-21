@@ -101,3 +101,45 @@ Controllers:
 				Função responsável pela definição de dados na sessão baseado no usuário retornado
 			-	logout()
 				Função responsável por destruir a sessão existente
+
+
+Planejamento:
+	Home:
+		Navbar:
+			Criar dropdown de clubes
+		Sliders:
+			Acertar links e imagens
+		Destaques:
+			Devem ficar no slider
+		Pacotes:
+			Fazer a busca no banco de dados dos mais novos ou mais comprados? Ver com a Sandra
+	Login:
+		Visual:
+			Colocar cobertura de carregamento?
+	Cadastro:
+		Formulário:
+			Acertar e conferir formatação de determinados campos
+		Visual:
+			Mostrar erros na tela e em tempo real para determinados campos (CPF, RG, Telefone, CEP)
+	Minha Página (Assinante):
+		Funcionalidades:
+			Manutenções; adicionar
+	Minha Página (Clube):
+		Funcionalidades:
+			Manutenções; adicionar
+	Clube:
+		Textos:
+			Colocar textos válidos de apoio para os clubes que ficarão cadastrados
+		Imagem:
+			Adicionar uma imagem aos jumbotrons
+		Pacotes:
+			Permitir que seja exibido mais de um. Tirar o [0] da página
+	Pacotes:
+		Botão Comprar e Finalizar:
+			Adicionar função para já enviar para o checkout
+	Checkout:
+		Visual:
+			Pintar o cabeçalho
+			Adicionar o ícone da lata de lixo
+		Funcionalidade:
+			Se obtiver sucesso na função do lightbox, remover item do carrinho da sessão e fazer as funções para adicionar no banco de dados o que for retornado do PagSeguro.
