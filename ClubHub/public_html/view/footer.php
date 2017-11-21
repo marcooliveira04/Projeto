@@ -233,7 +233,6 @@
         $.ajax(settings).done(function (response) {
             $('#navbarDropdown').find($('.dropdown-menu')).empty();
             $('#badge-carrinho').empty().text("<?=$_SESSION['carrinho']['contagemItens'];?>");
-            console.log("<?=$_SESSION['carrinho']['contagemItens'];?>");
             $('#navbarDropdown').find($('.dropdown-menu').append(response));
         });
     })
@@ -264,6 +263,3 @@
     })
 </script>
 
-<script type="text/javascript"
-src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js">
-</script>

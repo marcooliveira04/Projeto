@@ -7,6 +7,7 @@ $carrinhoController = new CarrinhoController;
 $navbar = $carrinhoController->criaDropdownCarrinho();
 
 if (!isset($_SESSION['carrinho']['contagemItens']) or $_SESSION['carrinho']['contagemItens'] == 0) {
+    $_SESSION['carrinho']['contagemItens'] = 0;
     $countBadge = '';
 } else {
     $countBadge = $_SESSION['carrinho']['contagemItens'];
@@ -14,7 +15,9 @@ if (!isset($_SESSION['carrinho']['contagemItens']) or $_SESSION['carrinho']['con
 
 
 ?>
-
+<script type="text/javascript"
+src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js">
+</script>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="?page=home"><img src="http://www.theimplanthub.com/wp-content/themes/implanthub/images/icons/icon-hub.png" width="30" height="30"></a>

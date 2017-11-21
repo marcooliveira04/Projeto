@@ -14,8 +14,90 @@ Perguntar sobre as classes de controladores se esses devem entrar no diagrama de
 	Terminar o processo de compras
 	Finalizar o footer
 	Relatórios e Minha Página (que pausei pra terminar o processo de compras; estava fazendo dos avessos).
-
+	Mudar a view clube para que possa ser exibido mais de um produto por clube
 
 #toAskSandra:
 
 	Não possibilitei a assinatura mais de uma vez do mesmo pacote
+
+
+
+Controllers:
+	Cadastro
+		Attributes:
+			- 	private $dao;
+			-	private $pessoa;
+		Methods:
+			- 	cadastro($post)
+	Carrinho
+		Attirbutes:
+			-	private $pacoteController;
+			-	private $pacote;
+			-	private $lista;
+			-	private $total;
+		Methods:
+			-	defineControlador($idPacote)
+				responsável por buscar um determinado pacote e definí-lo na classe
+			- 	adiciona()
+				pega o pacote buscado pela classe e adiciona à sessão para uso posterior
+			-	criaDropdownCarrinho()
+				verifica os dados do carrinho na sessão e cria a div de itens para guardar e exibir os itens do carrinho; usa o retorno de fazListaNavbar() e retorna o HTML.
+			-	fazListaNavbar()
+				usa os dados do carrinho na sessão para criar os itens em HTML.
+			-	removeItem()
+				usa os dados definidos por defineControlador($idPacote) para remover um item do carrinho da sessão
+	Clube
+		Attributes:
+			-	private $clube;
+			-	private $daoClube;
+		Methods:
+			-	buscaClube($idClube)
+	ClubeVenda
+		Attributes:
+			-	private $clube;
+			-	private $daoClube;
+			-	private $daoPacote;
+		Methods:
+			-	buscaClubes($idClube)
+			-	buscaPacotes($idClube)
+	MinhaPaginaAssinante
+		Classe responsável por criar os elementos de navegação da página MinhaPaginaAssinante
+		Attributes:
+			-	private $navigation;
+			-	private $pessoa;
+		Methods:
+			-	pegaCadastro()
+				Busca o cadastro do assinante utilizando como parâmetro o ID dele que está definido na sessão
+			-	constroiFormCadastro()
+				Responsável pela criação completa do HTML do formulário de cadastro do Assinante. Formulário este que tem como função a atualização de dados do Assinante.
+			-	constroiNavegacao()
+				Responsável pela criação completa do HTML das _pills_ de navegação da página
+			-	constroiTabs()
+				Responsável pela criação completa do HTML das _tabs_ que são utilizadas pelas pills para exibirem conteúdos diferentes numa mesma página
+	Pacote
+		Attributes:
+			-	private $pacote;
+			-	private $daoPacote;
+		Methods:
+			-	buscaPacote($idPacote)
+			-	constroiCards()
+				(WIP) - Função será responsável por criar os _cards_ de produtos que serão exibidos na tela inicial
+	Pessoa
+		Attributes:
+			-	private $dao;
+			-	private $pessoa;
+		Methods:
+			-	buscaClube($idClube)
+	Session
+		Attributes:
+			-	private $dao;
+			-	private $pessoa;
+		Methods:
+			-	setObjects($tipo)
+				Função responsável pela criação e instanciamento do objeto baseado no tipo de usuário logado ou a efetuar login
+			-	login($email, $senha)
+				Função responsável pela busca e verificação de dados do banco de dados. Retorna o resultado do método createSession($pessoa) ou 0 se houver erro
+			- 	createSession($pessoa)
+				Função responsável pela definição de dados na sessão baseado no usuário retornado
+			-	logout()
+				Função responsável por destruir a sessão existente

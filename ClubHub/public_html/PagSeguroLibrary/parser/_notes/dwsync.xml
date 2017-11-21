@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="PagSeguroAuthorizationParser.class.php" server="187.45.250.72/public_html/" local="131305304019769363" remote="131061960000000000" Dst="2" />
+<file name="PagSeguroCancelParser.class.php" server="187.45.250.72/public_html/" local="131305304019890766" remote="131061960000000000" Dst="2" />
+<file name="PagSeguroDirectPaymentParser.class.php" server="187.45.250.72/public_html/" local="131305304021889397" remote="131061960000000000" Dst="2" />
+<file name="PagSeguroPaymentParser.class.php" server="187.45.250.72/public_html/" local="131305304022199120" remote="131061960000000000" Dst="2" />
+<file name="PagSeguroPaymentParserData.class.php" server="187.45.250.72/public_html/" local="131305304023769551" remote="131061960000000000" Dst="2" />
+<file name="PagSeguroRefundParser.class.php" server="187.45.250.72/public_html/" local="131305304024109570" remote="131061960000000000" Dst="2" />
+<file name="PagSeguroSessionParser.class.php" server="187.45.250.72/public_html/" local="131305304025059416" remote="131061960000000000" Dst="2" />
+<file name="PagSeguroServiceParser.class.php" server="187.45.250.72/public_html/" local="131305304025129220" remote="131061960000000000" Dst="2" />
+<file name="PagSeguroTransactionParser.class.php" server="187.45.250.72/public_html/" local="131305304026727192" remote="131061960000000000" Dst="2" />
+<file name="PagSeguroInstallmentParser.class.php" server="187.45.250.72/public_html/" local="131305304031679271" remote="131061960000000000" Dst="2" />
+</dwsync>

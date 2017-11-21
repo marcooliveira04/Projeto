@@ -12,7 +12,7 @@ class CarrinhoController
 	private $pacoteController;
 	private $pacote;
 	private $lista;
-	private $total;
+	private $total = 0;
 
 	function __construct(){
 
