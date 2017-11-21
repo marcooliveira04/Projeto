@@ -224,10 +224,6 @@
           "crossDomain": true,
           "url": "controller/Rotas.ajax.php",
           "method": "POST",
-          "headers": {
-            "cache-control": "no-cache",
-            "postman-token": "ffa97060-bc10-5e6d-632d-7cb4183e8e27"
-          },
           "processData": false,
           "contentType": false,
           "mimeType": "multipart/form-data",
@@ -235,9 +231,39 @@
         }
 
         $.ajax(settings).done(function (response) {
-            $('#navbarDropdown').find($('.dropdown-menu .itens')).empty();
-            $('#navbarDropdown').find($('#badge-carrinho')).text(<?=count($_SESSION['carrinho']['contagemItens']);?>);
-            $('#navbarDropdown').find($('.dropdown-menu .itens').append(response));
+            $('#navbarDropdown').find($('.dropdown-menu')).empty();
+            $('#badge-carrinho').empty().text("<?=$_SESSION['carrinho']['contagemItens'];?>");
+            console.log("<?=$_SESSION['carrinho']['contagemItens'];?>");
+            $('#navbarDropdown').find($('.dropdown-menu').append(response));
         });
     })
+
+    $('#navbarDropdown').on("click", "#removeItem", function(){
+        var form = new FormData();
+        form.append("action", "carrinho");
+        form.append("metodo", "removeItem");
+        form.append("idPacote", ""+$(this).val()+"");
+
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "controller/Rotas.ajax.php",
+          "method": "POST",
+          "processData": false,
+          "contentType": false,
+          "mimeType": "multipart/form-data",
+          "data": form
+        }
+
+        $.ajax(settings).done(function (response) {
+            $('#navbarDropdown').find($('.dropdown-menu')).empty();
+            $('#badge-carrinho').empty().text("<?=$_SESSION['carrinho']['contagemItens'];?>");
+            console.log("<?=$_SESSION['carrinho']['contagemItens'];?>");
+            $('#navbarDropdown').find($('.dropdown-menu').append(response));
+        });        
+    })
+</script>
+
+<script type="text/javascript"
+src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js">
 </script>

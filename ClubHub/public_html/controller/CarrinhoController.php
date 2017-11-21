@@ -39,18 +39,45 @@ class CarrinhoController
 		return;
 	}
 
+	public function criaDropdownCarrinho(){
+		if (!isset($_SESSION['carrinho']) or !isset($_SESSION['carrinho']['itens']) or count($_SESSION['carrinho']['itens']) < 1) {
+			$dropdown = "
+
+                <div class='itens'>
+			        <div class='item_carrinho px-4 py-2'>
+			            <div class='d-flex flex-row'>
+			                <p>Você não possui itens adicionados ao carrinho</p>
+			            </div>
+			        </div>
+                </div>
+		    ";
+		} else {
+			$dropdown = "
+                <div class='itens'>
+        			".$this->fazListaNavbar()."
+                </div>
+                <div class='px-4 py-2'>
+                    <a href='?page=checkout' class='btn btn-primary btn-block'>Finalizar</a>    
+                </div>
+		    ";			
+		}
+
+		return $dropdown;		
+	}
+
 	public function fazListaNavbar(){
 		$dividerCount = count($_SESSION['carrinho']['itens']);
 		$_SESSION['carrinho']['contagemItens'] = $dividerCount;
+		$listaNavbar = "";
 
 		foreach ($_SESSION['carrinho']['itens'] as $clube => $pack) {
 			foreach ($pack as $chave => $objeto) {
-				$listaNavbar = "
+				$listaNavbar .= "
 			        <div class='item_carrinho px-4 py-2'>
 			            <div class='d-flex flex-row'>
 			                <img class='float-left img-thumbnail mr-4 img-item-carrinho' src='view/layout/images/miniatura.jpg'>
 			                <p class='mr-4'>".$objeto['nome']."<br/>R$".$objeto['valor']."</p>
-			                <button class='btn btn-danger btn-excluir float-right'><i class='fa fa-trash fa-lg' aria-hidden='true'></i></button>
+			                <button class='btn btn-danger btn-excluir float-right' id='removeItem' value='".$objeto['id']."'><i class='fa fa-trash fa-lg' aria-hidden='true'></i></button>
 			            </div>
 			        </div>
 			    ";		
@@ -59,10 +86,24 @@ class CarrinhoController
 					$dividerCount--;
 				}
 			}
-
-		}
+		}	
 
 		return $listaNavbar;
+	}
+
+	public function removeItem(){
+		unset($_SESSION['carrinho']['itens'][$this->pacote->getIdClube()][$this->pacote->getId()]);
+		if (empty($_SESSION['carrinho']['itens'][$this->pacote->getIdClube()])) {
+			unset($_SESSION['carrinho']['itens'][$this->pacote->getIdClube()]);
+		}
+
+		if (empty($_SESSION['carrrinho']['itens'])) {
+			$_SESSION['carrinho']['contagemItens'] = 0;
+		} else {
+			$_SESSION['carrinho']['contagemItens'] = count($_SESSION['carrrinho']['itens']);
+		}
+
+		return;
 	}
 }
 

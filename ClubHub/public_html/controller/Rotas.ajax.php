@@ -1,13 +1,7 @@
 <?php
     session_start();
 // unset($_SESSION);
-    if(!isset($_SESSION['carrinho']['total']) or empty($_SESSION['carrinho']['total'])){
-        $_SESSION['carrinho']['total'] = '';
-    } 
 
-    if(!isset($_SESSION['carrinho']['itens']) or empty($_SESSION['carrinho']['itens'])){
-        $_SESSION['carrinho']['itens'] = [];
-    } 
 
     // print_r($_SESSION);
     // Não pode retirar esse iniciador de sessão senão o login não funciona. Talvez por causa de ser requisitado pelo Ajax e não incluso no código - abaixo da primeira session_start.
@@ -15,7 +9,7 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        if ($_POST['action'] == 'login') {
+        if (isset($_POST['action']) and $_POST['action'] == 'login') {
 
 
             $controller = new SessionController($_POST['tipo']);
@@ -27,7 +21,7 @@
             }  
         }
 
-        if ($_POST['action'] == 'cadastro') {
+        if (isset($_POST['action']) and $_POST['action'] == 'cadastro') {
 
             unset($_POST['action']);
             require_once 'CadastroController.php';
@@ -53,7 +47,7 @@
             }
         }
 
-        if ($_POST['action'] == 'carrinho') {
+        if (isset($_POST['action']) and $_POST['action'] == 'carrinho') {
             unset($_POST['action']);
             $ponto = "..";
             require_once 'CarrinhoController.php';
@@ -66,7 +60,7 @@
 
             $controller->$metodo();
 
-            echo $controller->fazListaNavbar();
+            echo $controller->criaDropdownCarrinho();
         }
  
     }

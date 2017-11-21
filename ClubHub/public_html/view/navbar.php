@@ -4,7 +4,14 @@ $ponto = ".";
 require_once './controller/CarrinhoController.php';
 $carrinhoController = new CarrinhoController;
 
-$navbar = $carrinhoController->fazListaNavbar();
+$navbar = $carrinhoController->criaDropdownCarrinho();
+
+if (!isset($_SESSION['carrinho']['contagemItens']) or $_SESSION['carrinho']['contagemItens'] == 0) {
+    $countBadge = '';
+} else {
+    $countBadge = $_SESSION['carrinho']['contagemItens'];
+}
+
 
 ?>
 
@@ -24,15 +31,10 @@ $navbar = $carrinhoController->fazListaNavbar();
                 <li class="nav-item dropdown" id="navbarDropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Carrinho <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                      <span class="badge badge-light" id="badge-carrinho"><?=$_SESSION['carrinho']['contagemItens'];?></span>
+                      <span class="badge badge-light" id="badge-carrinho"><?=$countBadge?></span>
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <div class="itens">
-                            <?=$navbar;?>
-                        </div>
-                        <div class="px-4 py-2">
-                            <button class="btn btn-primary btn-block">Finalizar</button>    
-                        </div>
+                    <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                        <?=$navbar;?>
                     </div>
                 </li>
                 <?php if (!isset($_SESSION['logado']) or $_SESSION['logado'] == 'N'): ?>

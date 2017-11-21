@@ -47,7 +47,8 @@
                 'minhaPagina',
                 'logout',
                 'clube',
-                'pacote'
+                'pacote',
+                'checkout'
             );
 
             if (!empty($page)) {
