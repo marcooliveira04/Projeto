@@ -361,12 +361,37 @@ if (isset($_SESSION['logado']) and $_SESSION['logado'] == 'S') {
 					</div>
 				</div>
 				<hr/>
+				<h5>Dados Bancários</h5>
+				<hr/>
+				<div class="row">
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="uf">Banco *</label>
+			                <select class="form-control" name="uf" id="uf">
+			                  <option disabled="" selected="" value="0">Banco</option>
+			                  <option value="AC">Itaú</option>
+			                  <option value="AL">Santander</option>
+			                  <option value="AM">Bradesco</option>
+			                  <option value="AP">HSBCS</option>
+			                </select>
+						</div>
+					</div>
+					<div class="form-group col-md-2">
+						<label for="complemento">Agência</label>
+						<input class="form-control" type="text" name="complemento" id="complemento" placeholder="Agência">
+					</div>
+					<div class="form-group col-md-3">
+						<label for="bairro">Conta Corrente *</label>
+						<input class="form-control" type="text" name="bairro" id="bairro" placeholder="Conta Corrente">
+					</div>
+				</div>
+				<hr/>
 				<div class="row text-center">
 					<div class="col form-group">
 						<div class="form-check">
 							<label class="form-check-label">
 								<input class="form-check-input" type="checkbox" value="1">
-								Eu li e aceito termos e condições.
+								Eu li e aceito os <a href="">termos e condições</a>.
 							</label>
 						</div>
 					</div>

@@ -253,13 +253,7 @@ class MinhaPaginaAssinanteController
 					<a class='nav-link active' id='perfil-pill' data-toggle='pill' href='#perfil'>Perfil</a>
 				</li>
 				<li class='nav-item'>
-					<a class='nav-link' id='pedido-pill' data-toggle='pill' href='#pedidos' href='#'>Pedidos (Produtos Avulsos)</a>
-				</li>
-				<li class='nav-item'>
-					<a class='nav-link' href='#'>Assinaturas Agendadas</a>
-				</li>
-				<li class='nav-item'>
-					<a class='nav-link' href='#'>Pontos</a>
+					<a class='nav-link' id='minhasAssinaturas-pill' data-toggle='pill' href='#minhasAssinaturas'>Minhas Assinaturas</a>
 				</li>
 			</ul>
 			<hr/>
@@ -271,11 +265,64 @@ class MinhaPaginaAssinanteController
 	public function constroiTabs(){
 		$tabs = "
 		<div class='tab-content' id='nav-tabContent'>
-		  <div class='tab-pane fade show active' id='perfil' role='tabpanel' aria-labelledby='nav-home-tab'>
+		  <div class='tab-pane fade show active' id='perfil' role='tabpanel'>
 		  	".$this->constroiFormCadastro()."
 		  </div>
-		  <div class='tab-pane fade' id='pedidos' role='tabpanel' aria-labelledby='nav-profile-tab'>...</div>
-		  <div class='tab-pane fade' id='nav-contact' role='tabpanel' aria-labelledby='nav-contact-tab'>...</div>
+		  <div class='tab-pane fade' id='minhasAssinaturas' role='tabpanel'>
+		  	<h5 class='mb-5'>Minhas Assinaturas</h5>
+		  	<div class='table-responsive-sm'>
+				<table class='table table-striped table-hover'>
+					<thead class='thead-light'>
+						<tr>
+						<th scope='col'>Clube</th>
+						<th scope='col'>Pacote</th>
+						<th scope='col'>Preço</th>
+						<th scope='col'>Data da Primeira Assinautra</th>
+						<th scope='col'>Data de Cobrança</th>
+						<th scope='col'>Próxima Entrega</th>
+						<th scope='col'>Código de Rastreio</th>
+						<th scope='col'>Transportadora</th>
+						<th scope='col'>Cancelar</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<th scope='row'>Nerd</th>
+						<td>Thor Ragnarok</td>
+						<td>R$25.90</td>
+						<td>01/01/2017</td>
+						<td>20/02/2017</td>
+						<td>-</td>
+						<td>123456</td>
+						<td><a href='#'>Correios</a></td>
+						<td><i class='fa fa-trash' aria-hidden='true'></i></td>
+					</tr>
+					<tr>
+						<th scope='row'>Alimentação</th>
+						<td>Cereais Internacionais</td>
+						<td>R$15,90</td>
+						<td>01/01/2017</td>
+						<td>10/11/2017</td>
+						<td>30/11/2017</td>
+						<td>654321</td>
+						<td><a href='#'>UPS</a></td>
+						<td><i class='fa fa-trash' aria-hidden='true'></i></td>
+					</tr>
+					<tr>
+						<th scope='row'>Bebidas</th>
+						<td>Cachaça Brasileira</td>
+						<td>R$75.80</td>
+						<td>05/06/2017</td>
+						<td>06/06/2017</td>
+						<td>11/11/2017</td>
+						<td>9876541112</td>
+						<td><a href='#'>Transporte de Bebidas</a></td>
+						<td><i class='fa fa-trash' aria-hidden='true'></i></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		  </div>
 		</div>
 		";
 

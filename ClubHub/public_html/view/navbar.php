@@ -33,6 +33,16 @@ src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagsegur
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown" id="navbarDropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Clubes <i class="fa fa-bandcamp" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                      <h6 class="dropdown-header">Dropdown header</h6>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown" id="navbarDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Carrinho <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                       <span class="badge badge-light" id="badge-carrinho"><?=$countBadge?></span>
                     </a>
@@ -50,15 +60,13 @@ src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagsegur
           
                 <?php else: ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="?page=minhaPagina">Minha página</a>                
+                        <a class="nav-link" href="?page=minhaPagina">Minha página <i class="fa fa-user-circle" aria-hidden="true"></i></a>                
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?page=logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>                
+                        <a class="nav-link" href="?page=logout">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a>                
                     </li>
                 <?php endif ?>
             </ul>
-
-
         </div>
     </div>
 </nav>

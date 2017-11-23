@@ -1,21 +1,11 @@
 <footer class="footer">
 	<div class="d-flex flex-row">
-		<div class="col-md-3">
-			<a href="">
-				<p class="mb-0">Perguntas Frequentes</p>
-			</a>
-			<a href="">
-				<p class="mb-0">Políticas de Privacidade</p>
-			</a>
-		</div>
-		<div class="col text-right">
-			<a href="">
-				<p class="mb-0">Perguntas Frequentes</p>
-			</a>
-			<a href="">
-				<p class="mb-0">Políticas de Privacidade</p>
-			</a>
-		</div>
+        <div class="container mx-auto text-center text-white">
+            <div class="col">
+                <p class="mb-0">ClubHub - Central de Clubes de Assinatura</p>
+                <p class="mb-0">Desenvolvido por Marco e Sandra.</p>
+            </div>
+        </div>
 	</div>
 </footer>
 
@@ -37,7 +27,7 @@
 	  /* Set the fixed height of the footer here */
 	  height: 120px;
 	  line-height: 60px; /* Vertically center the text there */
-	  background-color: #f5f5f5;
+	  background-color: #343a40!important;
 	}
 
 </style>

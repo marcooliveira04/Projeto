@@ -30,7 +30,15 @@ $pacote = $controller->getPacote();
 	<div class="row">
 		<div class="col">
 			<h1 class="text-center">Detalhes do Pacote</h1>
-			<p class="lead"><?=$pacote->getDetalhes();?></p>
+			<p class="lead">
+				<?=$pacote->getDetalhes();?>
+				Conteúdo do pacote deste mês:
+				<ul>
+					<li>1x Poster 1x1 metro, Thor Ragnorok (Filme)</li>
+					<li>1x Funko Hela - Tamanho médio</li>
+					<li>1x História em Quadrinhos - Poderoso Thor, Número 1</li>
+				</ul>
+			</p>
 		</div>
 	</div>
 </div>

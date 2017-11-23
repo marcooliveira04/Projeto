@@ -16,6 +16,7 @@ Perguntar sobre as classes de controladores se esses devem entrar no diagrama de
 	Relatórios e Minha Página (que pausei pra terminar o processo de compras; estava fazendo dos avessos).
 	Mudar a view clube para que possa ser exibido mais de um produto por clube
 
+
 #toAskSandra:
 
 	Não possibilitei a assinatura mais de uma vez do mesmo pacote
@@ -119,11 +120,14 @@ Planejamento:
 	Cadastro:
 		Formulário:
 			Acertar e conferir formatação de determinados campos
+			Bloquear menores de idade
 		Visual:
 			Mostrar erros na tela e em tempo real para determinados campos (CPF, RG, Telefone, CEP)
 	Minha Página (Assinante):
 		Funcionalidades:
 			Manutenções; adicionar
+		Planos:
+			Mostrar o código de rastreamento que abre uma modal. na modal mostrar qual o nome da Transportadora, e um link de acesso para ela?
 	Minha Página (Clube):
 		Funcionalidades:
 			Manutenções; adicionar
@@ -137,9 +141,13 @@ Planejamento:
 	Pacotes:
 		Botão Comprar e Finalizar:
 			Adicionar função para já enviar para o checkout
+		Compras:
+			Adicionar opções de assinatura mensal, trimestral ou anual
 	Checkout:
 		Visual:
 			Pintar o cabeçalho
 			Adicionar o ícone da lata de lixo
 		Funcionalidade:
 			Se obtiver sucesso na função do lightbox, remover item do carrinho da sessão e fazer as funções para adicionar no banco de dados o que for retornado do PagSeguro.
+		PagSeguro:
+			No PagSeguro, deverá ser informado o Clube como um Vendedor para futura identificação de repasse de pagamentos

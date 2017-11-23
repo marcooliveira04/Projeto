@@ -12,33 +12,34 @@ $total = 0;
 	<h1 class="display-4 text-center">Checkout</h1>
 	<hr/>
 	<div class="row">
-		<div class="col-md-10">
-			Produtos
+		<div class="col-md-9">
+			<p class="lead">Pacotes</p>
 		</div>
-		<div class="col-md-1">
-			Remover
+		<div class="col-md-1 text-center">
+			<p class="lead">Remover</p>
 		</div>
-		<div class="col-md-1">
-			Valor
+		<div class="col-md-2 text-center">
+			<p class="lead">Valor</p>
 		</div>
 	</div>
+	<hr/>
 	<form name="pagamento" method="POST">
 		<?php
 		foreach ($_SESSION['carrinho']['itens'] as $item => $clube) {
 			foreach ($clube as $id => $pacote) {
 				?>
 				<div class="row">
-					<div class="col-md-1">
-						<img class="float-left img-thumbnail mr-4" alt="imagem" src="view/layout/images/<?=$pacote['imagem'];?>">
+					<div class="col-md-2">
+						<img class="float-left img100porcento mr-4" alt="imagem" src="view/layout/images/<?=$pacote['imagem'];?>">
 					</div>
-					<div class="col-md-9">
-						<p><?=$pacote['nome'];?></p>
+					<div class="col-md-7">
+						<p class="lead"><strong><?=$pacote['nome'];?></strong></p>
 					</div>
-					<div class="col-md-1">
-						<p>Lata</p>
+					<div class="col-md-1 text-center">
+						<p class="lead"><i class="fa fa-trash" aria-hidden="true"></i></p>
 					</div>
-					<div class="col-md-1">
-						<p><?=$pacote['valor'];?></p>
+					<div class="col-md-2 text-center">
+						<p class="lead">R$<?=$pacote['valor'];?></p>
 					</div>
 				</div>
 				<hr/>
@@ -51,19 +52,13 @@ $total = 0;
 
 		<div class="row">
 			<div class="col-md-2 ml-auto">
-				<p>Subtotal: <?=$total;?></p>
+				<p>Subtotal: R$<?=$total;?></p>
 			</div>
 		</div>
 		<hr/>
 		<div class="row">
 			<div class="col-md-2 ml-auto">
-				<p>Desconto?</p>
-			</div>
-		</div>
-		<hr/>
-		<div class="row">
-			<div class="col-md-2 ml-auto">
-				<h4>Total: <?=$total;?></h4>
+				<h4>Total: R$<?=$total;?></h4>
 			</div>
 		</div>
 		<hr/>
@@ -74,6 +69,13 @@ $total = 0;
 		</div>
 	</form>	
 </div>
+
+<style type="text/css">
+	.img100porcento{
+		width: 100%;
+		max-height: 50%;
+	}
+</style>
 
 <?php 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
