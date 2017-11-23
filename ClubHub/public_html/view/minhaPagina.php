@@ -173,56 +173,30 @@
 			</form>
 		  </div>
 		  <div class='tab-pane fade' id='minhasAssinaturas' role='tabpanel'>
-		  	<h5 class='mb-5'>Minhas Assinaturas</h5>
+		  	<h5 class='mb-5'>Meus Planos</h5>
 		  	<div class='table-responsive-sm'>
 				<table class='table table-striped table-hover'>
 					<thead class='thead-light'>
 						<tr>
-						<th scope='col'>Clube</th>
-						<th scope='col'>Pacote</th>
+						<th scope='col'>Nome</th>
 						<th scope='col'>Preço</th>
-						<th scope='col'>Data da Primeira Assinautra</th>
-						<th scope='col'>Data de Cobrança</th>
-						<th scope='col'>Próxima Entrega</th>
-						<th scope='col'>Código de Rastreio</th>
-						<th scope='col'>Transportadora</th>
-						<th scope='col'>Cancelar</th>
+						<th scope='col'>Data de Cadastro</th>
+						<th scope='col'>Status</th>
+						<th scope='col'>Alterar</th>
+						<th scope='col'>Inativar</th>
+						<th scope='col'>Excluir</th>
 						</tr>
 					</thead>
 					<tbody>
-					<tr>
-						<th scope='row'>Nerd</th>
-						<td>Thor Ragnarok</td>
-						<td>R$25.90</td>
-						<td>01/01/2017</td>
-						<td>20/02/2017</td>
-						<td>-</td>
-						<td>123456</td>
-						<td><a href='#'>Correios</a></td>
-						<td><i class='fa fa-trash' aria-hidden='true'></i></td>
-					</tr>
-					<tr>
-						<th scope='row'>Alimentação</th>
-						<td>Cereais Internacionais</td>
-						<td>R$15,90</td>
-						<td>01/01/2017</td>
-						<td>10/11/2017</td>
-						<td>30/11/2017</td>
-						<td>654321</td>
-						<td><a href='#'>UPS</a></td>
-						<td><i class='fa fa-trash' aria-hidden='true'></i></td>
-					</tr>
-					<tr>
-						<th scope='row'>Bebidas</th>
-						<td>Cachaça Brasileira</td>
-						<td>R$75.80</td>
-						<td>05/06/2017</td>
-						<td>06/06/2017</td>
-						<td>11/11/2017</td>
-						<td>9876541112</td>
-						<td><a href='#'>Transporte de Bebidas</a></td>
-						<td><i class='fa fa-trash' aria-hidden='true'></i></td>
-					</tr>
+						<tr>
+							<th scope='row'>Thor Ragnarok</th>
+							<td>R$25.90</td>
+							<td>01/01/2017</td>
+							<td>A</td>
+							<td><i class="fa fa-refresh" aria-hidden="true"></i></td>
+							<td><i class="fa fa-times-circle" aria-hidden="true"></i></td>
+							<td><i class='fa fa-trash' aria-hidden='true'></i></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -230,7 +204,7 @@
 		  <div class='tab-pane fade' id='relatorio' role='tabpanel'>
 		  	<div class="row d-sm-block d-md-none d-lg-none">
 		  		<div class="button-group">
-						<button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#vendas" aria-expanded="false" aria-controls="collapseExample">
+						<button class="btn btn-primary btn-block active" type="button" data-toggle="collapse" data-target="#vendas" aria-expanded="false" aria-controls="collapseExample">
 							Vendas
 						</button>
 						<button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#assinantes" aria-expanded="false" aria-controls="collapseExample">
@@ -238,31 +212,251 @@
 						</button>
 		  		</div>
 		  	</div>
-		  	<div class="row d-sm-none">
+		  	<div class="row">
 			  	<div class="col-md-2">
-						<button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#vendas" aria-expanded="false" aria-controls="collapseExample">
-							Vendas
-						</button>
-						<button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#assinantes" aria-expanded="false" aria-controls="collapseExample">
-							Associados
-						</button>
-
+					<button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#vendas" aria-expanded="false" aria-controls="collapseExample">
+						Vendas
+					</button>
+					<button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#assinantes" aria-expanded="false" aria-controls="collapseExample">
+						Associados
+					</button>
 				</div>
 				<div class="col">
-					<div class="collapse" id="vendas">
-						<div class="card card-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+					<div class="collapse show" id="vendas">
+						<div class="card-header">
+							<ul class="nav nav-tabs card-header-tabs">
+								<li class="nav-item">
+									<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home">Vendas por Planos</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile">Vendas por Associado</a>
+								</li>
+							</ul>
+						</div>
+						<div class="card-body">
+							<div class="tab-content" id="myTabContent">
+								<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+									<h4 class="card-title">Filtros</h4>
+									<hr/>
+									<div class="row">
+										<div class="col-md-2">
+											<div class="form-group">
+												<label for="pacotes">Planos</label>
+												<select class="form-control" name="pacotes" id="pacotes">
+													<option selected="">Planos</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label for="inicioPeriodo">Período (Ínicio)</label>
+												<input type="date" class="form-control" name="inicioPeriodo">
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label for="fimPeriodo">Período (Final)</label>
+												<input type="date" class="form-control" name="fimPeriodo">
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label for="ordenar">Ordenar</label>
+												<select class="form-control" name="ordenar" id="ordenar">
+													<option selected="">Ordenar</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col mx-auto">
+											<div class="form-group">
+												<button class="btn btn-success">Pesquisa</button>
+											</div>
+										</div>
+									</div>
+										<p class="card-text">Últimos 30 dias</p>
+									<div class="table-responsive-sm">
+										<table class="table table-striped table-hover">
+											<thead>
+												<th>ID </th>
+												<th>Planos</th>
+												<th>Quantidade</th>
+												<th>Valor Total</th>
+											</thead>
+											<tbody>
+												<tr>
+													<td>1</td>
+													<td>Thor Ragnarok</td>
+													<td>20</td>
+													<td>R$985,45</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>		
+								</div>
+								<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+						
+										<h4 class="card-title">Filtros</h4>
+										<hr/>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label for="pesquisa">Pesquisar por nome</label>
+													<input type="text" class="form-control" name="nome" placeholder="Digite o nome para pesquisar">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-3">
+												<div class="form-group">
+													<label for="pacotes">Planos</label>
+													<select class="form-control" name="pacotes" id="pacotes">
+														<option selected="">Planos</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label for="inicioPeriodo">Período (Ínicio)</label>
+													<input type="date" class="form-control" name="inicioPeriodo">
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label for="fimPeriodo">Período (Final)</label>
+													<input type="date" class="form-control" name="fimPeriodo">
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label for="estado">UF</label>
+													<select class="form-control" name="estado" id="estado">
+														<option selected="">UF</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label for="ordenar">Ordenar</label>
+													<select class="form-control" name="ordenar" id="ordenar">
+														<option selected="">Ordenar</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col mx-auto">
+												<div class="form-group">
+													<button class="btn btn-success">Pesquisa</button>
+												</div>
+											</div>
+										</div>
+											<p class="card-text">Últimos 30 dias</p>
+										<div class="table-responsive-sm">
+											<table class="table table-striped table-hover">
+												<thead>
+													<th>ID</th>
+													<th>Nome</th>
+													<th>UF</th>
+													<th>Última Compra</th>
+													<th>Data</th>
+													<th>Valor</th>
+												</thead>
+												<tbody>
+													<tr>
+														<td>1</td>
+														<td>Marco Junior</td>
+														<td>SP</td>
+														<td>Thor Ragnarok</td>
+														<td>01/01/2017</td>
+														<td>R$89,99</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="collapse" id="assinantes">
-						<div class="card card-body">
-							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+						<h4 class="card-title">Filtros</h4>
+						<hr/>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="pesquisa">Pesquisar por nome</label>
+									<input type="text" class="form-control" name="nome" placeholder="Digite o nome para pesquisar">
+								</div>
+							</div>
 						</div>
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="pacotes">Estado</label>
+									<select class="form-control" name="pacotes" id="pacotes">
+										<option selected="">Estado</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="inicioPeriodo">Status</label>
+									<input type="date" class="form-control" name="inicioPeriodo">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="fimPeriodo">Status Pagamentos</label>
+									<input type="date" class="form-control" name="fimPeriodo">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="ordenar">Ordenar</label>
+									<select class="form-control" name="ordenar" id="ordenar">
+										<option selected="">Ordenar</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col mx-auto">
+								<div class="form-group">
+									<button class="btn btn-success">Pesquisa</button>
+								</div>
+							</div>
+						</div>
+							<p class="card-text">Últimos 30 dias</p>
+						<div class="table-responsive-sm">
+							<table class="table table-striped table-hover">
+								<thead>
+									<th>ID </th>
+									<th>Nome</th>
+									<th>Telefone</th>
+									<th>E-mail</th>
+									<th>UF</th>
+									<th>Data de Cadastro</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Marco Antonio de Oliveira Junior</td>
+										<td>(14)0000-0000</td>
+										<td>teste@teste.com.br</td>
+										<td>SP</td>
+										<td>21/02/2017</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>	
 					</div>
 				</div>
 			</div>
-		  </div>
 		</div>
+	</div>
+</div>
 		<?php
 	}
 	?>
