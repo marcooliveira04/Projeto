@@ -221,17 +221,16 @@
         }
 
         $.ajax(settings).done(function (response) {
-            $('#navbarDropdown').find($('.dropdown-menu')).empty();
-            $('#badge-carrinho').empty().text("<?=$_SESSION['carrinho']['contagemItens'];?>");
-            $('#navbarDropdown').find($('.dropdown-menu').append(response));
+            manipulaBadge(1);
+            recriaCarrinho(response);
         });
     })
 
-    $('#navbarDropdown').on("click", "#removeItem", function(){
+    function removerDoCarrinho(elemento){
         var form = new FormData();
         form.append("action", "carrinho");
         form.append("metodo", "removeItem");
-        form.append("idPacote", ""+$(this).val()+"");
+        form.append("idPacote", ""+$(elemento).val()+"");
 
         var settings = {
           "async": true,
@@ -245,11 +244,33 @@
         }
 
         $.ajax(settings).done(function (response) {
-            $('#navbarDropdown').find($('.dropdown-menu')).empty();
-            $('#badge-carrinho').empty().text("<?=$_SESSION['carrinho']['contagemItens'];?>");
-            console.log("<?=$_SESSION['carrinho']['contagemItens'];?>");
-            $('#navbarDropdown').find($('.dropdown-menu').append(response));
+            manipulaBadge(-1);
+            recriaCarrinho(response);
         });        
-    })
+    }
+
+    function recriaCarrinho(resposta){
+        var badge = <?=$_SESSION['carrinho']['contagemItens'];?>;
+        $('.carrinho').empty();
+        $('.carrinho').append(resposta);
+    }
+
+    function manipulaBadge(valor){
+        var badge = $('#badge-carrinho');
+        var badgeValor = parseInt($('#badge-carrinho').text());
+        if (valor == -1) {
+            if (badgeValor == 1) {
+                badge.empty();
+            } else if (badgeValor > 1) {
+                var novoValor = badgeValor + valor;
+                badge.text(novoValor);
+            }
+        } else if (badgeValor > 0) {
+            var novoValor = badgeValor + valor;
+            badge.text(novoValor);
+        } else if (badgeValor == '' || badgeValor == null || badgeValor == undefined){
+            badge.text(1);
+        }
+    }
 </script>
 

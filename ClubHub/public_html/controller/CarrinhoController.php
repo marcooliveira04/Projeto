@@ -25,7 +25,12 @@ class CarrinhoController
 	}
 
 	public function adiciona(){
-		$_SESSION['carrinho']['itens'][$this->pacote->getIdClube()][$this->pacote->getId()]['id'] = $this->pacote->getId();
+		$_SESSION['carrinho']
+			['itens']
+				[$this->pacote->getIdClube()]
+					[$this->pacote->getId()]
+						['id'] = $this->pacote->getId();
+
 		$_SESSION['carrinho']['itens'][$this->pacote->getIdClube()][$this->pacote->getId()]['idClube'] = $this->pacote->getIdClube();
 		$_SESSION['carrinho']['itens'][$this->pacote->getIdClube()][$this->pacote->getId()]['nome'] = $this->pacote->getNome();
 		$_SESSION['carrinho']['itens'][$this->pacote->getIdClube()][$this->pacote->getId()]['categoria'] = $this->pacote->getCategoria();
@@ -56,8 +61,13 @@ class CarrinhoController
                 <div class='itens'>
         			".$this->fazListaNavbar()."
                 </div>
-                <div class='px-4 py-2'>
-                    <a href='?page=checkout' class='btn btn-primary btn-block'>Finalizar</a>    
+				<div class='dropdown-divider'></div>                
+                <div class='px-3 py-2'>
+                	<div class='d-flex flex-row'>
+                		<div class='col p-0'>
+                    		<a href='?page=checkout' class='btn btn-orange btn-block'>Finalizar</a>
+                    	</div>
+                    </div>
                 </div>
 		    ";			
 		}
@@ -73,11 +83,17 @@ class CarrinhoController
 		foreach ($_SESSION['carrinho']['itens'] as $clube => $pack) {
 			foreach ($pack as $chave => $objeto) {
 				$listaNavbar .= "
-			        <div class='item_carrinho px-4 py-2'>
+			        <div class='item_carrinho px-3 py-2'>
 			            <div class='d-flex flex-row'>
-			                <img class='float-left img-thumbnail mr-4 img-item-carrinho' src='view/layout/images/miniatura.jpg'>
-			                <p class='mr-4'>".$objeto['nome']."<br/>R$".$objeto['valor']."</p>
-			                <button class='btn btn-danger btn-excluir float-right' id='removeItem' value='".$objeto['id']."'><i class='fa fa-trash fa-lg' aria-hidden='true'></i></button>
+			            	<div class='col-md-2 p-0'>
+			                	<img class='img-thumbnail img-fluid' src='view/layout/images/miniatura.jpg'>
+			                </div>
+			                <div class='col-md-8'>
+			                	<p class='mr-4'>".$objeto['nome']."<br/>R$".$objeto['valor']."</p>
+			                </div>
+			                <div class='col-md-2 p-0 excluir'>
+			                	<button class='btn btn-danger btn-excluir btn-block' id='removeItem' onclick='removerDoCarrinho(this)' value='".$objeto['id']."'><i class='fa fa-trash fa-lg' aria-hidden='true'></i></button>
+			                </div>
 			            </div>
 			        </div>
 			    ";		
@@ -97,10 +113,10 @@ class CarrinhoController
 			unset($_SESSION['carrinho']['itens'][$this->pacote->getIdClube()]);
 		}
 
-		if (empty($_SESSION['carrrinho']['itens'])) {
+		if (empty($_SESSION['carrinho']['itens'])) {
 			$_SESSION['carrinho']['contagemItens'] = 0;
 		} else {
-			$_SESSION['carrinho']['contagemItens'] = count($_SESSION['carrrinho']['itens']);
+			$_SESSION['carrinho']['contagemItens'] = count($_SESSION['carrinho']['itens']);
 		}
 
 		return;

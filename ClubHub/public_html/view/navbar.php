@@ -2,6 +2,8 @@
 
 $ponto = ".";
 require_once './controller/CarrinhoController.php';
+require_once './controller/ClubeController.php';
+require_once './controller/CategoriaController.php';
 $carrinhoController = new CarrinhoController;
 
 $navbar = $carrinhoController->criaDropdownCarrinho();
@@ -13,6 +15,10 @@ if (!isset($_SESSION['carrinho']['contagemItens']) or $_SESSION['carrinho']['con
     $countBadge = $_SESSION['carrinho']['contagemItens'];
 }
 
+$categoriaController = new CategoriaController;
+$clubeController = new ClubeController;
+
+$categorias = $categoriaController->buscaCategorias();
 
 ?>
 <script type="text/javascript"
@@ -36,9 +42,16 @@ src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagsegur
                       Clubes <i class="fa fa-bandcamp" aria-hidden="true"></i>
                     </a>
                     <div class="dropdown-menu">
-                      <h6 class="dropdown-header">Dropdown header</h6>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
+                        <?php foreach ($categorias as $indice => $categoria): ?>
+                            <?php $clubes = $clubeController->buscaClubesCategoria($categoria->getId()); ?>
+                            <?php if ($clubes): ?>
+                                <h6 class="dropdown-header"><?=$categoria->getNome();?></h6>
+                                <?php foreach ($clubes as $chave => $clube): ?>
+                                    <a class="dropdown-item" href="?page=clube&id=<?=$clube->getId();?>"><?=$clube->getNome();?></a>
+                                <?php endforeach ?>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                        
                     </div>
                 </li>
                 <li class="nav-item dropdown" id="navbarDropdown">
@@ -46,7 +59,7 @@ src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagsegur
                       Carrinho <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                       <span class="badge badge-light" id="badge-carrinho"><?=$countBadge?></span>
                     </a>
-                    <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                    <div class='dropdown-menu carrinho' aria-labelledby='navbarDropdown'>
                         <?=$navbar;?>
                     </div>
                 </li>
@@ -116,11 +129,17 @@ src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagsegur
 </div>
 
 <style type="text/css">
-    .dropdown-menu{
+    .carrinho{
         width: 300;
     }
 
     .img-item-carrinho, .btn-excluir{
-        max-height: 50px; max-width: 50px;
+        max-height: 50px; max-width: 50px; min-height: 50px;
+    }
+
+    .btn-orange{
+        color: #fff;
+        background-color: #ffa500;
+        border-color: #ffa500;
     }
 </style>

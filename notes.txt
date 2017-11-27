@@ -107,7 +107,10 @@ Controllers:
 Planejamento:
 	Home:
 		Navbar:
-			Criar dropdown de clubes
+			Criar dropdown de clubes - OK
+			Carrinho de Compras:
+				Bug:
+					Não tá fazendo exclusão e tá ficando com o texto de carrinho vazinho mesmo com item - OK
 		Sliders:
 			Acertar links e imagens
 		Destaques:
@@ -131,6 +134,8 @@ Planejamento:
 	Minha Página (Clube):
 		Funcionalidades:
 			Manutenções; adicionar
+		Adicionar cadastro de pacotes!!!!!
+		Pensar numa forma do bagulho de trimestral, anual. Caralho
 	Clube:
 		Textos:
 			Colocar textos válidos de apoio para os clubes que ficarão cadastrados

@@ -45,7 +45,7 @@ if (isset($_SESSION['logado']) and $_SESSION['logado'] == 'S') {
 				<div class="row">
 					<div class="form-group col-md-3">
 						<label for="nascimento">Nascimento *</label>
-						<input class="form-control" type="date" name="nascimento" id="nascimento" placeholder="">
+						<input class="form-control" type="date" name="nascimento" id="nascimento" placeholder="" max='<?=date('Y-m-d', strtotime('-18 year'));?>'>
 					</div>
 					<div class="form-group col-md-3">
 						<label for="sexo">Genêro *</label>

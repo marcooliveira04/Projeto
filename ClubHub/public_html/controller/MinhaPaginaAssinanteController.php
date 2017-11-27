@@ -63,7 +63,7 @@ class MinhaPaginaAssinanteController
 				<div class='row'>
 					<div class='form-group col-md-3'>
 						<label for='nascimento'>Nascimento *</label>
-						<input class='form-control' type='date' name='nascimento' id='nascimento' placeholder=''>
+						<input class='form-control' type='date' name='nascimento' id='nascimento' placeholder='' value='".$this->pessoa->getNascimento()."'>
 					</div>
 					<div class='form-group col-md-3'>
 						<label for='sexo'>Genêro *</label>

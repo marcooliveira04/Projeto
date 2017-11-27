@@ -30,6 +30,16 @@ class CadastroController
 		}
 	}
 
+	public function atualiza($post){
+		$this->pessoa = $this->dao->setter($post, $this->pessoa);
+		$update = $this->dao->update($this->pessoa);
+		if (!$update) {
+			return false;
+		} else {
+			return true;
+		}		
+	}
+
     /**
      * @return mixed
      */

@@ -5,24 +5,26 @@ require_once './model/CategoriaDao.php';
 */
 class CategoriaController
 {
-	private $categorias;
 	private $dao;
 
 	function __construct(){
-		$this->categorias = new Categoria;
 		$this->dao = new CategoriaDao;
 	}
 
 	public function geraSelect(){
-		$this->categorias = $this->dao->read(get_class($this->categorias), null, null);
+		$categorias = $this->buscaCategorias();		
 
 		$options = array();
 
-		foreach ($this->categorias as $indice => $objeto) {
+		foreach ($categorias as $indice => $objeto) {
 			$options[] = "<option value='".$objeto->getId()."'>".$objeto->getNome()."</option>";
 		}
 
 		return $options;
+	}
+
+	public function buscaCategorias(){
+		return $this->dao->read('Categoria', null, null);
 	}
 }
 
