@@ -13,6 +13,7 @@ class Pacote
     private $imagem;
     private $descricao;
     private $detalhes;
+    private $proximoEnvio;
 
     /**
      * @return mixed
@@ -170,6 +171,26 @@ class Pacote
     public function setDetalhes($detalhes)
     {
         $this->detalhes = $detalhes;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProximoEnvio()
+    {
+        return $this->proximoEnvio;
+    }
+
+    /**
+     * @param mixed $proximoEnvio
+     *
+     * @return self
+     */
+    public function setProximoEnvio($proximoEnvio)
+    {
+        $this->proximoEnvio = $proximoEnvio;
 
         return $this;
     }

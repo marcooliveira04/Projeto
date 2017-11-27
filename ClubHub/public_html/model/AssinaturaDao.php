@@ -1,16 +1,15 @@
 <?php
-
 require_once 'Dao.php';
-require_once 'Pacote.php';
+require_once 'Assinatura.php';
 /**
 * 
 */
-class PacoteDao extends Dao
+class AssinaturaDao extends Dao
 {
 	function __construct() {
-		$this->setTabela('Pacotes');
+		$this->setTabela('assinatura');
 		// Id deve ficar por último para poder ser utilizado e _popped_ em funções como update e delete.
-		$this->setColunas(['idClube', 'nome', 'categoria', 'valor', 'descricao', 'detalhes', 'proximoEnvio', 'id']);
+		$this->setColunas(['idAssinante', 'idPacote', 'data', 'codRastreio', 'transportadora', 'id']);
 		parent::__construct();
 	}
 }

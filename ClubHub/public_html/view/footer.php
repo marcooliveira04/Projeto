@@ -221,8 +221,8 @@
         }
 
         $.ajax(settings).done(function (response) {
-            manipulaBadge(1);
             recriaCarrinho(response);
+            manipulaBadge(1);
         });
     })
 
@@ -244,32 +244,23 @@
         }
 
         $.ajax(settings).done(function (response) {
-            manipulaBadge(-1);
             recriaCarrinho(response);
+            manipulaBadge(-1);
         });        
     }
 
     function recriaCarrinho(resposta){
-        var badge = <?=$_SESSION['carrinho']['contagemItens'];?>;
         $('.carrinho').empty();
         $('.carrinho').append(resposta);
     }
 
     function manipulaBadge(valor){
         var badge = $('#badge-carrinho');
-        var badgeValor = parseInt($('#badge-carrinho').text());
-        if (valor == -1) {
-            if (badgeValor == 1) {
-                badge.empty();
-            } else if (badgeValor > 1) {
-                var novoValor = badgeValor + valor;
-                badge.text(novoValor);
-            }
+        var badgeValor = $("div[class*='item_carrinho']").length;
+        if (badgeValor == 0) {
+            badge.empty();
         } else if (badgeValor > 0) {
-            var novoValor = badgeValor + valor;
-            badge.text(novoValor);
-        } else if (badgeValor == '' || badgeValor == null || badgeValor == undefined){
-            badge.text(1);
+            badge.text(badgeValor);
         }
     }
 </script>

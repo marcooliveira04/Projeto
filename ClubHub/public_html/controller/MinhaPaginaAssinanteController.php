@@ -1,6 +1,10 @@
 <?php
 require_once './model/Assinante.php';
 require_once './model/AssinanteDao.php';
+require_once './controller/AssinaturaController.php';
+require_once './controller/PacoteController.php';
+require_once './controller/ClubeController.php';
+require_once './controller/TransportadoraController.php';
 /**
 * 
 */
@@ -8,10 +12,17 @@ class MinhaPaginaAssinanteController
 {
 	private $navigation;
 	private $pessoa;
+	private $assinaturas;
+	private $pacotes;
+	private $clubes;
+	private $transportadoras;
 
 	function __construct(){
 		$this->pessoa = new Assinante;
 		$this->dao = new AssinanteDao;
+		$this->pacotes = new PacoteController;
+		$this->clubes = new ClubeController;
+		$this->transportadoras = new TransportadoraController;
 	}
 
 
@@ -263,62 +274,56 @@ class MinhaPaginaAssinanteController
 	}
 
 	public function constroiTabs(){
+		$this->assinaturas = new AssinaturaController;
+		$this->assinaturas = $this->assinaturas->buscaAssinaturaAssinante($_SESSION['id']);
 		$tabs = "
-		<div class='tab-content' id='nav-tabContent'>
-		  <div class='tab-pane fade show active' id='perfil' role='tabpanel'>
-		  	".$this->constroiFormCadastro()."
-		  </div>
-		  <div class='tab-pane fade' id='minhasAssinaturas' role='tabpanel'>
-		  	<h5 class='mb-5'>Minhas Assinaturas</h5>
-		  	<div class='table-responsive-sm'>
-				<table class='table table-striped table-hover'>
-					<thead class='thead-light'>
-						<tr>
-						<th scope='col'>Clube</th>
-						<th scope='col'>Pacote</th>
-						<th scope='col'>Preço</th>
-						<th scope='col'>Data da Primeira Assinautra</th>
-						<th scope='col'>Data de Cobrança</th>
-						<th scope='col'>Próxima Entrega</th>
-						<th scope='col'>Código de Rastreio</th>
-						<th scope='col'>Transportadora</th>
-						<th scope='col'>Cancelar</th>
-						</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<th scope='row'>Nerd</th>
-						<td>Thor Ragnarok</td>
-						<td>R$25.90</td>
-						<td>01/01/2017</td>
-						<td>20/02/2017</td>
-						<td>-</td>
-						<td>123456</td>
-						<td><a href='#'>Correios</a></td>
-						<td><i class='fa fa-trash' aria-hidden='true'></i></td>
-					</tr>
-					<tr>
-						<th scope='row'>Alimentação</th>
-						<td>Cereais Internacionais</td>
-						<td>R$15,90</td>
-						<td>01/01/2017</td>
-						<td>10/11/2017</td>
-						<td>30/11/2017</td>
-						<td>654321</td>
-						<td><a href='#'>UPS</a></td>
-						<td><i class='fa fa-trash' aria-hidden='true'></i></td>
-					</tr>
-					<tr>
-						<th scope='row'>Bebidas</th>
-						<td>Cachaça Brasileira</td>
-						<td>R$75.80</td>
-						<td>05/06/2017</td>
-						<td>06/06/2017</td>
-						<td>11/11/2017</td>
-						<td>9876541112</td>
-						<td><a href='#'>Transporte de Bebidas</a></td>
-						<td><i class='fa fa-trash' aria-hidden='true'></i></td>
-					</tr>
+			<div class='tab-content' id='nav-tabContent'>
+			  <div class='tab-pane fade show active' id='perfil' role='tabpanel'>
+			  	".$this->constroiFormCadastro()."
+			  </div>
+			  <div class='tab-pane fade' id='minhasAssinaturas' role='tabpanel'>
+			  	<h5>Minhas Assinaturas</h5>
+			  	<hr/>
+			  	<div class='table-responsive'>
+					<table class='table table-striped table-hover'>
+						<thead class='thead-light'>
+							<tr>
+							<th scope='col'>Clube</th>
+							<th scope='col'>Pacote</th>
+							<th scope='col'>Preço</th>
+							<th scope='col'>Data da Primeira Assinautra</th>
+							<th scope='col'>Data de Cobrança</th>
+							<th scope='col'>Próxima Entrega</th>
+							<th scope='col'>Código de Rastreio</th>
+							<th scope='col'>Transportadora</th>
+							<th scope='col'>Cancelar</th>
+							</tr>
+						</thead>
+						<tbody>
+		";
+
+		foreach ($this->assinaturas as $chave => $object) {
+			$pacote = $this->pacotes->buscaPacote($object->getIdPacote());
+			$clube = $this->clubes->buscaClube($pacote->getIdClube());
+			$transportadora = $this->transportadoras->buscaTransportadoraId($object->getTransportadora());
+			$data = date("d/m/Y", strtotime($object->getData()));
+			$proximoEnvio = date("d/m/Y", strtotime($pacote->getProximoEnvio()));
+			$tabs.= "
+				<tr>
+					<th scope='row'>".$clube->getNome()."</th>
+					<td>".$pacote->getNome()."</td>
+					<td>R$".$pacote->getValor()."</td>
+					<td>".$data."</td>
+					<td></td>
+					<td>".$proximoEnvio."</td>
+					<td>".$object->getCodRastreio()."</td>
+					<td><a href='".$transportadora->getLink()."'>".$transportadora->getNome()."</a></td>
+					<td class='text-center'><a href='#' id='cancela' class='text-danger'><i class='fa fa-lg fa-trash' aria-hidden='true'></i></a></td>
+				</tr>				
+			";
+		}
+
+		$tabs .= "
 					</tbody>
 				</table>
 			</div>

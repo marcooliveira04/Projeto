@@ -49,7 +49,7 @@ class CarrinhoController
 			$dropdown = "
 
                 <div class='itens'>
-			        <div class='item_carrinho px-4 py-2'>
+			        <div class='carrinho_vazio px-4 py-2'>
 			            <div class='d-flex flex-row'>
 			                <p>Você não possui itens adicionados ao carrinho</p>
 			            </div>

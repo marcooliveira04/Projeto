@@ -156,3 +156,6 @@ Planejamento:
 			Se obtiver sucesso na função do lightbox, remover item do carrinho da sessão e fazer as funções para adicionar no banco de dados o que for retornado do PagSeguro.
 		PagSeguro:
 			No PagSeguro, deverá ser informado o Clube como um Vendedor para futura identificação de repasse de pagamentos
+	Carrinho:
+		Impedir contagem de item mais de uma vez na badge - OK
+		Impedir a adição de mais de um item igual - OK (isso já acontece pq ele adiciona por cima do índice do clube e pacote :D)
