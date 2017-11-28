@@ -40,6 +40,19 @@ class CadastroController
 		}		
 	}
 
+	public function valida($post){
+		if (!isset($post['email']) or $post['email'] == '' or !filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
+			return "email";
+		}
+
+		if (!isset($post['nome']) or $post['nome'] == '') {
+			return "nome";
+		}
+
+
+
+	}
+
     /**
      * @return mixed
      */
