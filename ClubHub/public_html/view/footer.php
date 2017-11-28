@@ -46,12 +46,12 @@
 
 <script type="text/javascript">
 	$('.card').hover(function(){
-		$(this).find(".card-img-overlay").fadeIn( "fast", function(){
-			$(this).removeClass("d-none");
+		$(this).find(".card-img-overlay").fadeIn( 0, function(){
+			$(this).removeClass("d-md-none d-lg-none");
 		})
 	}, function(){
 		$(this).find(".card-img-overlay").fadeOut( 500, function(){
-			$(this).addClass("d-none");
+			$(this).addClass("d-md-none d-lg-none");
 		})
 	});
 

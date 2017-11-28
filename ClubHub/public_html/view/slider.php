@@ -1,4 +1,4 @@
-<div id="indicadores" class="carousel slide" data-ride="carousel">
+<div id="indicadores" class="carousel slide mb-3" data-ride="carousel">
 	<ol class="carousel-indicators">
 		<li data-target="#indicadores" data-slide-to="0" class="active"></li>
 		<li data-target="#indicadores" data-slide-to="1"></li>
