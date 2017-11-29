@@ -1,10 +1,10 @@
 <?php
 
-require_once 'Clube.php';
-require_once 'ClubeDao.php';
+// require_once 'Clube.php';
+// require_once 'ClubeDao.php';
 
-$clube = new Clube;
-$dao = new ClubeDao;
+// $clube = new Clube;
+// $dao = new ClubeDao;
 
 // // $clube->setId();
 // $clube->setNome('Marco Oliveira');
@@ -31,7 +31,7 @@ $dao = new ClubeDao;
 
 // $controller->geraSelect();
 
-print("<pre>");print_r($dao->read(get_class($clube), null, null));print("</pre>");
+// print("<pre>");print_r($dao->read(get_class($clube), null, null));print("</pre>");
 
 // require_once '../controller/SessionController.php';
 
@@ -55,5 +55,13 @@ print("<pre>");print_r($dao->read(get_class($clube), null, null));print("</pre>"
 // print_r($dao->read('Pacote', null, null));
 
 // print("<pre>");print_r($controller);print("</pre>");
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	require_once '../controller/MinhaPaginaClubeController.php';
+
+	$controller = new MinhaPaginaClubeController;
+
+	$controller->buscaResultadosVendasPacote($_POST);
+}
 
 ?>

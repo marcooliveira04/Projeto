@@ -204,6 +204,26 @@ class Dao
 
         return $string = implode(' = ?, ', $colunas)." = ?";
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
+
+    /**
+     * @param mixed $pdo
+     *
+     * @return self
+     */
+    public function setPdo($pdo)
+    {
+        $this->pdo = $pdo;
+
+        return $this;
+    }
 }
 
 ?>

@@ -11,6 +11,9 @@ class Assinatura
     private $data;
     private $codRastreio;
     private $transportadora;
+    private $status;
+    private $total;
+    private $quantidade;
 
     /**
      * @return mixed
@@ -129,6 +132,66 @@ class Assinatura
     public function setTransportadora($transportadora)
     {
         $this->transportadora = $transportadora;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTotal()
+    {
+        return $this->total;
+    }
+
+    /**
+     * @param mixed $total
+     *
+     * @return self
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQuantidade()
+    {
+        return $this->quantidade;
+    }
+
+    /**
+     * @param mixed $quantidade
+     *
+     * @return self
+     */
+    public function setQuantidade($quantidade)
+    {
+        $this->quantidade = $quantidade;
 
         return $this;
     }
