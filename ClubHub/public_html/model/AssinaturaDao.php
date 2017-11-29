@@ -57,16 +57,16 @@ class AssinaturaDao extends Dao
 						$order = "a.idPacote";
 						break;
 					case 2:
-						$order = "MAX(quantidadesVendidos)";
+						$order = "quantidade DESC";
 						break;
 					case 3:
-						$order = "MAX(totalVendidos)";
+						$order = "total DESC";
 						break;
 					case 4:
-						$order = "MIN(quantidadesVendidos)";
+						$order = "quantidade ASC";
 						break;
 					case 5:
-						$order = "MIN(totalVendidos)";
+						$order = "total ASC";
 						break;
 					
 					default:

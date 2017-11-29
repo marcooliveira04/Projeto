@@ -160,8 +160,8 @@ INSERT INTO `clubhub`.`cliente` VALUES (0, 'Clube de Assinatura de Testes', '503
 INSERT INTO `clubhub`.`clubes` VALUES (1, 'Clube Nerd', 'Clube de Testes Comércio Online', '72332796000190', '17052330', 'Rua Fortunato Resta', '640', '', 'Vila Giunta', 'Bauru', 'SP', '1432430816', '14981047450', 'marco_oliveira94@live.com', 'd90c7638025bb8e4d6dbda0c7051d9e7', 1, '02563', '12345-X', '252565-3');
 # Data for table `clubhub`.`estados`:
 # Data for table `clubhub`.`pacotes`:
-INSERT INTO `clubhub`.`pacotes` VALUES (1, 1, 'Thor Ragnarok', 1, 89.99, 'clubeNerdTeste.jpg', NULL, NULL, '2018-01-01', '2017-11-28', 'A');
-INSERT INTO `clubhub`.`pacotes` VALUES (2, 1, 'Teste', 1, 90.95, 'teste.jpg', NULL, NULL, NULL, '2017-10-01', 'A');
+INSERT INTO `clubhub`.`pacotes` VALUES (1, 1, 'Thor Ragnarok', 1, 89.99, 'clubeNerdTeste.jpg', 'Teste', 'teste', '2018-01-01', '2017-11-28', 'A');
+INSERT INTO `clubhub`.`pacotes` VALUES (2, 1, 'Teste', 1, 90.95, 'teste.jpg', 'teste', 'teste', 'teste', '2017-10-01', 'A');
 # Blob data for table `pacotes`:
 UPDATE `clubhub`.`pacotes` SET `descricao` = 'O Clube Nerd todo mês traz novidades dos seus super heróis favoritos, das séries que parecem sair do mundo invertido e dos cartoons aventureiros (Finn pode confirmar isso).', `detalhes` = 'teste' WHERE `id` = '1' AND `idClube` = '1' AND `nome` = 'Thor Ragnarok' AND `categoria` = '1' AND `valor` = '89.99' AND `imagem` = 'clubeNerdTeste.jpg' AND `proximoEnvio` = '2018-01-01' AND `dataCadastro` = '2017-11-28' AND `status` = 'A';
 UPDATE `clubhub`.`pacotes` SET `descricao` = 'Teste', `detalhes` = 'teste' WHERE `id` = '2' AND `idClube` = '1' AND `nome` = 'Teste' AND `categoria` = '1' AND `valor` = '90.95' AND `imagem` = 'teste.jpg' AND `proximoEnvio` = NULL AND `dataCadastro` = '2017-10-01' AND `status` = 'A';

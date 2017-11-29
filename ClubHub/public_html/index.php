@@ -26,6 +26,8 @@
     //         require_once 'view/cadastro.php';
     //         break;
     // }
+
+    $path = $_SERVER['DOCUMENT_ROOT']."/Projeto/ClubHub/public_html/";
 ?>
 <html lang="en">
     <?php require_once 'view/head.php'; ?>
