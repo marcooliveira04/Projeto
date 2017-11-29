@@ -1,8 +1,8 @@
 <?php
-require_once './model/AssinanteDao.php';
-require_once './controller/AssinaturaController.php';
-require_once './controller/PacoteController.php';
-require_once './controller/ClubeController.php';
+require_once $path.'model/AssinanteDao.php';
+require_once $path.'model/AssinaturaDao.php';
+require_once $path.'controller/PacoteController.php';
+require_once $path.'controller/ClubeController.php';
 /**
 * 
 */
@@ -10,7 +10,7 @@ class MinhaPaginaClubeController
 {
 	
 	private $navigation;
-	private $assinaturas;
+	private $assinaturaDao;
 	private $pacoteController;
 	private $clubeController;
 	private $transportadoras;
@@ -18,7 +18,8 @@ class MinhaPaginaClubeController
 	private $pacotes;
 
 	function __construct(){
-		$this->dao = new AssinanteDao;
+		$this->dao = new ClubeDao;
+        $this->assinaturaDao = new AssinaturaDao;
 		$this->pacoteController = new PacoteController;
 		$this->clubeController = new ClubeController;
 		$this->clube = $this->clubeController->buscaClube($_SESSION['id']);
@@ -51,6 +52,60 @@ class MinhaPaginaClubeController
         }
 
         return $options;
+    }
+
+    public function buscaResultadosVendasPacotes($post = null){
+        if (!isset($post['pacotes']) or $post['pacotes'] == 0 or $post['pacotes'] == '') {
+            $pacote = null;
+        } else {
+            $pacote = $post['pacotes'];
+        }
+        
+        if (!isset($post['inicioPeriodo']) or $post['inicioPeriodo'] == 0 or $post['inicioPeriodo'] == '') {
+            $inicioPeriodo = null;
+        } else {
+            $inicioPeriodo = $post['inicioPeriodo'];
+        }
+
+        if (!isset($post['fimPeriodo']) or $post['fimPeriodo'] == 0 or $post['fimPeriodo'] == '') {
+            $fimPeriodo = null;
+        } else {
+            $fimPeriodo = $post['fimPeriodo'];
+        }
+
+        if (!isset($post['ordenar']) or $post['ordenar'] == 0 or $post['ordenar'] == '') {
+            $ordenar = null;
+        } else {
+            $ordenar = $post['ordenar'];
+        }
+
+        $resultado = $this->assinaturaDao->readAssinaturasPagas($pacote, $inicioPeriodo, $fimPeriodo, $ordenar);
+
+        if ($resultado === false) {
+            return 0;
+        } else {
+            return $resultado;
+        }
+
+    }
+
+    public function constroiTrsResultadoVendasPacotes($elementos){
+        if ($elementos == 0 or $elementos == '' or is_null($elementos) or count($elementos) < 1) {
+            return "Não foram encontrados pacotes com os termos selecionados.";
+        } else {
+            $trs = "";
+            foreach ($elementos as $chave => $objeto) {
+                $trs .= "
+                    <tr>
+                        <td>".$objeto->getId()."</td>
+                        <td>".$objeto->getQuantidade()."</td>
+                        <td>R$".$objeto->getTotal()."</td>
+                    </tr>
+                ";
+            }
+
+            return $trs;
+        }
     }
 
     /**

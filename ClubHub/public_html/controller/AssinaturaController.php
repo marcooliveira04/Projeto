@@ -1,5 +1,5 @@
 <?php
-require_once './model/AssinaturaDao.php';
+require_once $path.'model/AssinaturaDao.php';
 /**
 * 
 */

@@ -2,7 +2,7 @@
     session_start();
 // unset($_SESSION);
 
-
+    $path = $_SERVER['DOCUMENT_ROOT']."/Projeto/ClubHub/public_html/";
     // print_r($_SESSION);
     // Não pode retirar esse iniciador de sessão senão o login não funciona. Talvez por causa de ser requisitado pelo Ajax e não incluso no código - abaixo da primeira session_start.
     require_once 'SessionController.php';
@@ -61,6 +61,18 @@
             $controller->$metodo();
 
             echo $controller->criaDropdownCarrinho();
+        }
+
+        if (isset($_POST['action']) and $_POST['action'] == "pesquisar") {
+            unset($_POST['action']);
+            $ponto = ".";
+            require_once 'MinhaPaginaClubeController.php';
+
+            $controller = new MinhaPaginaClubeController;
+
+            $method = "buscaResultados".$_POST['tipo'];
+
+            echo $controller->constroiTrsResultadoVendasPacotes($controller->$method($_POST));
         }
  
     }

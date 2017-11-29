@@ -1,5 +1,5 @@
 <?php
-require_once './model/ClubeDao.php';
+require_once $path.'model/ClubeDao.php';
 /**
 * 
 */
