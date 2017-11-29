@@ -45,6 +45,10 @@
 
 
 <script type="text/javascript">
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 	$('.card').hover(function(){
 		$(this).find(".card-img-overlay").fadeIn( 0, function(){
 			$(this).removeClass("d-md-none d-lg-none");
@@ -90,6 +94,39 @@
             $('#modalLogin').toggle();
             window.location.reload();
           }
+        });      
+    }
+
+    $('#vendasPacotes').submit(function(){
+        form = $(this);
+        $('.loading').fadeIn("slow");
+        setTimeout(function(){
+            pesquisaVendasPacotes(form);
+        }, 1000);
+
+        return false;
+    })
+
+    function pesquisaVendasPacotes(form){
+        var settings = {
+            "async": true,
+            "url": "controller/Rotas.ajax.php",
+            "method": "POST",
+            "headers": {
+            "cache-control": "no-cache"
+            },
+            "mimeType": "multipart/form-data",
+            "data": $(form).serialize()
+        }
+
+        $.ajax(settings).done(function (response) {
+            $('.loading').fadeOut("slow");
+            console.log(response);
+            if (response == 0) {
+                alert("Ocorreu um erro ao pesquisar. Por favor, tente novamente mais tarde.");
+            } else {
+                $('.resultadosVendasPacotes').empty().append(response);
+            }
         });      
     }
 
