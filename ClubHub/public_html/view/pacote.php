@@ -3,7 +3,7 @@ $ponto = ".";
 require_once './controller/PacoteController.php';
 
 $controller = new PacoteController();
-$controller->setPacote($controller->buscaPacote($_GET['id']));
+$controller->setPacote($controller->buscaPacote($_GET['id'])[0]);
 $pacote = $controller->getPacote();
 
 ?>

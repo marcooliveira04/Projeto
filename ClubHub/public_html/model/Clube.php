@@ -12,6 +12,9 @@ class Clube extends Pessoa
 	private $cnpj;
     private $categoria;
     private $pacotes;
+    private $banco;
+    private $agencia;
+    private $conta;
 
     /**
      * @return mixed
@@ -91,6 +94,66 @@ class Clube extends Pessoa
     public function setPacotes(Array $pacotes)
     {
         $this->pacotes = $pacotes;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBanco()
+    {
+        return $this->banco;
+    }
+
+    /**
+     * @param mixed $banco
+     *
+     * @return self
+     */
+    public function setBanco($banco)
+    {
+        $this->banco = $banco;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAgencia()
+    {
+        return $this->agencia;
+    }
+
+    /**
+     * @param mixed $agencia
+     *
+     * @return self
+     */
+    public function setAgencia($agencia)
+    {
+        $this->agencia = $agencia;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConta()
+    {
+        return $this->conta;
+    }
+
+    /**
+     * @param mixed $conta
+     *
+     * @return self
+     */
+    public function setConta($conta)
+    {
+        $this->conta = $conta;
 
         return $this;
     }

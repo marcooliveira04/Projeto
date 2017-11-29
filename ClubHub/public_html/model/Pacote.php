@@ -14,6 +14,8 @@ class Pacote
     private $descricao;
     private $detalhes;
     private $proximoEnvio;
+    private $dataCadastro;
+    private $status;
 
     /**
      * @return mixed
@@ -191,6 +193,46 @@ class Pacote
     public function setProximoEnvio($proximoEnvio)
     {
         $this->proximoEnvio = $proximoEnvio;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDataCadastro()
+    {
+        return $this->dataCadastro;
+    }
+
+    /**
+     * @param mixed $dataCadastro
+     *
+     * @return self
+     */
+    public function setDataCadastro($dataCadastro)
+    {
+        $this->dataCadastro = $dataCadastro;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
 
         return $this;
     }

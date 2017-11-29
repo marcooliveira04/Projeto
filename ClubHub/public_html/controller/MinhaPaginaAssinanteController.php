@@ -303,7 +303,7 @@ class MinhaPaginaAssinanteController
 		";
 
 		foreach ($this->assinaturas as $chave => $object) {
-			$pacote = $this->pacotes->buscaPacote($object->getIdPacote());
+			$pacote = $this->pacotes->buscaPacote($object->getIdPacote())[0];
 			$clube = $this->clubes->buscaClube($pacote->getIdClube());
 			$transportadora = $this->transportadoras->buscaTransportadoraId($object->getTransportadora());
 			$data = date("d/m/Y", strtotime($object->getData()));

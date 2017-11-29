@@ -12,16 +12,28 @@ class PacoteController
 		$this->daoPacote = new PacoteDao;
 	}
 
-	public function buscaPacote($idPacote){
+    public function buscaPacote($idPacote){
+        $where = [
+            [
+                'coluna'    => 'id',
+                'valor'     => $idPacote,
+                'operador'  => ''
+            ]
+        ];
+
+        return $this->daoPacote->read('Pacote', $where, null);
+    }
+
+	public function buscaPacoteClube($idClube){
 		$where = [
 			[
-				'coluna'	=> 'id',
-				'valor'		=> $idPacote,
+				'coluna'	=> 'idClube',
+				'valor'		=> $idClube,
 				'operador'	=> ''
 			]
 		];
 
-		return $this->daoPacote->read('Pacote', $where, null)[0];
+		return $this->daoPacote->read('Pacote', $where, null);
 	}
 
     /**

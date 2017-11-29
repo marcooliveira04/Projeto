@@ -8,32 +8,37 @@
 		echo $controller->constroiTabs();
 	} else if ($_SESSION['tipo'] == 'Clube') {
 		require_once './controller/MinhaPaginaClubeController.php';
+		require_once './controller/CategoriaController.php';
+		require_once './model/Estados.php';
+		$modeloEstados = new Estados;
 		$controller = new MinhaPaginaClubeController;
+		$categoria = new CategoriaController;
+		$clube = $controller->getClube();
 
 		?>
-			<ul class='nav nav-pills justify-content-center nav-fill'>
-				<li class='nav-item'>
-					<a class='nav-link active' id='perfil-pill' data-toggle='pill' href='#perfil'>Perfil</a>
-				</li>
-				<li class='nav-item'>
-					<a class='nav-link' id='minhasAssinaturas-pill' data-toggle='pill' href='#minhasAssinaturas'>Meus Planos</a>
-				</li>
-				<li class='nav-item'>
-					<a class='nav-link' id='minhasAssinaturas-pill' data-toggle='pill' href='#relatorio'>Relatórios</a>
-				</li>
-			</ul>
-			<hr/>
+		<ul class='nav nav-pills justify-content-center nav-fill'>
+			<li class='nav-item'>
+				<a class='nav-link active' id='perfil-pill' data-toggle='pill' href='#perfil'>Perfil</a>
+			</li>
+			<li class='nav-item'>
+				<a class='nav-link' id='minhasAssinaturas-pill' data-toggle='pill' href='#minhasAssinaturas'>Meus Pacotes</a>
+			</li>
+			<li class='nav-item'>
+				<a class='nav-link' id='minhasAssinaturas-pill' data-toggle='pill' href='#relatorio'>Relatórios</a>
+			</li>
+		</ul>
+		<hr/>
 		<div class='tab-content' id='nav-tabContent'>
 		  <div class='tab-pane fade show active' id='perfil' role='tabpanel'>
 			<form name="cadastro" id="cadastro" method="POST">
-				<input type="hidden" name="action" value="cadastro">
+				<input type="hidden" name="action" value="atualizar">
 				<input type="hidden" name="tipo" value="Clube">
 				<h5>Dados</h5>
 				<hr/>
 				<div class="row">
 					<div class="form-group col-md-6">
 						<label for="email">E-mail *</label>
-						<input class="form-control" type="email" name="email" id="email" placeholder="E-mail" required="">
+						<input class="form-control" type="email" name="email" id="email" placeholder="E-mail" required="" value="<?=$clube->getEmail();?>">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="Senha">Senha *</label>
@@ -43,32 +48,32 @@
 				<div class="row">
 					<div class="form-group col-md-6">
 						<label for="nome">Nome Fantasia *</label>
-						<input class="form-control" type="text" name="nome" id="nome" placeholder="Nome Fantasia" required="">
+						<input class="form-control" type="text" name="nome" id="nome" placeholder="Nome Fantasia" required="" value="<?=$clube->getNome();?>">
 					</div>
 					<div class="form-group col-md-3">
 						<label for="razaoSocial">Razão Social *</label>
-						<input class="form-control" type="text" name="razaoSocial" id="razaoSocial" placeholder="Razão Social" required="">
+						<input class="form-control" type="text" name="razaoSocial" id="razaoSocial" placeholder="Razão Social" required="" value="<?=$clube->getRazaoSocial();?>">
 					</div>
 					<div class="form-group col-md-3">
 						<label for="cnpj">CNPJ *</label>
-						<input class="form-control" type="text" name="cnpj" id="cnpj" placeholder="CNPJ" required="">
+						<input class="form-control" type="text" name="cnpj" id="cnpj" placeholder="CNPJ" required="" value="<?=$clube->getCnpj();?>">
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-3">
 						<label for="telefone">Telefone *</label>
-						<input class="form-control" type="text" name="telefone" id="telefone" placeholder="Telefone">
+						<input class="form-control" type="text" name="telefone" id="telefone" placeholder="Telefone" value="<?=$clube->getTelefone();?>">
 					</div>
 					<div class="form-group col-md-3">
 						<label for="celular">Celular</label>
-						<input class="form-control" type="text" name="celular" id="celular" placeholder="Celular">
+						<input class="form-control" type="text" name="celular" id="celular" placeholder="Celular" value="<?=$clube->getCelular();?>">
 					</div>
 					<div class="form-group col">
 						<label for="categoria">Categoria</label>
 						<select class="form-control" name="categoria" id="categoria" required="">
 							<option disabled="" selected="" value="0">Categoria</option>
-							<?php foreach ($categorias as $indice => $option): ?>
-								<?php echo $option; ?>
+							<?php foreach ($categoria->geraSelect($clube->getCategoria()) as $chave => $option): ?>
+								<?=$option;?>
 							<?php endforeach ?>
 							<option value="99">Outra</option>
 						</select>
@@ -79,66 +84,40 @@
 				<div class="row">
 					<div class="form-group col-md-2">
 						<label for="cep">CEP *</label>
-						<input class="form-control" type="text" name="cep" id="cep" placeholder="CEP">
+						<input class="form-control" type="text" name="cep" id="cep" placeholder="CEP" value="<?=$clube->getCep();?>">
 						<div class="invalid-feedback" id="invalid-feedback-cep"></div>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="rua">Logradouro *</label>
-						<input class="form-control" type="text" name="rua" id="rua" placeholder="Logradouro">
+						<input class="form-control" type="text" name="rua" id="rua" placeholder="Logradouro" value="<?=$clube->getRua();?>">
 					</div>
 					<div class="form-group col-md-2">
 						<label for="numero">Número *</label>
-						<input class="form-control" type="text" name="numero" id="numero" placeholder="Número">
+						<input class="form-control" type="text" name="numero" id="numero" placeholder="Número" value="<?=$clube->getNumero();?>">
 					</div>
 					<div class="form-group col-md-2">
 						<label for="complemento">Complemento</label>
-						<input class="form-control" type="text" name="complemento" id="complemento" placeholder="Complemento">
+						<input class="form-control" type="text" name="complemento" id="complemento" placeholder="Complemento" value="<?=$clube->getComplemento();?>">
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-3">
 						<label for="bairro">Bairro *</label>
-						<input class="form-control" type="text" name="bairro" id="bairro" placeholder="Bairro">
+						<input class="form-control" type="text" name="bairro" id="bairro" placeholder="Bairro" value="<?=$clube->getBairro();?>">
 					</div>
 					<div class="col-md-2">
 						<div class="form-group">
 							<label for="uf">UF *</label>
 			                <select class="form-control" name="uf" id="uf">
 			                  <option disabled="" selected="" value="0">Estado</option>
-			                  <option value="AC">Acre</option>
-			                  <option value="AL">Alagoas</option>
-			                  <option value="AM">Amazonas</option>
-			                  <option value="AP">Amapá</option>
-			                  <option value="BA">Bahia</option>
-			                  <option value="CE">Ceará</option>
-			                  <option value="DF">Distrito Federal</option>
-			                  <option value="ES">Espirito Santo</option>
-			                  <option value="GO">Goiás</option>
-			                  <option value="MA">Maranhão</option>
-			                  <option value="MG">Minas Gerais</option>
-			                  <option value="MS">Mato Grosso do Sul</option>
-			                  <option value="MT">Mato Grosso</option>
-			                  <option value="PA">Pará</option>
-			                  <option value="PB">Paraíba</option>
-			                  <option value="PE">Pernambuco</option>
-			                  <option value="PI">Piauí</option>
-			                  <option value="PR">Paraná</option>
-			                  <option value="RJ">Rio de Janeiro</option>
-			                  <option value="RN">Rio Grande do Norte</option>
-			                  <option value="RO">Rondônia</option>
-			                  <option value="RR">Roraima</option>
-			                  <option value="RS">Rio Grande do Sul</option>
-			                  <option value="SC">Santa Catarina</option>
-			                  <option value="SE">Sergipe</option>
-			                  <option value="SP">São Paulo</option>
-			                  <option value="TO">Tocantins</option>
+			                  <?=$modeloEstados->geraOptions($clube->getUf());?>
 			                </select>
 						</div>
 					</div>
 					<div class="col-md-2">
 						<div class="form-group">
 							<label for="cidade">Cidade *</label>
-							<input class="form-control" type="text" name="cidade" id="cidade" placeholder="Cidade">
+							<input class="form-control" type="text" name="cidade" id="cidade" placeholder="Cidade" value="<?=$clube->getCidade();?>">
 						</div>
 					</div>
 				</div>
@@ -148,23 +127,17 @@
 				<div class="row">
 					<div class="col-md-2">
 						<div class="form-group">
-							<label for="uf">Banco *</label>
-			                <select class="form-control" name="uf" id="uf">
-			                  <option disabled="" selected="" value="0">Banco</option>
-			                  <option value="AC">Itaú</option>
-			                  <option value="AL">Santander</option>
-			                  <option value="AM">Bradesco</option>
-			                  <option value="AP">HSBCS</option>
-			                </select>
+							<label for="banco">Banco *</label>
+							<input class="form-control" type="text" name="banco" id="banco" required="" value="<?=$clube->getBanco();?>">
 						</div>
 					</div>
 					<div class="form-group col-md-2">
-						<label for="complemento">Agência</label>
-						<input class="form-control" type="text" name="complemento" id="complemento" placeholder="Agência">
+						<label for="agencia">Agência</label>
+						<input class="form-control" type="text" name="agencia" id="agencia" placeholder="Agência" value="<?=$clube->getAgencia();?>">
 					</div>
 					<div class="form-group col-md-3">
-						<label for="bairro">Conta Corrente *</label>
-						<input class="form-control" type="text" name="bairro" id="bairro" placeholder="Conta Corrente">
+						<label for="conta">Conta Corrente *</label>
+						<input class="form-control" type="text" name="conta" id="conta" placeholder="Conta Corrente" value="<?=$clube->getConta();?>">
 					</div>
 				</div>
 				<div class="row">
@@ -173,7 +146,7 @@
 			</form>
 		  </div>
 		  <div class='tab-pane fade' id='minhasAssinaturas' role='tabpanel'>
-		  	<h5 class='mb-5'>Meus Planos</h5>
+		  	<h5 class='mb-5'>Meus Pacotes</h5>
 		  	<div class='table-responsive-sm'>
 				<table class='table table-striped table-hover'>
 					<thead class='thead-light'>
@@ -184,19 +157,10 @@
 						<th scope='col'>Status</th>
 						<th scope='col'>Alterar</th>
 						<th scope='col'>Inativar</th>
-						<th scope='col'>Excluir</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th scope='row'>Thor Ragnarok</th>
-							<td>R$25.90</td>
-							<td>01/01/2017</td>
-							<td>A</td>
-							<td><i class="fa fa-refresh" aria-hidden="true"></i></td>
-							<td><i class="fa fa-times-circle" aria-hidden="true"></i></td>
-							<td><i class='fa fa-trash' aria-hidden='true'></i></td>
-						</tr>
+						<?=$controller->geraTrsPacotes();?>
 					</tbody>
 				</table>
 			</div>
@@ -226,7 +190,7 @@
 						<div class="card-header">
 							<ul class="nav nav-tabs card-header-tabs">
 								<li class="nav-item">
-									<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home">Vendas por Planos</a>
+									<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home">Vendas por Pacotes</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile">Vendas por Associado</a>
@@ -241,9 +205,10 @@
 									<div class="row">
 										<div class="col-md-2">
 											<div class="form-group">
-												<label for="pacotes">Planos</label>
+												<label for="pacotes">Pacotes</label>
 												<select class="form-control" name="pacotes" id="pacotes">
-													<option selected="">Planos</option>
+													<option selected="" disabled="">Pacotes</option>
+													<?=$controller->geraOptionsPacotes();?>
 												</select>
 											</div>
 										</div>
@@ -280,7 +245,7 @@
 										<table class="table table-striped table-hover">
 											<thead>
 												<th>ID </th>
-												<th>Planos</th>
+												<th>Pacotes</th>
 												<th>Quantidade</th>
 												<th>Valor Total</th>
 											</thead>
@@ -310,9 +275,10 @@
 										<div class="row">
 											<div class="col-md-3">
 												<div class="form-group">
-													<label for="pacotes">Planos</label>
+													<label for="pacotes">Pacotes</label>
 													<select class="form-control" name="pacotes" id="pacotes">
-														<option selected="">Planos</option>
+														<option disabled="">Pacotes</option>
+														<?=$controller->geraOptionsPacotes();?>
 													</select>
 												</div>
 											</div>

@@ -20,7 +20,7 @@ class CarrinhoController
 
 	public function defineControlador($idPacote){
 		$this->pacoteController = new PacoteController();
-		$this->pacoteController->setPacote($this->pacoteController->buscaPacote($idPacote));
+		$this->pacoteController->setPacote($this->pacoteController->buscaPacote($idPacote)[0]);
 		$this->pacote = $this->pacoteController->getPacote();
 	}
 

@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$clubeObject = $clubeController->buscaClube($idClube);
 		$referencia .= $clubeObject->getId();
 		foreach ($pacote as $chave => $value) {
-			$pacoteObject = $pacoteController->buscaPacote($value['id']);
+			$pacoteObject = $pacoteController->buscaPacote($value['id'])[0];
 			$referencia .= $pacoteObject->getId();
 		}
 
