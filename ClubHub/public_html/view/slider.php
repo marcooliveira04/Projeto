@@ -6,27 +6,18 @@
 	</ol>
 	<div class="carousel-inner">
 		<div class="carousel-item active">
-			<img class="d-block w-100" src="./view/layout/images/slideshowvinho1.png" alt="First slide">
-<!-- 			<div class="carousel-caption d-none d-md-block">
-				<h3>...</h3>
-				<p>...</p>
-			</div> -->
+			<a href="?page=clube&id=1">
+				<img class="d-block w-100" src="./view/layout/images/banner_thor.png" alt="First slide">
+			</a>
 		</div>
 		<div class="carousel-item">
-			<img class="d-block w-100" src="./view/layout/images/slideshowvinho2.png" alt="Second slide">
-<!-- 			<div class="carousel-caption d-none d-md-block">
-				<h3 class="text-white">Receba esse mês o game Shadow of War</h3>
-				<p>Caminhe com Celebrimbor</p>
-			</div> -->
+			<a href="?page=clube&id=2">
+				<img class="d-block w-100" src="./view/layout/images/banner_livros.png" alt="Second slide">
+			</a>
 		</div>
 		<div class="carousel-item">
 			<a href="?page=clube&id=1">
-				<img class="d-block w-100" src="view/layout/images/sliderThor.jpg" alt="Third slide"><!-- 
-				<img class="d-block w-100" src="https://compass-ssl.xbox.com/assets/23/24/2324ec96-3670-4d9f-b06f-756d8247687a.jpg?n=ACH_GLP-Page-Hero-1084_1920x600_02.jpg" alt="Third slide"> -->
-	<!-- 			<div class="carousel-caption d-none d-md-block">
-					<h3>...</h3>
-					<p>...</p>
-				</div> -->
+				<img class="d-block w-100" src="view/layout/images/sliderThor.jpg" alt="Third slide">
 			</a>
 		</div>
 	</div>
@@ -45,5 +36,7 @@
 		background-color: rgba(52,58,64, .1);
 	}
 
-
+	.opacity-070{
+		opacity: 0.70;
+	}
 </style>

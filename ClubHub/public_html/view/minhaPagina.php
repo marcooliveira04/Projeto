@@ -147,6 +147,76 @@
 		  	</div>
 		 	<div class='tab-pane fade' id='minhasAssinaturas' role='tabpanel'>
 		  		<h5 class='mb-5'>Meus Pacotes</h5>
+		  		<hr>
+		  		<div class="float-right mb-3">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#incluiProduto">
+					  Cadastro
+					</button>
+				</div>
+
+<div>
+
+<div class="modal fade" id="incluiProduto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<form name="cadastrarPacoteModal" id="cadastrarPacoteModal" method="POST">
+                <div class='form-group'><label for="nome">Nome</label>
+                                       <input class='form-control' type='text' name='nome'>
+                    
+
+                </div>
+                <div class='form-group'><label for="valor">Valor (R$)</label>
+                                       <input class='form-control' type='text' name='valor'>
+                    
+
+                </div>
+                <div class='form-group'><label for="status">Status (A ou I)</label>
+                   <input class='form-control' type='text' name='status'>
+
+                </div>
+            <input class='form-control' type='hidden' name='idClube' value='<?=$_SESSION['id'];?>'>
+                  <div class='form-group'><label for="nome">Descricao</label>
+            <input class='form-control' type='text' name='descricao'>
+        </div>
+        <div class='form-group'><label for="nome">Detalhes</label>
+            <input class='form-control' type='text' name='detalhes'>
+        </div>
+        <div class='form-group'><label for="nome">Próximo Envio</label>
+            <input class='form-control' type='date' name='proximoEnvio'>
+        </div>
+
+						<div class="form-group">
+							<label for="categoria">Categoria</label>
+							<select class="form-control" name="categoria" id="categoria" required="">
+								<option disabled="" selected="" value="0">Categoria</option>
+								<?php foreach ($categoria->geraSelect($clube->getCategoria()) as $chave => $option): ?>
+									<?=$option;?>
+								<?php endforeach ?>
+								<option value="99">Outra</option>
+							</select>
+						</div>
+        
+            <input class='form-control' type='hidden' name="dataCadastro" value='<?=date('m-d-Y');?>'>
+        
+            <input class='form-control' type='hidden' name='action' value='cadastrarPacote'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+  </form>
+    </div>
+  </div>
+</div>
+</div>
+
 			  	<div class='table-responsive-sm'>
 					<table class='table table-striped table-hover'>
 						<thead class='thead-light'>
@@ -155,8 +225,12 @@
 								<th scope='col'>Preço</th>
 								<th scope='col'>Data de Cadastro</th>
 								<th scope='col'>Status</th>
-								<th scope='col'>Alterar</th>
-								<th scope='col'>Inativar</th>
+								<th scope='col'>
+									
+									  Alterar
+					
+								</th>
+								<th scope='col'>Ativar/Inativar</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -164,10 +238,11 @@
 						</tbody>
 					</table>
 				</div>
+          		<?=$controller->geraFormAlteracao();?>
 		  	</div>
 		  	<div class='tab-pane fade' id='relatorio' role='tabpanel'>
 			  	<div class="row">
-				  	<div class="col-md-2">
+				  	<div class="col-md-2 border border-left-0 border-bottom-0 border-top-0">
 						<button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#vendas">
 							Vendas
 						</button>
@@ -175,7 +250,7 @@
 							Associados
 						</button>
 					</div>
-					<div class="col">
+					<div class="col ml-2">
 						<div class="collapse show" id="vendas">
 							<ul class="nav nav-tabs card-header-tabs">
 								<li class="nav-item">
@@ -189,7 +264,7 @@
 								<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 									<h4 class="card-title">Filtros</h4>
 									<hr/>
-									<form id="vendasPacotes" method="POST" name="vendasPacotes">
+									<form id="vendasPacotes" method="POST" action="view/pdf.php" target="_blank" name="vendasPacotes">
 										<input type="hidden" name="action" value="pesquisar">
 										<input type="hidden" name="tipo" value="VendasPacotes">
 										<div class="row">
@@ -245,18 +320,28 @@
 										<div class="row">
 											<div class="col mx-auto">
 												<div class="form-group">
-													<button type="submit" class="btn btn-success">Pesquisa</button>
+													<button class="btn btn-success" id="pesquisar">Pesquisa</button>
 												</div>
 											</div>
 										</div>
-									</form>
-									<hr/>
-									<div class="wrapper">
-										<div class="row-fluid termos">
-											<p>Exibindo resultados referentes aos ultimos 30 dias.</p>
+										<hr/>
+										<div class="row termos">
+											<div class="col-md-6">
+												<p>Exibindo resultados referentes aos ultimos 30 dias.</p>
+											</div>
+											<div class="col-md-6 text-right">
+												<p>
+													<button type="submit" class="btn btn-dark" id="exportPdf" value="VendasPacotes">Exportar PDF</button>
+												</p>
+											</div>
 										</div>
+									</form>
+						
+									<div class="wrapper">
+
+			
 										<div class="row-fluid tabela">
-											<div class="table-responsive-sm">
+											<div class="table-responsive-sm" id="vendasPacotesTable">
 												<table class="table table-striped table-hover">
 													<thead>
 														<th>Pacotes</th>
@@ -304,7 +389,7 @@
 												<span class="float-right py-1">
 													<a href="#" class="text-dark" data-toggle="tooltip" title="Define a data inicial para pesquisa de vendas"><i class="fa fa-question-circle" aria-hidden="true"></i></a>			
 												</span>
-												<input type="date" class="form-control" name="inicioPeriodo">
+												<input type="date" class="form-control" name="inicioPeriodo" id="inicioPeriodo">
 											</div>
 										</div>
 										<div class="col-md-3">
@@ -317,7 +402,7 @@
 												<span class="float-right py-1">
 													<a href="#" class="text-dark" data-toggle="tooltip" title="Define a data final para pesquisa de vendas"><i class="fa fa-question-circle" aria-hidden="true"></i></a>			
 												</span>
-												<input type="date" class="form-control" name="fimPeriodo">
+												<input type="date" class="form-control" name="fimPeriodo" id="fimPeriodo">
 											</div>
 										</div>
 										<div class="col-md-3">
@@ -448,8 +533,14 @@
 			</div>
 		</div>
 	</div>
+
 		<?php
 	}
 	?>
 </div>
 
+<style type="text/css">
+	.tab-pane{
+		padding-top: 1.5rem!important;
+	}
+</style>

@@ -56,12 +56,36 @@
 
 // print("<pre>");print_r($controller);print("</pre>");
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	require_once '../controller/MinhaPaginaClubeController.php';
+// if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// 	require_once '../controller/MinhaPaginaClubeController.php';
 
-	$controller = new MinhaPaginaClubeController;
+// 	$controller = new MinhaPaginaClubeController;
 
-	$controller->buscaResultadosVendasPacote($_POST);
-}
+// 	$controller->buscaResultadosVendasPacote($_POST);
+// }
+
+require_once '../controller/GeraPdf.php';
+
+$pdfGen = new GeraPdf;
+
+$html = <<<EOD
+<table class="table table-striped table-hover">
+													<thead>
+														<tr><th>Pacotes</th>
+														<th>Quantidade</th>
+														<th>Valor Total</th>
+													</tr></thead>
+													<tbody class="resultadosVendasPacotes">
+														
+                    <tr>
+                        <td>Thor Ragnarok</td>
+                        <td>1</td>
+                        <td>R$89.99</td>
+                    </tr>
+                													</tbody>
+												</table>
+EOD;
+
+$pdfGen->criaPdf($html);
 
 ?>

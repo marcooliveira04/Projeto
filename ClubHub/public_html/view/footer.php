@@ -97,15 +97,111 @@ $(function () {
         });      
     }
 
-    $('#vendasPacotes').submit(function(){
-        form = $(this);
+    $('#pesquisar').click(function(){
+        form = $('#vendasPacotes');
         $('.loading').fadeIn("slow");
         setTimeout(function(){
             pesquisaVendasPacotes(form);
         }, 1000);
 
         return false;
+    });
+
+    $('#salvarAlteracoes').click(function(){
+        form = $('#alteracaoProduto'+$(this).val());
+        alteraPacote(form);
+    });
+
+    $('#inativar').click(function(){
+        var form = new FormData();
+        var status = $(this).next().val();
+        form.append("status", ""+status+"");
+        form.append("action", "inativar");
+        form.append("id", ""+$(this).val()+"");
+
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "controller/Rotas.ajax.php",
+          "method": "POST",
+          "processData": false,
+          "contentType": false,
+          "mimeType": "multipart/form-data",
+          "data": form
+        }
+
+        $.ajax(settings).done(function (response) {
+           window.location.reload();
+        });
     })
+
+
+    $('#cadastrarPacoteModal').submit(function(){
+        form = $(this);
+        
+        setTimeout(function(){
+            cadastrarPacote(form);
+        }, 1000);
+
+        return false;
+    });
+
+    function cadastrarPacote(form){
+       
+
+        var settings = {
+            "async": true,
+            "url": "controller/Rotas.ajax.php",
+            "method": "POST",
+            "headers": {
+            "cache-control": "no-cache"
+            },
+            "mimeType": "multipart/form-data",
+            "data": $(form).serialize()
+        }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+
+        
+    }
+
+    function alteraPacote(form){
+        var settings = {
+            "async": true,
+            "url": "controller/Rotas.ajax.php",
+            "method": "POST",
+            "headers": {
+            "cache-control": "no-cache"
+            },
+            "mimeType": "multipart/form-data",
+            "data": $(form).serialize()
+        }
+
+        $.ajax(settings).done(function (response) {
+           window.location.reload();
+        });         
+    }
+
+    function exportaVendasPacotes(table){
+         var settings = {
+            "async": true,
+            "url": "controller/Rotas.ajax.php",
+            "method": "POST",
+            "headers": {
+            "cache-control": "no-cache"
+            },
+            "mimeType": "multipart/form-data",
+            "data": { "html" : table.html(),
+                "action" : "export"
+            }
+        }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });        
+    }
 
     function pesquisaVendasPacotes(form){
         var settings = {

@@ -14,6 +14,7 @@ class Assinatura
     private $status;
     private $total;
     private $quantidade;
+    private $nomePacote;
 
     /**
      * @return mixed
@@ -192,6 +193,26 @@ class Assinatura
     public function setQuantidade($quantidade)
     {
         $this->quantidade = $quantidade;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNomePacote()
+    {
+        return $this->nomePacote;
+    }
+
+    /**
+     * @param mixed $nomePacote
+     *
+     * @return self
+     */
+    public function setNomePacote($nomePacote)
+    {
+        $this->nomePacote = $nomePacote;
 
         return $this;
     }

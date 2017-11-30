@@ -21,6 +21,7 @@ class AssinaturaDao extends Dao
 	            SELECT 
 				    a.id,
 				    b.id AS idPacote,
+				    b.nome as nomePacote,
 				    SUM(b.valor) AS total,
 				    COUNT(a.idPacote) AS quantidade,
 				    a.status AS status
@@ -50,7 +51,7 @@ class AssinaturaDao extends Dao
 
 				$where[] = "a.`data` BETWEEN ".$betweenFirst." AND ".$betweenLast;
 
-				$where[] = "a.status = 'P' ";
+				// $where[] = "a.status = 'P' ";
 
 				switch ($ordenar) {
 					case 1:
@@ -82,6 +83,7 @@ class AssinaturaDao extends Dao
 				ORDER BY ".$order
 			;
 
+			print_r($query);
             $stmt = parent::getPdo()->prepare($query);
 
             $stmt->execute();

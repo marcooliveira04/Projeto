@@ -36,6 +36,8 @@ class Dao
 
             $stmt = $this->pdo->prepare($query);
 
+
+
             $stmt = $this->binder($stmt, $object);
 
             $stmt->execute();
@@ -224,6 +226,25 @@ class Dao
 
         return $this;
     }
+
+    public function inativaPacote($status, $id){
+        try {
+            $query = "UPDATE pacotes SET status = ? WHERE id = ?";
+
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt->bindValue(1, $status);
+            $stmt->bindValue(2, $id);
+
+            $stmt->execute();
+            $stmt->closeCursor();
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }    
 }
 
 ?>

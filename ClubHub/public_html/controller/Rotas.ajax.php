@@ -74,6 +74,62 @@
 
             echo $controller->constroiTrsResultadoVendasPacotes($controller->$method($_POST));
         }
+
+        if (isset($_POST['action']) and $_POST['action'] == "alterar") {
+            unset($_POST['action']);
+            $ponto = ".";
+            require_once 'PacoteController.php';
+
+            $controller = new PacoteController;
+
+            $method = "alterar";
+
+            echo $controller->$method($_POST);
+        }
+
+        if (isset($_POST['action']) and $_POST['action'] == "inativar") {
+            unset($_POST['action']);
+            $ponto = ".";
+            require_once 'PacoteController.php';
+
+            $controller = new PacoteController;
+
+            if ($_POST['status'] == 'A') {
+                $_POST['status'] = 'I';
+            } else if($_POST['status'] == 'I'){
+                $_POST['status'] = 'A';
+            }
+
+            $method = "ativarInativar";
+
+            echo $controller->$method($_POST);
+        }
+
+        if (isset($_POST['action']) and $_POST['action'] == "cadastrarPacote") {
+            unset($_POST['action']);
+            $ponto = ".";
+            require_once 'PacoteController.php';
+
+            $controller = new PacoteController;
+      
+            $method = "cadastrar";
+
+            echo $controller->$method($_POST);
+        }
+
+
+        if (isset($_POST['action']) and $_POST['action'] == "export") {
+            unset($_POST['action']);
+            require_once 'GeraPDF.php';
+
+            $html = $_POST['html'];
+
+            $controller = new GeraPDF();
+
+            $controller->criaPdf($html);
+
+            echo "0";
+        }
  
     }
 

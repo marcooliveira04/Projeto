@@ -1,5 +1,6 @@
 <?php
 require_once $path.'model/PacoteDao.php';
+require_once $path.'model/Pacote.php';
 /**
 * 
 */
@@ -35,6 +36,26 @@ class PacoteController
 
 		return $this->daoPacote->read('Pacote', $where, null);
 	}
+
+    public function alterar($post){
+        $this->pacote = $this->daoPacote->setter($post, new Pacote);
+        $update = $this->daoPacote->update($this->pacote);
+        if (!$update) {
+            return false;
+        } else {
+            return true;
+        }   
+    }
+
+    public function ativarInativar($post){
+        return $this->daoPacote->inativaPacote($post['status'], $post['id']);
+    }
+
+    public function cadastrar($post){
+        $this->pacote = $this->daoPacote->setter($post, new Pacote);
+
+        return $this->daoPacote->create($this->pacote);
+    }
 
     /**
      * @return mixed
