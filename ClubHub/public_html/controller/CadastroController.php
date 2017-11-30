@@ -46,27 +46,11 @@ class CadastroController
 		}
 
 		if (!isset($post['Senha']) or $post['Senha'] == '') {
-			return "Senha";
+			return "senha";
 		}
 
 		if (!isset($post['nome']) or $post['nome'] == '') {
 			return "nome";
-		}
-
-		if (!isset($post['cpf']) or $post['cpf'] == '') {
-			return "cpf";
-		}
-
-		if (!isset($post['rg']) or $post['rg'] == '') {
-			return "rg";
-		}
-
-		if (!isset($post['nascimento']) or $post['nascimento'] == '') {
-			return "nascimento";
-		}
-
-		if (!isset($post['sexo']) or $post['sexo'] == '') {
-			return "sexo";
 		}
 
 		if (!isset($post['telefone']) or $post['telefone'] == '') {
@@ -102,33 +86,52 @@ class CadastroController
 			return "cidade";
 		}
 
-		if (!isset($post['mesmoEndereco']) or $post['mesmoEndereco'] == '') {
-			return "mesmoEndereco";
+		if (get_class($this->pessoa) == 'Assinante') {
+			if (!isset($post['cpf']) or $post['cpf'] == '') {
+				return "cpf";
+			}
+
+			if (!isset($post['rg']) or $post['rg'] == '') {
+				return "rg";
+			}
+
+			if (!isset($post['nascimento']) or $post['nascimento'] == '') {
+				return "nascimento";
+			}
+
+			if (!isset($post['sexo']) or $post['sexo'] == '') {
+				return "sexo";
+			}
+
+			if (!isset($post['mesmoEndereco']) or $post['mesmoEndereco'] == '') {
+				return "mesmoEndereco";
+			}
+
+			if (!isset($post['cepEntrega']) or $post['cepEntrega'] == '') {
+				return "cepEntrega";
+			}
+
+			if (!isset($post['ruaEntrega']) or $post['ruaEntrega'] == '') {
+				return "ruaEntrega";
+			}
+
+			if (!isset($post['numeroEntrega']) or $post['numeroEntrega'] == '') {
+				return "numeroEntrega";
+			}
+
+			if (!isset($post['bairroEntrega']) or $post['bairroEntrega'] == '') {
+				return "bairroEntrega";
+			}
+
+			if (!isset($post['ufEntrega']) or $post['ufEntrega'] == '') {
+				return "ufEntrega";
+			}
+
+			if (!isset($post['cidadeEntrega']) or $post['cidadeEntrega'] == '') {
+				return "cidadeEntrega";
+			}
 		}
 
-		if (!isset($post['cepEntrega']) or $post['cepEntrega'] == '') {
-			return "cepEntrega";
-		}
-
-		if (!isset($post['ruaEntrega']) or $post['ruaEntrega'] == '') {
-			return "ruaEntrega";
-		}
-
-		if (!isset($post['numeroEntrega']) or $post['numeroEntrega'] == '') {
-			return "numeroEntrega";
-		}
-
-		if (!isset($post['bairroEntrega']) or $post['bairroEntrega'] == '') {
-			return "bairroEntrega";
-		}
-
-		if (!isset($post['ufEntrega']) or $post['ufEntrega'] == '') {
-			return "ufEntrega";
-		}
-
-		if (!isset($post['cidadeEntrega']) or $post['cidadeEntrega'] == '') {
-			return "cidadeEntrega";
-		}
 
 		if (get_class($this->pessoa) == 'Clube') {
 
@@ -155,12 +158,7 @@ class CadastroController
 			if (!isset($post['conta']) or $post['conta'] == '') {
 				return "conta";
 			}
-
 		}
-
-
-
-
 	}
 
     /**
