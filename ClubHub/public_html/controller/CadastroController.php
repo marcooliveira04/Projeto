@@ -45,9 +45,119 @@ class CadastroController
 			return "email";
 		}
 
+		if (!isset($post['Senha']) or $post['Senha'] == '') {
+			return "Senha";
+		}
+
 		if (!isset($post['nome']) or $post['nome'] == '') {
 			return "nome";
 		}
+
+		if (!isset($post['cpf']) or $post['cpf'] == '') {
+			return "cpf";
+		}
+
+		if (!isset($post['rg']) or $post['rg'] == '') {
+			return "rg";
+		}
+
+		if (!isset($post['nascimento']) or $post['nascimento'] == '') {
+			return "nascimento";
+		}
+
+		if (!isset($post['sexo']) or $post['sexo'] == '') {
+			return "sexo";
+		}
+
+		if (!isset($post['telefone']) or $post['telefone'] == '') {
+			return "telefone";
+		}
+
+		if (!isset($post['celular']) or $post['celular'] == '') {
+			return "celular";
+		}
+
+		if (!isset($post['cep']) or $post['cep'] == '') {
+			return "cep";
+		}
+
+		if (!isset($post['rua']) or $post['rua'] == '') {
+			return "rua";
+		}
+
+		if (!isset($post['numero']) or $post['numero'] == '') {
+			return "numero";
+		}
+
+		
+		if (!isset($post['bairro']) or $post['bairro'] == '') {
+			return "bairro";
+		}
+
+		if (!isset($post['uf']) or $post['uf'] == '') {
+			return "uf";
+		}
+
+		if (!isset($post['cidade']) or $post['cidade'] == '') {
+			return "cidade";
+		}
+
+		if (!isset($post['mesmoEndereco']) or $post['mesmoEndereco'] == '') {
+			return "mesmoEndereco";
+		}
+
+		if (!isset($post['cepEntrega']) or $post['cepEntrega'] == '') {
+			return "cepEntrega";
+		}
+
+		if (!isset($post['ruaEntrega']) or $post['ruaEntrega'] == '') {
+			return "ruaEntrega";
+		}
+
+		if (!isset($post['numeroEntrega']) or $post['numeroEntrega'] == '') {
+			return "numeroEntrega";
+		}
+
+		if (!isset($post['bairroEntrega']) or $post['bairroEntrega'] == '') {
+			return "bairroEntrega";
+		}
+
+		if (!isset($post['ufEntrega']) or $post['ufEntrega'] == '') {
+			return "ufEntrega";
+		}
+
+		if (!isset($post['cidadeEntrega']) or $post['cidadeEntrega'] == '') {
+			return "cidadeEntrega";
+		}
+
+		if (get_class($this->pessoa) == 'Clube') {
+
+			if (!isset($post['razaoSocial']) or $post['razaoSocial'] == '') {
+				return "razaoSocial";
+			}
+
+			if (!isset($post['cnpj']) or $post['cnpj'] == '') {
+				return "cnpj";
+			}
+
+			if (!isset($post['categoria']) or $post['categoria'] == '') {
+				return "categoria";
+			}
+
+			if (!isset($post['banco']) or $post['banco'] == '') {
+				return "banco";
+			}
+
+			if (!isset($post['agencia']) or $post['agencia'] == '') {
+				return "agencia";
+			}
+
+			if (!isset($post['conta']) or $post['conta'] == '') {
+				return "conta";
+			}
+
+		}
+
 
 
 
